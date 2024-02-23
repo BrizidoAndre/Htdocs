@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="11393426-5637-4d42-a714-0c30a8e63979" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/firstproject/migrations/m240219_173711_alterusers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firstproject/config/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/firstproject/config/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firstproject/models/LoginForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/firstproject/models/LoginForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firstproject/models/Usuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/firstproject/models/Usuario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firstproject/views/layouts/main.php" beforeDir="false" afterPath="$PROJECT_DIR$/firstproject/views/layouts/main.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pokemon/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/pokemon/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pokemon/config/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/pokemon/config/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pokemon/controllers/EggsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/pokemon/controllers/EggsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pokemon/controllers/PokemonsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/pokemon/controllers/PokemonsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pokemon/controllers/TrainerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/pokemon/controllers/TrainerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pokemon/models/LoginForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/pokemon/models/LoginForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pokemon/views/layouts/main.php" beforeDir="false" afterPath="$PROJECT_DIR$/pokemon/views/layouts/main.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pokemon/views/site/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/pokemon/views/site/login.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerConfigs">
+    <option name="configs">
+      <option value="$PROJECT_DIR$/firstproject/web/assets/5920b1c5/composer.json" />
+      <option value="$PROJECT_DIR$/pokemon/web/assets/b94cae23/composer.json" />
+      <option value="$PROJECT_DIR$/firstproject/composer.json" />
+      <option value="$PROJECT_DIR$/pokemon/web/assets/1ceb20e9/composer.json" />
+    </option>
+  </component>
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/pokemon/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsbtTreeLayoutManager">
+    <layout place="tools.popupGrunt">
+      <scroll-view-position x="0" y="0" />
+    </layout>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe">
+    <include_path>
+      <path value="$PROJECT_DIR$/pokemon/vendor/composer" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/behat/gherkin" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/almasaeed2010/adminlte" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/codeception/lib-asserts" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/codeception/codeception" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/codeception/module-filesystem" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/codeception/lib-web" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/codeception/stub" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/codeception/lib-innerbrowser" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/codeception/verify" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/codeception/module-asserts" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/codeception/module-yii2" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/yiisoft/yii2-bootstrap5" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/yiisoft/yii2-composer" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/yiisoft/yii2-gii" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/cebe/markdown" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/yiisoft/yii2" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/yiisoft/yii2-symfonymailer" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/yiisoft/yii2-faker" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/yiisoft/yii2-debug" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/fakerphp/faker" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/phpunit/php-file-iterator_compare" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/psy/psysh" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/npm-asset/bootstrap" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/bower-asset/jquery" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/bower-asset/yii2-pjax" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/bower-asset/punycode" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/bower-asset/bootstrap" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/bower-asset/inputmask" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/yiisoft/yii2-bootstrap4" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/masterminds/html5" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/ezyang/htmlpurifier" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/symfony/browser-kit" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/symfony/dom-crawler" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/symfony/mailer" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/phpspec/php-diff" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/pokemon/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/codeception/lib-asserts" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/codeception/codeception" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/codeception/module-filesystem" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/symfony/browser-kit" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/codeception/lib-web" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/symfony/dom-crawler" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/codeception/stub" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/codeception/lib-innerbrowser" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/symfony/mailer" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/codeception/verify" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/codeception/module-asserts" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/codeception/module-yii2" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/ezyang/htmlpurifier" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/behat/gherkin" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/psy/psysh" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/yiisoft/yii2-composer" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/yiisoft/yii2-gii" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/yiisoft/yii2" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/yiisoft/yii2-bootstrap5" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/yiisoft/yii2-symfonymailer" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/yiisoft/yii2-faker" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/yiisoft/yii2-debug" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/masterminds/html5" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/composer" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/bower-asset/jquery" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/bower-asset/yii2-pjax" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/bower-asset/punycode" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/bower-asset/bootstrap" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/bower-asset/inputmask" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/fakerphp/faker" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/cebe/markdown" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/phpspec/php-diff" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/firstproject/vendor/doctrine/instantiator" />
+    </include_path>
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2cbQAAeQMEXR3kkGOakFAqf9M59" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/xampp/htdocs/apirest",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="CodeceptionConfigurationType" factoryName="Codeception">
+      <PhpTestRunnerSettings configuration_file="$PROJECT_DIR$/pokemon/codeception.yml" scope="ConfigurationFile" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
+    <configuration name="firstproject" type="CodeceptionConfigurationType" factoryName="Codeception">
+      <PhpTestRunnerSettings configuration_file="$PROJECT_DIR$/firstproject/codeception.yml" scope="ConfigurationFile" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-php-predefined-ba97393d7c68-b4dcf6bb9de9-com.jetbrains.php.sharedIndexes-PS-233.13135.108" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="11393426-5637-4d42-a714-0c30a8e63979" name="Changes" comment="" />
+      <created>1708377651788</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1708377651788</updated>
+      <workItem from="1708377652844" duration="849000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

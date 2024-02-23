@@ -4,7 +4,9 @@ namespace app\controllers;
 
 use app\models\Pokemons;
 use app\models\PokemonsSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -22,11 +24,36 @@ class PokemonsController extends Controller
             parent::behaviors(),
             [
                 'verbs' => [
-                    'class' => VerbFilter::className(),
+                    'class' => VerbFilter::class,
                     'actions' => [
                         'delete' => ['POST'],
                     ],
                 ],
+                'access' => [
+                    'class' => AccessControl::class,
+                    'only' => ['create', 'delete', 'view', 'update'],
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'actions' => ['view'],
+                            'roles' => ['?'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['create', 'delete', 'update'],
+                            'roles' => ['@'],
+                        ],
+                    ],
+
+                    'denyCallback' => function ($rule, $action) {
+                        if (\Yii::$app->user->isGuest) {
+                            \Yii::$app->user->loginRequired();
+                        } else {
+                            throw new ForbiddenHttpException("Você não tem permissão para essa funcionalidade");
+                        }
+
+                    }
+                ]
             ]
         );
     }

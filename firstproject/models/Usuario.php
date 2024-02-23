@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use tests\closeConnectionsNoCleanup\ThirdCest;
 use Yii;
 
 /**
@@ -12,7 +13,7 @@ use Yii;
  * @property string $senha
  * @property string $nome
  */
-class Usuario extends \yii\db\ActiveRecord
+class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     /**
      * {@inheritdoc}
@@ -45,5 +46,42 @@ class Usuario extends \yii\db\ActiveRecord
             'senha' => 'Senha',
             'nome' => 'Nome',
         ];
+    }
+
+    public static function findIdentity($id)
+    {
+        return self::findOne(['id' => "id"]);
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        // TODO: Implement findIdentityByAccessToken() method.
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getAuthKey()
+    {
+        // TODO: Implement getAuthKey() method.
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        // TODO: Implement validateAuthKey() method.
+    }
+
+    /**
+     *{@inheritDoc}
+     */
+    public static function findByUsername($username)
+    {
+        return self::findOne(['login' => $username]);
+    }
+    public function validatePassword($password)
+    {
+        return $this->senha ===$password;
     }
 }

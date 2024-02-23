@@ -4,7 +4,9 @@ namespace app\controllers;
 
 use app\models\Eggs;
 use app\models\EggsSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -22,11 +24,36 @@ class EggsController extends Controller
             parent::behaviors(),
             [
                 'verbs' => [
-                    'class' => VerbFilter::className(),
+                    'class' => VerbFilter::class,
                     'actions' => [
                         'delete' => ['POST'],
                     ],
                 ],
+                'access' => [
+                    'class' => AccessControl::class,
+                    'only' => ['create', 'delete', 'view', 'update', 'index'],
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'actions' => ['index'],
+                            'roles' => ['?'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['create', 'delete',  'update', 'index', 'view'],
+                            'roles' => ['@'],
+                        ],
+                    ],
+
+                    'denyCallback' => function ($rule, $action) {
+                        if (\Yii::$app->user->isGuest) {
+                            \Yii::$app->user->loginRequired();
+                        } else {
+                            throw new ForbiddenHttpException("Você não tem permissão para essa funcionalidade");
+                        }
+
+                    }
+                ]
             ]
         );
     }
