@@ -12,6 +12,4 @@ class VideoController extends ActiveController
 
     public $modelClass = 'app\models\Video';
 
-
-
 }
