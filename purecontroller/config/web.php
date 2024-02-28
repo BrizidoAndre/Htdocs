@@ -63,6 +63,19 @@ $config = [
                         'restaurante',
                         'prato'
                     ],
+                ],
+//                PRESTAR ATENÇÃO NISSO AQUI
+                [
+                    'pattern' => 'restaurante/<id:\d+>/prato',
+                    'route' => 'prato/index'
+                ],
+                [
+                    'pattern' => '<id_prato:\d+>/prato',
+                    'route' => 'prato/view'
+                ],
+                [
+                    'pattern' => 'listar-restaurantes',
+                    'route' => 'restaurante/index'
                 ]
             ],
         ],
