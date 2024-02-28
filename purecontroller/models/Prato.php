@@ -53,7 +53,7 @@ class Prato extends \yii\db\ActiveRecord
 
     public function fields()
     {
-        return ['id',"nome_prato", 'quantidade_gramas'];
+        return ['id',"nome_prato", 'quantidade_gramas', 'restaurante'];
     }
 
     public function extraFields()

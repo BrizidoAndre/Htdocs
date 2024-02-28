@@ -1,5 +1,7 @@
 <?php
 
+use yii\rest\UrlRule;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -9,7 +11,7 @@ $config = [
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'components' => [
         'request' => [
@@ -19,15 +21,17 @@ $config = [
                 'application/json' => \yii\web\JsonParser::class
             ],
         ],
+
         'response' => [
-            'format' =>  \yii\web\Response::FORMAT_JSON
+            'format' => \yii\web\Response::FORMAT_JSON
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
             'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => false,
+            'enableSession' => false,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -52,7 +56,14 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'class' => 'yii\rest\UrlRule',
+                [
+                    'class' => UrlRule::class,
+                    'pluralize' => false,
+                    'controller' => [
+                        'restaurante',
+                        'prato'
+                    ],
+                ]
             ],
         ],
     ],

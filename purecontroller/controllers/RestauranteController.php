@@ -2,16 +2,17 @@
 
 namespace app\controllers;
 
-use app\models\Prato;
 use app\models\Restaurante;
-use http\Exception\BadMessageException;
-use http\Url;
-use yii\data\ActiveDataProvider;
-use yii\filters\auth\HttpBasicAuth;
-use yii\helpers\ArrayHelper;
+use yii\filters\auth\CompositeAuth;
+use yii\filters\auth\HttpBearerAuth;
+use yii\filters\ContentNegotiator;
+use yii\filters\RateLimiter;
+use yii\filters\VerbFilter;
 use yii\rest\ActiveController;
 use yii\rest\Controller;
 use yii\web\BadRequestHttpException;
+use yii\web\Response;
+use yii\web\UrlRuleInterface;
 use function PHPUnit\Framework\isNull;
 
 /**
@@ -19,6 +20,8 @@ use function PHPUnit\Framework\isNull;
  */
 class RestauranteController extends Controller
 {
+
+
     public function actionIndex()
     {
         return Restaurante::find()->all();
@@ -87,15 +90,14 @@ class RestauranteController extends Controller
 
     public function behaviors()
     {
+
         return [
-            [
-                'class' => \yii\filters\ContentNegotiator::class,
-
-                'formats' => [
-
-                    'application/json' => \yii\web\Response::FORMAT_JSON,
-                ],
-            ],
+            'authenticator' => [
+                'class' => CompositeAuth::class,
+                'authMethods' => [
+                    HttpBearerAuth::class
+                ]
+            ]
         ];
     }
 
