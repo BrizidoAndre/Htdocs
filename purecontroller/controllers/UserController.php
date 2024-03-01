@@ -52,7 +52,8 @@ class UserController extends Controller
 
        \Yii::$app->response->statusCode = 422;
        return [
-           'errors' => $model->errors
+           'errors' => $model->errors,
+           'status code' => \Yii::$app->response->statusCode
        ];
    }
 

@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use app\models\PostUserModel\PostUserModel;
 use Yii;
 use yii\base\Model;
 

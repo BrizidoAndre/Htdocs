@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Symfony\Component\Mailer\Transport\Smtp\Auth\AuthenticatorInterface;
-use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransport;
 use Yii;
 use yii\web\IdentityInterface;
 
@@ -54,6 +52,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
 
+
     public static function findIdentity($id)
     {
         return self::findOne($id);
@@ -61,7 +60,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        return self::find()->andWhere(['access_token' => $token])->one();
+        return self::findOne(['access_token' => $token]);
     }
 
     public static function findByUsername($username)
@@ -76,12 +75,12 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     public function getAuthKey()
     {
-        return null;
+        return $this->authKey;
     }
 
     public function validateAuthKey($authKey)
     {
-        return false;
+        return $this->getAuthKey() === $authKey;
     }
 
     public function validatePassword($passord)

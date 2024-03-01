@@ -1,5 +1,7 @@
 <?php
 
+use yii\web\JsonResponseFormatter;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -16,12 +18,11 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'Sm7vepYAimy-z3l9IxsEPSZfBg7YMTPA',
             'parsers' => [
-                'application/json' => yii\web\JsonParser::class
+                'application/json' => \yii\web\JsonParser::class
             ],
-            'baseUrl' => str_replace('/api/web', '', (new \yii\web\Request())->getBaseUrl()),
         ],
         'response' => [
-            'format' => yii\web\Response::FORMAT_JSON
+            'format' => \yii\web\Response::FORMAT_JSON
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -58,9 +59,13 @@ $config = [
                     'class' => \yii\rest\UrlRule::class,
                     'pluralize' => false,
                     'controller' => [
-                        'dog'
+                        'dog',
+                        'user'
                     ]
-                ]
+
+                ],
+                'viewdog/<id:\d+>' => 'dog/view',
+                'dog-list' => 'dog/index'
             ],
         ],
     ],

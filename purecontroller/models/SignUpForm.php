@@ -46,7 +46,6 @@ class SignUpForm extends Model
             $this->_user = new User();
             $this->_user->username = $this->username;
             $this->_user->password_hash = $security->generatePasswordHash($this->password);
-            $this->_user->access_token = $security->generateRandomString(255);
 
             if ($this->_user->save()) {
                 return true;
