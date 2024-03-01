@@ -36,7 +36,8 @@ class UserController extends Controller
         if($model->load(\Yii::$app->request->post(), '') && $model->login()){
 
            $user = $model->getUser();
-           $user->access_token = \Yii::$app->security->generateRandomString(512);
+           $user->generateToken();
+
            $user->save();
 
            return $user;

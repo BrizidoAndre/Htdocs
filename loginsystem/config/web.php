@@ -17,7 +17,8 @@ $config = [
             'cookieValidationKey' => 'Sm7vepYAimy-z3l9IxsEPSZfBg7YMTPA',
             'parsers' => [
                 'application/json' => yii\web\JsonParser::class
-            ]
+            ],
+            'baseUrl' => str_replace('/api/web', '', (new \yii\web\Request())->getBaseUrl()),
         ],
         'response' => [
             'format' => yii\web\Response::FORMAT_JSON
@@ -64,12 +65,6 @@ $config = [
         ],
     ],
     'params' => $params,
-    'as access' => [
-        'class' => 'yii\filters\AccessControl',
-        'denyCallback' => function ($rule, $action) {
-            throw new \yii\web\ForbiddenHttpException('Você não está autorizado a acessar esta página');
-        }
-    ]
 ];
 
 if (YII_ENV_DEV) {

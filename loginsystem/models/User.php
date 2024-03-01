@@ -70,6 +70,30 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->authKey;
     }
 
+    public function generateToken(){
+        $header = [
+            'alg'=> 'HS256',
+            'typ' => 'JWT'
+        ];
+
+        $header = base64_encode(json_encode($header));
+
+        $payload = [
+            'sub' => $this->id,
+            'name' => $this->username,
+            'password' => $this->password_hash,
+            'iss' => 'Login System',
+            'exp' => time() + 3600,
+        ];
+        $payload = base64_encode(json_encode($payload));
+
+        $signature = base64_encode(hash_hmac('sha256',$header . '.' . $payload, 'senha'));
+
+        $this->access_token = $header. '.' . $payload . '.' . $signature;
+
+        return;
+    }
+
     public static function findByUsername($username){
         return self::findOne(["username" => $username]);
     }
