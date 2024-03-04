@@ -43,7 +43,16 @@ class Machine extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description', 'imageUrl', 'motherboardId', 'processorId', 'ramMemoryId', 'ramMemoryAmount', 'graphicCardId', 'graphicCardAmount', 'powerSupplyId'], 'required'],
+            [['name',
+                'description',
+                'imageUrl',
+                'motherboardId',
+                'processorId',
+                'ramMemoryId',
+                'ramMemoryAmount',
+                'graphicCardId',
+                'graphicCardAmount',
+                'powerSupplyId'], 'required'],
             [['motherboardId', 'processorId', 'ramMemoryId', 'ramMemoryAmount', 'graphicCardId', 'graphicCardAmount', 'powerSupplyId'], 'integer'],
             [['name'], 'string', 'max' => 96],
             [['description', 'imageUrl'], 'string', 'max' => 512],
@@ -53,6 +62,17 @@ class Machine extends \yii\db\ActiveRecord
             [['graphicCardId'], 'exist', 'skipOnError' => true, 'targetClass' => Graphiccard::class, 'targetAttribute' => ['graphicCardId' => 'id']],
             [['powerSupplyId'], 'exist', 'skipOnError' => true, 'targetClass' => Powersupply::class, 'targetAttribute' => ['powerSupplyId' => 'id']],
         ];
+    }
+
+    public function fields()
+    {
+        return ['name',
+            'imageUrl',
+            'motherboard',
+            'processor',
+            'ramMemory',
+            'graphicCard',
+            'powerSupply'];
     }
 
     /**

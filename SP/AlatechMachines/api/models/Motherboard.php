@@ -52,8 +52,7 @@ class Motherboard extends \yii\db\ActiveRecord
 
     public function fields()
     {
-        return [
-            'name',
+        return ['name',
             'imageUrl',
             'brand',
             'socketType',

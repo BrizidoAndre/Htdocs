@@ -44,6 +44,18 @@ class Graphiccard extends \yii\db\ActiveRecord
         ];
     }
 
+    public function fields()
+    {
+        return [
+            'name',
+            'imageUrl',
+            'brand',
+            'memorySize',
+            'memoryType',
+            'minimumPowerSupply',
+            'supportMultiGpu'];
+    }
+
     /**
      * {@inheritdoc}
      */

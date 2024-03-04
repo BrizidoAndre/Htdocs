@@ -62,7 +62,12 @@ class Rammemory extends \yii\db\ActiveRecord
     }
 
     public function fields(){
-        return ['name', 'imageUrl', 'brand','size', 'ramMemoryType','frequency' ];
+        return ['name',
+            'imageUrl',
+            'brand',
+            'size',
+            'ramMemoryType',
+            'frequency' ];
     }
 
     /**
