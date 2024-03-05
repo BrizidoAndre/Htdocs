@@ -242,16 +242,19 @@ class MachineController extends Controller
             }
 
             return [
-                'Message' => 'máquina válida'
+                'Message' => 'Máquina válida'
             ];
 
 
         }
+        return [
+            'message' => 'Requisição inválida'
+        ];
     }
-
 
     public function behaviors()
     {
-        return[];
+        return [];
     }
+
 }

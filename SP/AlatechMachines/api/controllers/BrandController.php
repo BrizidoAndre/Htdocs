@@ -3,17 +3,21 @@
 namespace app\controllers;
 
 use app\models\Brand;
+use app\models\Image;
 use app\models\Machine;
 use app\models\Rammemory;
 use yii\data\ActiveDataProvider;
+use yii\filters\auth\CompositeAuth;
+use yii\filters\auth\HttpBearerAuth;
 use yii\rest\Controller;
 
 class BrandController extends Controller
 {
 
-    public function actionIndex($pageSize = 20){
+    public function actionIndex($pageSize = 20)
+    {
 
-        $query = Brand::find()->where(['>','id','1']);
+        $query = Brand::find()->where(['>', 'id', '1']);
 
         $provider = new ActiveDataProvider([
             'query' => $query,
@@ -32,7 +36,8 @@ class BrandController extends Controller
     }
 
 
-    public function actionSearch($name,$pageSize=20){
+    public function actionSearch($name, $pageSize = 20)
+    {
         $query = Brand::find()->where(['=', 'name', $name]);
 
         $provider = new ActiveDataProvider([
@@ -47,13 +52,9 @@ class BrandController extends Controller
             ],
         ]);
 
+
+
         return $provider;
     }
 
-    public function behaviors()
-    {
-        return[
-
-        ];
-    }
 }

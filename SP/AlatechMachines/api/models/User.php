@@ -2,9 +2,11 @@
 
 namespace app\models;
 
+use app\base\AuthBase;
 use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransport;
 use Yii;
 use yii\db\ActiveRecordInterface;
+use yii\filters\auth\CompositeAuth;
 use yii\web\IdentityInterface;
 
 /**
@@ -77,12 +79,14 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         // TODO: Implement validateAuthKey() method.
     }
 
-    public static function findByUsername($username){
+    public static function findByUsername($username)
+    {
         return self::findOne(['username' => $username]);
     }
 
-    public function validatePassword($password){
-        if(Yii::$app->security->validatePassword($password, $this->password)){
+    public function validatePassword($password)
+    {
+        if (Yii::$app->security->validatePassword($password, $this->password)) {
             return true;
         }
         return false;
@@ -102,9 +106,12 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
         $payload = base64_encode(json_encode($payload));
 
-        $signature = $header . '.' . $payload . 'banana';
+        $signature = hash_hmac('sha256', $header . '.' . $payload, 'secretkey');
 
-        $this->accessToken = $signature;
+        $this->accessToken = $header . '.' . $payload . '.' . $signature;
+
     }
+
+
 
 }

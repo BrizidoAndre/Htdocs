@@ -1,5 +1,9 @@
 <?php
 
+use app\models\User;
+use yii\filters\auth\CompositeAuth;
+use yii\filters\auth\HttpBearerAuth;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -21,13 +25,15 @@ $config = [
         ],
         'response' => [
             'format' => yii\web\Response::FORMAT_JSON,
+            'charset' => 'UTF-8',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+            'identityClass' => User::class,
+            'enableAutoLogin' => false,
+            'enableSession' => false
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -53,11 +59,33 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                [
+                    'class' => \yii\rest\UrlRule::class,
+                    'pluralize' => false,
+                    'controller' => [
+                        'api'
+                    ]
+                ],
+                    'search/<category>' => 'api/search'
+
             ],
         ],
 
+
+
     ],
     'params' => $params,
+    'as authenticator' => [
+        'class' => 'yii\filters\auth\CompositeAuth',
+        'authMethods' => [
+            'class' => 'yii\filters\auth\HttpBearerAuth',
+        ],
+        'except' => [
+            'user/login',
+            'user/signup',
+            'user/logout',
+        ]
+    ]
 ];
 
 if (YII_ENV_DEV) {

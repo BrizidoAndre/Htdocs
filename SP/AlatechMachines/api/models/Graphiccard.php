@@ -92,4 +92,5 @@ class Graphiccard extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Machine::class, ['graphicCardId' => 'id']);
     }
+
 }
