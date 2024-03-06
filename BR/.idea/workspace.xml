@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e243bca3-8b55-4f56-b677-1d4ec9238a53" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../XX_module05/.htaccess" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../XX_module05/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../XX_module05/views/layouts/main.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SP/AlatechMachines/api/controllers/MachineController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../SP/AlatechMachines/api/controllers/MachineController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/.bowerrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/.vs/slnx.sqlite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/.vs/slnx.sqlite-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/LICENSE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/Vagrantfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/assets/AppAsset.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/codeception.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/commands/HelloController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/composer.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/config/__autocomplete.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/config/console.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/config/db.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/config/params.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/config/test.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/config/test_db.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/config/web.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/controllers/AlunosController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/controllers/ProfessoresController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/controllers/SiteController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/controllers/UsuariosController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/mail/layouts/html.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/mail/layouts/text.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/models/Alunos.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/models/AlunosSearch.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/models/ContactForm.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/models/LoginForm.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/models/Professores.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/models/ProfessoresSearch.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/models/User.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/models/Usuarios.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/models/UsuariosSearch.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/requirements.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/runtime/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/_bootstrap.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/_data/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/_output/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/_support/AcceptanceTester.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/_support/FunctionalTester.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/_support/UnitTester.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/acceptance.suite.yml.example" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/acceptance/AboutCest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/acceptance/ContactCest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/acceptance/HomeCest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/acceptance/LoginCest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/acceptance/_bootstrap.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/bin/yii" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/bin/yii.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/functional.suite.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/functional/ContactFormCest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/functional/LoginFormCest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/functional/_bootstrap.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/unit.suite.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/unit/_bootstrap.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/unit/models/ContactFormTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/unit/models/LoginFormTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/unit/models/UserTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/tests/unit/widgets/AlertTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/vagrant/config/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/vagrant/config/vagrant-local.example.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/vagrant/nginx/app.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/vagrant/nginx/log/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/vagrant/provision/always-as-root.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/vagrant/provision/once-as-root.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/vagrant/provision/once-as-vagrant.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/vagrant/provision/provision.awk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/alunos/_form.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/alunos/_search.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/alunos/create.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/alunos/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/alunos/update.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/alunos/view.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/layouts/main.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/professores/_form.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/professores/_search.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/professores/create.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/professores/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/professores/update.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/professores/view.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/site/about.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/site/contact.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/site/error.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/site/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/site/login.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/usuarios/_form.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/usuarios/_search.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/usuarios/create.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/usuarios/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/usuarios/update.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/views/usuarios/view.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/web/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/web/assets/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/web/css/site.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/web/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/web/index-test.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/web/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/web/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/widgets/Alert.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/yii" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YiiFirstProject/yii.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/.bowerrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/LICENSE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/Vagrantfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/assets/AppAsset.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/codeception.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/commands/HelloController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/composer.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/config/__autocomplete.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/config/console.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/config/db.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/config/params.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/config/test.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/config/test_db.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/config/web.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/controllers/AnimaisController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/controllers/FilhoteController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/controllers/SiteController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/mail/layouts/html.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/mail/layouts/text.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/migrations/m240221_171428_filhote.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/models/Animais.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/models/AnimaisSearch.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/models/ContactForm.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/models/Filhote.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/models/FilhoteSearch.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/models/LoginForm.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/models/User.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/modules/api/ApiModule.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/modules/api/FilhoteModule.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/modules/api/controllers/DefaultController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/modules/api/views/default/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/requirements.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/runtime/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/_bootstrap.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/_data/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/_output/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/_support/AcceptanceTester.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/_support/FunctionalTester.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/_support/UnitTester.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/acceptance.suite.yml.example" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/acceptance/AboutCest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/acceptance/ContactCest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/acceptance/HomeCest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/acceptance/LoginCest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/acceptance/_bootstrap.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/bin/yii" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/bin/yii.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/functional.suite.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/functional/ContactFormCest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/functional/LoginFormCest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/functional/_bootstrap.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/unit.suite.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/unit/_bootstrap.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/unit/models/ContactFormTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/unit/models/LoginFormTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/unit/models/UserTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/tests/unit/widgets/AlertTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/vagrant/config/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/vagrant/config/vagrant-local.example.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/vagrant/nginx/app.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/vagrant/nginx/log/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/vagrant/provision/always-as-root.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/vagrant/provision/once-as-root.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/vagrant/provision/once-as-vagrant.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/vagrant/provision/provision.awk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/views/animais/_form.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/views/animais/_search.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/views/animais/create.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/views/animais/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/views/animais/update.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/views/animais/view.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/views/default/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/views/filhote/_form.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/views/filhote/_search.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/views/filhote/create.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/views/filhote/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/views/filhote/update.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/views/filhote/view.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/views/layouts/main.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/views/site/about.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/views/site/contact.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/views/site/error.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/views/site/feed.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/views/site/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/views/site/login.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/web/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/web/assets/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/web/css/site.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/web/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/web/index-test.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/web/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/web/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/widgets/Alert.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/yii" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest/yii.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/.bowerrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/LICENSE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/Vagrantfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/assets/AppAsset.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/codeception.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/commands/HelloController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/composer.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/config/__autocomplete.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/config/console.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/config/db.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/config/params.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/config/test.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/config/test_db.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/config/web.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/controllers/EmpresaController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/controllers/SiteController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/mail/layouts/html.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/mail/layouts/text.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/migrations/m240221_183738_teste.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/models/ContactForm.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/models/Empresa.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/models/EmpresaSearch.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/models/LoginForm.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/models/User.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/modules/api/EmpresaModule.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/modules/api/controllers/DefaultController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/modules/api/views/default/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/requirements.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/runtime/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/_bootstrap.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/_data/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/_output/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/_support/AcceptanceTester.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/_support/FunctionalTester.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/_support/UnitTester.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/acceptance.suite.yml.example" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/acceptance/AboutCest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/acceptance/ContactCest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/acceptance/HomeCest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/acceptance/LoginCest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/acceptance/_bootstrap.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/bin/yii" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/bin/yii.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/functional.suite.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/functional/ContactFormCest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/functional/LoginFormCest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/functional/_bootstrap.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/unit.suite.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/unit/_bootstrap.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/unit/models/ContactFormTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/unit/models/LoginFormTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/unit/models/UserTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/tests/unit/widgets/AlertTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/vagrant/config/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/vagrant/config/vagrant-local.example.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/vagrant/nginx/app.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/vagrant/nginx/log/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/vagrant/provision/always-as-root.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/vagrant/provision/once-as-root.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/vagrant/provision/once-as-vagrant.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/vagrant/provision/provision.awk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/views/empresa/_form.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/views/empresa/_search.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/views/empresa/create.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/views/empresa/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/views/empresa/update.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/views/empresa/view.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/views/layouts/main.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/views/site/about.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/views/site/contact.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/views/site/error.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/views/site/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/views/site/login.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/web/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/web/assets/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/web/css/site.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/web/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/web/index-test.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/web/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/web/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/widgets/Alert.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/yii" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apirest2/yii.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../loginsystem/controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../loginsystem/controllers/UserController.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2dKPYWEOETd6PGG8gVIPQx2XAcM" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/xampp/htdocs/BR/AlatechMachines/api",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-php-predefined-ba97393d7c68-b4dcf6bb9de9-com.jetbrains.php.sharedIndexes-PS-233.13135.108" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e243bca3-8b55-4f56-b677-1d4ec9238a53" name="Changes" comment="" />
+      <created>1709753845737</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1709753845737</updated>
+      <workItem from="1709753848983" duration="21000" />
+    </task>
+    <servers />
+  </component>
+</project>

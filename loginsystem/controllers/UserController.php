@@ -11,9 +11,7 @@ use yii\rest\Controller;
 
 class UserController extends Controller
 {
-    public function actionIndex(){
-        return User::find()->all();
-    }
+
 
     public function actionSignUp(){
 

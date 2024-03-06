@@ -4,7 +4,9 @@ namespace app\controllers;
 
 use app\models\Machine;
 use app\models\Rammemory;
+use MongoDB\Driver\Exception\ExecutionTimeoutException;
 use yii\data\ActiveDataProvider;
+use yii\db\Exception;
 use yii\debug\models\timeline\DataProvider;
 use yii\rest\Controller;
 
@@ -48,7 +50,7 @@ class MachineController extends Controller
         return $provider;
     }
 
-    public function actionMachines(){
+    public function actionCreate(){
         $model = new Machine();
         $errors = [];
 
@@ -79,15 +81,11 @@ class MachineController extends Controller
 
 
             if($model->motherboard->pciSlots < $model->graphicCardAmount){
-                echo $model->motherboard->pciSlots;
-                echo '<br>';
-                echo $model->graphicCardAmount;
                 $errors['Placa de vídeo-Slots'] = 'O número de placas de vídeo supera o numero de slots da placa mãe';
 
             }
             if($model->powerSupply->potency < $model->graphicCard->minimumPowerSupply * $model->graphicCardAmount){
-                $errors['Alimentador de energia-Potência'] = 'A capacidade do carregador é inferiro do exigido mínimo pela/pelas placa/placas-de-vídeo';
-
+                $errors['Alimentador de energia-Potência'] = 'A capacidade do carregador é inferior ao exigido mínimo pela/pelas placa/placas-de-vídeo';
             }
 
             if (count($errors) > 0){
@@ -99,8 +97,6 @@ class MachineController extends Controller
             \Yii::$app->response->statusCode = 201;
             return $model;
             }
-
-            return ['Erro inesperado'];
 
 
         }
