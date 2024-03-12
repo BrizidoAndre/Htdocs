@@ -33,9 +33,6 @@ class Sockettype extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 96],
         ];
     }
-    public function fields(){
-        return ['name'];
-    }
 
     /**
      * {@inheritdoc}

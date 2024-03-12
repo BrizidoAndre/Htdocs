@@ -70,9 +70,9 @@ class Machine extends \yii\db\ActiveRecord
             'powerSupply',
 
 
-            'storage' => function(){
-            return $this->machinehasstoragedevices;
-            }
+//            'storage' => function(){
+//            return $this->machinehasstoragedevices;
+//            }
         ];
     }
 

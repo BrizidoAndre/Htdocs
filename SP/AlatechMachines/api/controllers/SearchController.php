@@ -13,9 +13,9 @@ use app\models\Storagedevice;
 use yii\data\ActiveDataProvider;
 use yii\rest\Controller;
 
-class ApiController extends Controller
+class SearchController extends Controller
 {
-    public function actionSearch($pageSize = 20){
+    public function actionIndex($pageSize = 20){
         $models = [
             'motherboards' => Motherboard::find(),
             'processors' => Processor::find(),
@@ -42,7 +42,7 @@ class ApiController extends Controller
         return $provider;
     }
 
-    public function actionSearchname($q, $pageSize = 20){
+    public function actionSearch($q, $pageSize = 20){
         $models = [
             'motherboards' => Motherboard::find()->where(['LIKE','name', $q]),
             'processors' => Processor::find()->where(['LIKE','name', $q]),
@@ -56,6 +56,7 @@ class ApiController extends Controller
 
         $search = \Yii::$app->request->get('category');
 
+
         $query = $models[$search];
 
         $provider = new ActiveDataProvider([
@@ -65,9 +66,8 @@ class ApiController extends Controller
             ]
         ]);
 
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+//        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         return $provider;
     }
-
 
 }

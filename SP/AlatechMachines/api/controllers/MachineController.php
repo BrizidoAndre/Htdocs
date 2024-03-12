@@ -3,254 +3,220 @@
 namespace app\controllers;
 
 use app\models\Machine;
-use app\models\Rammemory;
-use MongoDB\Driver\Exception\ExecutionTimeoutException;
-use yii\data\ActiveDataProvider;
-use yii\db\Exception;
-use yii\debug\models\timeline\DataProvider;
+use app\models\Machinehasstoragedevice;
+use app\models\Storagedevice;
 use yii\rest\Controller;
 
 class MachineController extends Controller
 {
-    public function actionIndex($pageSize = 20){
 
-        $query = Machine::find();
+    public function actionPost()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
-        $provider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => [
-                'pageSize' => $pageSize,
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'name' => SORT_DESC,
-                ]
-            ],
-        ]);
+        $machine = new Machine();
 
+        $MhasS = new Machinehasstoragedevice();
 
-        return $provider->getModels();
-    }
-
-    public function actionSearch($name,$pageSize=20){
-        $query = Machine::find()->where(['=', 'name', $name]);
-
-        $provider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => [
-                'pageSize' => $pageSize,
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'name' => SORT_DESC,
-                ]
-            ],
-        ]);
-
-        return $provider;
-    }
-
-    public function actionCreate(){
-        $model = new Machine();
         $errors = [];
 
-        if($model->load(\Yii::$app->getRequest()->getBodyParams(),'')){
+        $body = \Yii::$app->request->getBodyParams();
+
+        $machine->name = $body['name'];
+        $machine->description = $body['description'];
+        $machine->imageUrl = $body['imageUrl'];
+        $machine->motherboardId = $body['motherboardId'];
+        $machine->processorId = $body['processorId'];
+        $machine->ramMemoryId = $body['ramMemoryId'];
+        $machine->ramMemoryAmount = $body['ramMemoryAmount'];
+        $machine->graphicCardId = $body['graphicCardId'];
+        $machine->graphicCardAmount = $body['graphicCardAmount'];
+        $machine->powerSupplyId = $body['powerSupplyId'];
 
 
-            if($model->motherboard->socketType->name !== $model->processor->socketType->name){
-                $errors['Processador-Soquete'] =  'Tipo de soquete da placa mãe diferente do soquete do processador';
-            }
+        $storage = Storagedevice::findOne(['id' => $body['storageDevices'][0]['storageDeviceId']]);
 
-            if($model->motherboard->maxTdp < $model->processor->tdp){
-                $errors['Processador-TDP'] = 'TDP do processador superior do que o suportado pela placa mãe';
-            }
-
-            if($model->motherboard->ramMemoryType->name !== $model->ramMemory->ramMemoryType->name){
-                $errors['Memória RAM-Tipo'] = 'O tipo da memória RAM é diferente do suportado pela placa mãe';
-            }
-
-            if($model->motherboard->ramMemorySlots < $model->ramMemoryAmount){
-                $errors['Memória RAM-Slots'] = 'O número de memórias RAM supera o número de slots apresentados pela placa-mãe';
-            }
-            if($model->ramMemoryAmount< 1) {
-                $errors['Memória RAM-Slots'] = 'Não há nenhuma memória RAM para a placa mãe';
-            }
-            if($model->graphicCardAmount > 0 && !$model->graphicCard->supportMultiGpu){
-                $errors['Placa de vídeo-SLI'] = 'O modelo da placa de vídeo não suporta SLI';
-            }
-
-
-            if($model->motherboard->pciSlots < $model->graphicCardAmount){
-                $errors['Placa de vídeo-Slots'] = 'O número de placas de vídeo supera o numero de slots da placa mãe';
-
-            }
-            if($model->powerSupply->potency < $model->graphicCard->minimumPowerSupply * $model->graphicCardAmount){
-                $errors['Alimentador de energia-Potência'] = 'A capacidade do carregador é inferior ao exigido mínimo pela/pelas placa/placas-de-vídeo';
-            }
-
-            if (count($errors) > 0){
-                \Yii::$app->response->statusCode = 422;
-                return $errors;
-            }
-
-            if($model->save()){
-            \Yii::$app->response->statusCode = 201;
-            return $model;
-            }
-
-
+        if ($storage === null) {
+            $errors['Tipo de armazenamento'] = 'Não existe o armazenamento indicado';
         }
-        \Yii::$app->response->statusCode = 422;
-        return ['Pedido' => 'O pedido não foi realizado corretamente.'];
+
+        if ($machine->motherboard->socketTypeId !== $machine->processor->socketTypeId) {
+            $errors['Tipo do soquete'] = 'O tipo de soquete da placa mãe e do processador são distindos';
+        }
+        if ($machine->motherboard->maxTdp < $machine->processor->tdp) {
+            $errors['TDP'] = 'O TDP do  processador supera o suportado pela placa mãe';
+        }
+        if ($machine->motherboard->ramMemoryTypeId !== $machine->ramMemory->ramMemoryTypeId) {
+            $errors['Tipo da memória RAM'] = 'O tipo da memória RAM e o suportado pela placa mãe são distintos';
+        }
+        if ($machine->motherboard->ramMemorySlots < $machine->ramMemoryAmount || $machine->ramMemoryAmount < 1) {
+            $errors['Quantidade de memória RAM'] = 'A quantidade de Memória ram não se adequa a placa mãe';
+        }
+        if ($machine->graphicCardAmount < 1 || $machine->motherboard->pciSlots < $machine->graphicCardAmount) {
+            $errors['Quantidade de placas de vídeo'] = 'A quantidade de placas de vídeo não se adequa a placa mãe';
+        }
+        if ($body['storageDevices'][0]['amount'] < 1) {
+            $errors['Quantidade de armazenamento'] = 'A soma total de dispositivos de armazenamento deve ser maior que 1';
+        }
+        if ($machine->graphicCardAmount > 1 && !$machine->graphicCard->supportMultiGpu) {
+            $errors['Placa de vídeo SLI'] = 'A placa de vídeo não suporta SLI';
+        }
+        if ($machine->powerSupply->potency < $machine->graphicCardAmount * $machine->graphicCard->minimumPowerSupply) {
+            $errors['Fonte de alimentação'] = 'A fonte de alimentação não fornece a exigência mínima da/das placa de vídeo';
+        }
+        if ($machine->motherboard->m2Slots < $body['storageDevices'][0]['amount'] && $storage->storageDeviceInterface === 'm2') {
+            $errors['Slots de armazenamento m2'] = 'A placa mãe não suporta a quantidade de armazenamento m2 indicada';
+        }
+        if ($machine->motherboard->sataSlots < $body['storageDevices'][0]['amount'] && $storage->storageDeviceInterface === 'sata') {
+            $errors['Slots de armazenamento m2'] = 'A placa mãe não suporta a quantidade de armazenamento m2 indicada';
+        }
+
+        if (count($errors) > 0) {
+            return $errors;
+        }
+
+
+        $machine->imageUrl = (string) $this->getIdImage($machine->imageUrl);
+
+        $machine->save();
+
+        $MhasS->machineId = $machine->id;
+        $MhasS->amount = $body['storageDevices'][0]['amount'];
+        $MhasS->storageDeviceId = $body['storageDevices'][0]['storageDeviceId'];
+
+
+        $MhasS->save();
+
+        return $machine;
 
     }
 
-    public function actionPutMachines($id){
-        $machine = Machine::find()->where(['=', 'id', $id]);
-        $errors = [];
+    public function actionDelete($id)
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
-        if ($machine === null){
-            return[
-                'error' => 'Máquina não encontrada!'
+        $machine = Machine::findOne(['id' => $id]);
+        $MhasS = Machinehasstoragedevice::findOne(['machineId' => $id]);
+
+        if ($machine === null || $MhasS === null) {
+            \Yii::$app->response->statusCode = 404;
+            return [
+                'message' => 'Modelo de máquina não encontrado'
             ];
         }
 
-        $model = new Machine();
+        $MhasS->delete();
+        $machine->delete();
 
-        if($model->load(\Yii::$app->getRequest()->getBodyParams(),'')){
-
-
-            if($model->motherboard->socketType->name !== $model->processor->socketType->name){
-                $errors['Processador-Soquete'] =  'Tipo de soquete da placa mãe diferente do soquete do processador';
-            }
-
-            if($model->motherboard->maxTdp < $model->processor->tdp){
-                $errors['Processador-TDP'] = 'TDP do processador superior do que o suportado pela placa mãe';
-            }
-
-            if($model->motherboard->ramMemoryType->name !== $model->ramMemory->ramMemoryType->name){
-                $errors['Memória RAM-Tipo'] = 'O tipo da memória RAM é diferente do suportado pela placa mãe';
-            }
-
-            if($model->motherboard->ramMemorySlots < $model->ramMemoryAmount){
-                $errors['Memória RAM-Slots'] = 'O número de memórias RAM supera o número de slots apresentados pela placa-mãe';
-            }
-            if($model->ramMemoryAmount< 1) {
-                $errors['Memória RAM-Slots'] = 'Não há nenhuma memória RAM para a placa mãe';
-            }
-            if($model->graphicCardAmount > 0 && !$model->graphicCard->supportMultiGpu){
-                $errors['Placa de vídeo-SLI'] = 'O modelo da placa de vídeo não suporta SLI';
-            }
-
-
-            if($model->motherboard->pciSlots < $model->graphicCardAmount){
-                $errors['Placa de vídeo-Slots'] = 'O número de placas de vídeo supera o numero de slots da placa mãe';
-
-            }
-            if($model->powerSupply->potency < $model->graphicCard->minimumPowerSupply * $model->graphicCardAmount){
-                $errors['Alimentador de energia-Potência'] = 'A capacidade do carregador é inferiro do exigido mínimo pela/pelas placa/placas-de-vídeo';
-
-            }
-
-
-            if (count($errors) > 0){
-                \Yii::$app->response->statusCode = 422;
-                return $errors;
-            }
-
-
-            $machine = $model;
-
-            if($machine->save()){
-                \Yii::$app->response->statusCode = 201;
-                return $machine;
-            }
-
-
-        }
-        \Yii::$app->response->statusCode = 422;
-        return ['Pedido' => 'O pedido não foi realizado corretamente.'];
-
-
-    }
-
-    public function actionDelete($id){
-        $model = Machine::findOne($id);
-        if($model ===null){
-            \Yii::$app->response->statusCode= 404;
-            return[
-                'errors' => 'Modelo de máquina não encontrado'
-            ];
-        }
         \Yii::$app->response->statusCode = 204;
-        $model->delete();
-
         return '';
     }
 
-    public function actionVerify(){
-        $model = new Machine();
+    public function actionVerify()
+    {
+
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $machine = new Machine();
+
+        $MhasS = new Machinehasstoragedevice();
+
         $errors = [];
 
-        if($model->load(\Yii::$app->getRequest()->getBodyParams(), '')){
-            if($model->motherboardId === null || $model->powerSupplyId=== null){
-                return $errors['Propriedades Obrigatórias'] = 'A placa-mãe e o alimentador de energia devem ser inseridos';
-            }
+        $body = \Yii::$app->request->getBodyParams();
+
+        $machine->name = $body['name'];
+        $machine->description = $body['description'];
+        $machine->imageUrl = $body['imageUrl'];
+        $machine->motherboardId = $body['motherboardId'];
+        $machine->processorId = $body['processorId'];
+        $machine->ramMemoryId = $body['ramMemoryId'];
+        $machine->ramMemoryAmount = $body['ramMemoryAmount'];
+        $machine->graphicCardId = $body['graphicCardId'];
+        $machine->graphicCardAmount = $body['graphicCardAmount'];
+        $machine->powerSupplyId = $body['powerSupplyId'];
 
 
+        $storage = Storagedevice::findOne(['id' => $body['storageDevices'][0]['storageDeviceId']]);
 
-            if($model->motherboard->socketType->name !== $model->processor->socketType->name){
-                $errors['Processador-Soquete'] =  'Tipo de soquete da placa mãe diferente do soquete do processador';
-            }
-
-            if($model->motherboard->maxTdp < $model->processor->tdp){
-                $errors['Processador-TDP'] = 'TDP do processador superior do que o suportado pela placa mãe';
-            }
-
-            if($model->motherboard->ramMemoryType->name !== $model->ramMemory->ramMemoryType->name){
-                $errors['Memória RAM-Tipo'] = 'O tipo da memória RAM é diferente do suportado pela placa mãe';
-            }
-
-            if($model->motherboard->ramMemorySlots < $model->ramMemoryAmount){
-                $errors['Memória RAM-Slots'] = 'O número de memórias RAM supera o número de slots apresentados pela placa-mãe';
-            }
-            if($model->ramMemoryAmount< 1) {
-                $errors['Memória RAM-Slots'] = 'Não há nenhuma memória RAM para a placa mãe';
-            }
-            if($model->graphicCardAmount > 0 && !$model->graphicCard->supportMultiGpu){
-                $errors['Placa de vídeo-SLI'] = 'O modelo da placa de vídeo não suporta SLI';
-            }
-
-
-            if($model->motherboard->pciSlots < $model->graphicCardAmount){
-                $errors['Placa de vídeo-Slots'] = 'O número de placas de vídeo supera o numero de slots da placa mãe';
-
-            }
-            if($model->powerSupply->potency < $model->graphicCard->minimumPowerSupply * $model->graphicCardAmount){
-                $errors['Alimentador de energia-Potência'] = 'A capacidade do carregador é inferiro do exigido mínimo pela/pelas placa/placas-de-vídeo';
-
-            }
-
-
-            if (count($errors) > 0){
-                \Yii::$app->response->statusCode = 422;
-                return $errors;
-            }
-
-            return [
-                'Message' => 'Máquina válida'
-            ];
-
-
+        if ($storage === null) {
+            $errors['Tipo de armazenamento'] = 'Não existe o armazenamento indicado';
         }
+
+        if ($machine->motherboard->socketTypeId !== $machine->processor->socketTypeId) {
+            $errors['Tipo do soquete'] = 'O tipo de soquete da placa mãe e do processador são distindos';
+        }
+        if ($machine->motherboard->maxTdp < $machine->processor->tdp) {
+            $errors['TDP'] = 'O TDP do  processador supera o suportado pela placa mãe';
+        }
+        if ($machine->motherboard->ramMemoryTypeId !== $machine->ramMemory->ramMemoryTypeId) {
+            $errors['Tipo da memória RAM'] = 'O tipo da memória RAM e o suportado pela placa mãe são distintos';
+        }
+        if ($machine->motherboard->ramMemorySlots < $machine->ramMemoryAmount || $machine->ramMemoryAmount < 1) {
+            $errors['Quantidade de memória RAM'] = 'A quantidade de Memória ram não se adequa a placa mãe';
+        }
+        if ($machine->graphicCardAmount < 1 || $machine->motherboard->pciSlots < $machine->graphicCardAmount) {
+            $errors['Quantidade de placas de vídeo'] = 'A quantidade de placas de vídeo não se adequa a placa mãe';
+        }
+        if ($body['storageDevices'][0]['amount'] < 1) {
+            $errors['Quantidade de armazenamento'] = 'A soma total de dispositivos de armazenamento deve ser maior que 1';
+        }
+        if ($machine->graphicCardAmount > 1 && !$machine->graphicCard->supportMultiGpu) {
+            $errors['Placa de vídeo SLI'] = 'A placa de vídeo não suporta SLI';
+        }
+        if ($machine->powerSupply->potency < $machine->graphicCardAmount * $machine->graphicCard->minimumPowerSupply) {
+            $errors['Fonte de alimentação'] = 'A fonte de alimentação não fornece a exigência mínima da/das placa de vídeo';
+        }
+        if ($machine->motherboard->m2Slots < $body['storageDevices'][0]['amount'] && $storage->storageDeviceInterface === 'm2') {
+            $errors['Slots de armazenamento m2'] = 'A placa mãe não suporta a quantidade de armazenamento m2 indicada';
+        }
+        if ($machine->motherboard->sataSlots < $body['storageDevices'][0]['amount'] && $storage->storageDeviceInterface === 'sata') {
+            $errors['Slots de armazenamento m2'] = 'A placa mãe não suporta a quantidade de armazenamento m2 indicada';
+        }
+
+        if (count($errors) > 0) {
+            \Yii::$app->response->statusCode = 422;
+            return $errors;
+        }
+        \Yii::$app->response->statusCode = 200;
         return [
-            'message' => 'Requisição inválida'
+            'message' => 'Máquina válida'
         ];
+
     }
 
-    public function behaviors()
+
+    public function actionSeen($id)
     {
-        return [];
+        return $this->getIdImage();
+        $machine = Machine::findOne(['id' => $id]);
+        return base64_decode($machine->imageUrl);
     }
 
+
+    public function getIdImage($image)
+    {
+
+
+// Set the current working directory
+        $directory = getcwd() . "/images/";
+
+// Initialize filecount variable
+        $filecount = 0;
+        $files2 = glob($directory . "*");
+
+        if ($files2) {
+            $filecount = count($files2);
+        }
+
+        $fileNewId = $filecount + 1;
+
+        file_put_contents($directory . $fileNewId . '.png', base64_decode($image) . '.png');
+
+        return $fileNewId;
+    }
+
+    public function actionGetid($id){
+        return Machine::findOne(['id' => $id]);
+    }
 }

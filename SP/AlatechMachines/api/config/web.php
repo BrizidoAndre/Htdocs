@@ -1,7 +1,6 @@
 <?php
 
 use app\models\User;
-use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBearerAuth;
 
 $params = require __DIR__ . '/params.php';
@@ -18,22 +17,21 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'JD2ZtuK2FqniiEG6dkuKKvbdhaM1wP7l',
+            'cookieValidationKey' => 'ngQWSVYrm-FHDF67_q_SgJ1Etz4miXwL',
             'parsers' => [
-                'application/json' => yii\web\JsonParser::class
+                'application/json' => \yii\web\JsonParser::class
             ]
         ],
         'response' => [
-            'format' => yii\web\Response::FORMAT_JSON,
-            'charset' => 'UTF-8',
+            'format' =>\yii\web\Response::FORMAT_JSON,
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
             'identityClass' => User::class,
-            'enableAutoLogin' => false,
-            'enableSession' => false
+            'enableSession' => false,
+            'enableAutoLogin' => false
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -54,7 +52,6 @@ $config = [
             ],
         ],
         'db' => $db,
-
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -63,29 +60,28 @@ $config = [
                     'class' => \yii\rest\UrlRule::class,
                     'pluralize' => false,
                     'controller' => [
-                        'api'
+                        'search',
+                        'machine'
+
                     ]
                 ],
-                    'search/<category>' => 'api/search'
+
+                'POST machines' => 'machine/post',
+                'GET <search>' => 'search/index',
+                'GET search/<category>' => 'search/search',
+                'GET sacana' => 'images/1.png'
 
             ],
         ],
-
-
-
     ],
     'params' => $params,
     'as authenticator' => [
-        'class' => 'yii\filters\auth\CompositeAuth',
-        'authMethods' => [
-            'class' => 'yii\filters\auth\HttpBearerAuth',
-        ],
+        'class' => HttpBearerAuth::class,
         'except' => [
-            'user/login',
-            'user/signup',
-            'user/logout',
+            'user/login'
         ]
     ]
+
 ];
 
 if (YII_ENV_DEV) {

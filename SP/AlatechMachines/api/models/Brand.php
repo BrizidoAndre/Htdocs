@@ -38,6 +38,11 @@ class Brand extends \yii\db\ActiveRecord
         ];
     }
 
+    public function fields()
+    {
+        return ['name'];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -47,10 +52,6 @@ class Brand extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
         ];
-    }
-    public function fields()
-    {
-        return ['name'];
     }
 
     /**

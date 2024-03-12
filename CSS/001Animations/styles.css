@@ -1,0 +1,73 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div {
+    margin-bottom: 20px;
+}
+
+.square {
+    width: 200px;
+    aspect-ratio: 1 / 1;
+
+    margin-bottom: 20px;
+
+    display: grid;
+    place-items: center;
+
+    /* using transition */
+    transition: all 1s ease 0s;
+
+    background-color: orange;
+}
+
+.square:hover {
+    transform: translateX(20px);
+}
+
+.x:hover {
+    transform:
+        rotate(45deg) translateX(20px) translateY(20px);
+
+    color: blue;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    background: orchid;
+}
+
+
+/* using keyframes */
+
+@keyframes slideLeft {
+    from {
+        transform: translateX(-500px);
+    }
+
+    to {
+        transform: translateX(0px);
+    }
+}
+
+.slideLeft{
+    animation-name: slideLeft;
+    animation-timing-function: ease-in-out;
+
+    animation: slideLeft ease-in-out 1s;
+}
+
+
+@keyframes rotate {
+    from {
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+.rotate{
+    animation:rotate 1s linear infinite;
+    transform-origin: bottom;
+}

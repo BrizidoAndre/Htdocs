@@ -44,6 +44,10 @@ class Rammemory extends \yii\db\ActiveRecord
             [['brandId'], 'exist', 'skipOnError' => true, 'targetClass' => Brand::class, 'targetAttribute' => ['brandId' => 'id']],
         ];
     }
+    public function fields()
+    {
+        return ['name', 'imageUrl', 'brand', 'size', 'ramMemoryTypeId', 'frequency'];
+    }
 
     /**
      * {@inheritdoc}
@@ -59,15 +63,6 @@ class Rammemory extends \yii\db\ActiveRecord
             'ramMemoryTypeId' => 'Ram Memory Type ID',
             'frequency' => 'Frequency',
         ];
-    }
-
-    public function fields(){
-        return ['name',
-            'imageUrl',
-            'brand',
-            'size',
-            'ramMemoryType',
-            'frequency' ];
     }
 
     /**

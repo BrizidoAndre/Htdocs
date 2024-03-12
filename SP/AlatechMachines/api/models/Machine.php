@@ -43,19 +43,11 @@ class Machine extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name',
-                'description',
-                'imageUrl',
-                'motherboardId',
-                'processorId',
-                'ramMemoryId',
-                'ramMemoryAmount',
-                'graphicCardId',
-                'graphicCardAmount',
-                'powerSupplyId'], 'required'],
+            [['name', 'description', 'imageUrl', 'motherboardId', 'processorId', 'ramMemoryId', 'ramMemoryAmount', 'graphicCardId', 'graphicCardAmount', 'powerSupplyId'], 'required'],
             [['motherboardId', 'processorId', 'ramMemoryId', 'ramMemoryAmount', 'graphicCardId', 'graphicCardAmount', 'powerSupplyId'], 'integer'],
             [['name'], 'string', 'max' => 96],
-            [['description', 'imageUrl'], 'string', 'max' => 512],
+            [['description'], 'string', 'max' => 512],
+            [['imageUrl'], 'string' ],
             [['motherboardId'], 'exist', 'skipOnError' => true, 'targetClass' => Motherboard::class, 'targetAttribute' => ['motherboardId' => 'id']],
             [['processorId'], 'exist', 'skipOnError' => true, 'targetClass' => Processor::class, 'targetAttribute' => ['processorId' => 'id']],
             [['ramMemoryId'], 'exist', 'skipOnError' => true, 'targetClass' => Rammemory::class, 'targetAttribute' => ['ramMemoryId' => 'id']],
@@ -66,12 +58,15 @@ class Machine extends \yii\db\ActiveRecord
 
     public function fields()
     {
-        return ['name',
+        return [
+            'name',
             'imageUrl',
             'motherboard',
             'processor',
             'ramMemory',
+            'ramMemoryAmount',
             'graphicCard',
+            'graphicCardAmount',
             'powerSupply'];
     }
 

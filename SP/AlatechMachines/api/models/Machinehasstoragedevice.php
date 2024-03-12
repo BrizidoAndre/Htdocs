@@ -50,7 +50,6 @@ class Machinehasstoragedevice extends \yii\db\ActiveRecord
         ];
     }
 
-
     /**
      * Gets query for [[Machine]].
      *

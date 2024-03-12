@@ -2,11 +2,7 @@
 
 namespace app\models;
 
-use app\base\AuthBase;
-use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransport;
 use Yii;
-use yii\db\ActiveRecordInterface;
-use yii\filters\auth\CompositeAuth;
 use yii\web\IdentityInterface;
 
 /**
@@ -53,6 +49,33 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         ];
     }
 
+
+    public function GenerateToken(){
+
+        $header = [
+            'alg' => "HS256",
+            'typ' => 'JWT'
+        ];
+
+        $header = base64_encode(json_encode($header));
+
+
+        $payload = [
+            'name' => $this->username,
+            'id' => $this->id
+        ];
+
+        $payload = base64_encode(json_encode($payload));
+
+        $data = $header . '.' . $payload;
+
+        $signature = hash_hmac('sha256', $data, 'secret');
+
+        $this->accessToken = $header . '.' . $payload . '.' . $signature;
+
+        return $this->accessToken;
+    }
+
     public static function findIdentity($id)
     {
         return self::$id;
@@ -60,7 +83,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     public static function findIdentityByAccessToken($token, $type = null)
     {
-
         return self::findOne(['accessToken' => $token]);
     }
 
@@ -84,34 +106,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return self::findOne(['username' => $username]);
     }
 
-    public function validatePassword($password)
-    {
-        if (Yii::$app->security->validatePassword($password, $this->password)) {
+    public function validatePassword($password){
+        if(Yii::$app->security->validatePassword($password, $this->password)){
             return true;
         }
         return false;
     }
-
-    public function generateAccessToken()
-    {
-        $header = [
-            'alg' => 'HS256',
-            'typ' => 'JWT'
-        ];
-        $header = base64_encode(json_encode($header));
-
-        $payload = [
-            'sub' => $this->username,
-        ];
-
-        $payload = base64_encode(json_encode($payload));
-
-        $signature = hash_hmac('sha256', $header . '.' . $payload, 'secretkey');
-
-        $this->accessToken = $header . '.' . $payload . '.' . $signature;
-
-    }
-
-
-
 }

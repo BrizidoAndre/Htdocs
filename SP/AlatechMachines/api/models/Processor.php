@@ -48,7 +48,8 @@ class Processor extends \yii\db\ActiveRecord
         ];
     }
 
-    public function fields(){
+    public function fields()
+    {
         return ['name',
             'imageUrl',
             'brand',

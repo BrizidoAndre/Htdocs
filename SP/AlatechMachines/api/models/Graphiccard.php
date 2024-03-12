@@ -46,14 +46,7 @@ class Graphiccard extends \yii\db\ActiveRecord
 
     public function fields()
     {
-        return [
-            'name',
-            'imageUrl',
-            'brand',
-            'memorySize',
-            'memoryType',
-            'minimumPowerSupply',
-            'supportMultiGpu'];
+        return ['name', 'imageUrl', 'brand', 'memorySize', 'memoryType', 'minimumPowerSupply', 'supportMultiGpu'];
     }
 
     /**
@@ -92,5 +85,4 @@ class Graphiccard extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Machine::class, ['graphicCardId' => 'id']);
     }
-
 }
