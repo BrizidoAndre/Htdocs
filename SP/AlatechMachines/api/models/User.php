@@ -11,8 +11,8 @@ use yii\web\IdentityInterface;
  * @property int $id
  * @property string $username
  * @property string $password
+ * @property-read void $authKey
  * @property string $accessToken
- * @property string $authKey
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -30,7 +30,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'password', 'accessToken'], 'required'],
+            [['username', 'password'], 'required'],
             [['username'], 'string', 'max' => 64],
             [['password', 'accessToken'], 'string', 'max' => 512],
         ];
@@ -49,36 +49,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         ];
     }
 
-
-    public function GenerateToken(){
-
-        $header = [
-            'alg' => "HS256",
-            'typ' => 'JWT'
-        ];
-
-        $header = base64_encode(json_encode($header));
-
-
-        $payload = [
-            'name' => $this->username,
-            'id' => $this->id
-        ];
-
-        $payload = base64_encode(json_encode($payload));
-
-        $data = $header . '.' . $payload;
-
-        $signature = hash_hmac('sha256', $data, 'secret');
-
-        $this->accessToken = $header . '.' . $payload . '.' . $signature;
-
-        return $this->accessToken;
-    }
-
     public static function findIdentity($id)
     {
-        return self::$id;
+        return self::findOne(['id' => $id]);
     }
 
     public static function findIdentityByAccessToken($token, $type = null)
@@ -93,7 +66,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     public function getAuthKey()
     {
-        return $this->authKey;
+
     }
 
     public function validateAuthKey($authKey)
@@ -101,15 +74,26 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         // TODO: Implement validateAuthKey() method.
     }
 
-    public static function findByUsername($username)
-    {
-        return self::findOne(['username' => $username]);
-    }
+//    MÉTODO PARA A CRIAÇÃO DE UM TOKEN DURANTE O LOGIN
+    public function generateToken(){
+        $header = [
+            'typ' => 'JWT',
+            'alg' => 'sha-256'
+        ];
+        $header = base64_encode(json_encode($header));
 
-    public function validatePassword($password){
-        if(Yii::$app->security->validatePassword($password, $this->password)){
-            return true;
-        }
-        return false;
+
+
+        $payload = [
+            'user' => $this->username,
+            'time' => date('Y-m-d H:m:s:v:u')
+        ];
+
+        $payload = base64_encode(json_encode($payload));
+
+        $signature = hash_hmac('sha256',$header . '.' . $payload,'secret');
+
+        $this->accessToken = $header . '.' . $payload . '.' . $signature;
+
     }
 }

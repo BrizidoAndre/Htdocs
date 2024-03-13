@@ -46,8 +46,7 @@ class Machine extends \yii\db\ActiveRecord
             [['name', 'description', 'imageUrl', 'motherboardId', 'processorId', 'ramMemoryId', 'ramMemoryAmount', 'graphicCardId', 'graphicCardAmount', 'powerSupplyId'], 'required'],
             [['motherboardId', 'processorId', 'ramMemoryId', 'ramMemoryAmount', 'graphicCardId', 'graphicCardAmount', 'powerSupplyId'], 'integer'],
             [['name'], 'string', 'max' => 96],
-            [['description'], 'string', 'max' => 512],
-            [['imageUrl'], 'string' ],
+            [['description', 'imageUrl'], 'string', 'max' => 512],
             [['motherboardId'], 'exist', 'skipOnError' => true, 'targetClass' => Motherboard::class, 'targetAttribute' => ['motherboardId' => 'id']],
             [['processorId'], 'exist', 'skipOnError' => true, 'targetClass' => Processor::class, 'targetAttribute' => ['processorId' => 'id']],
             [['ramMemoryId'], 'exist', 'skipOnError' => true, 'targetClass' => Rammemory::class, 'targetAttribute' => ['ramMemoryId' => 'id']],
@@ -58,8 +57,7 @@ class Machine extends \yii\db\ActiveRecord
 
     public function fields()
     {
-        return [
-            'name',
+        return ['name',
             'imageUrl',
             'motherboard',
             'processor',
@@ -69,6 +67,7 @@ class Machine extends \yii\db\ActiveRecord
             'graphicCardAmount',
             'powerSupply'];
     }
+
 
     /**
      * {@inheritdoc}

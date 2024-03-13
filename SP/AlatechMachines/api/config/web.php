@@ -1,8 +1,5 @@
 <?php
 
-use app\models\User;
-use yii\filters\auth\HttpBearerAuth;
-
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -12,26 +9,25 @@ $config = [
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'ngQWSVYrm-FHDF67_q_SgJ1Etz4miXwL',
+            'cookieValidationKey' => 'GWKl40868K4-7I7yiAc3ocHlr9925O_T',
             'parsers' => [
                 'application/json' => \yii\web\JsonParser::class
             ]
         ],
         'response' => [
-            'format' =>\yii\web\Response::FORMAT_JSON,
+            'format' => \yii\web\Response::FORMAT_JSON,
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => User::class,
-            'enableSession' => false,
-            'enableAutoLogin' => false
+            'identityClass' => 'app\models\User',
+            'enableAutoLogin' => true,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -60,28 +56,24 @@ $config = [
                     'class' => \yii\rest\UrlRule::class,
                     'pluralize' => false,
                     'controller' => [
-                        'search',
-                        'machine'
-
+                        'search'
                     ]
                 ],
-
-                'POST machines' => 'machine/post',
-                'GET <search>' => 'search/index',
-                'GET search/<category>' => 'search/search',
-                'GET sacana' => 'images/1.png'
-
+                'GET <category>' => 'search/index',
             ],
         ],
     ],
     'params' => $params,
     'as authenticator' => [
-        'class' => HttpBearerAuth::class,
+        'class' => \app\auth\BearerAuth::class,
         'except' => [
-            'user/login'
+            'user/login',
+            'user/signin',
+            'search/index',
+            'image/image',
+            'image/type'
         ]
     ]
-
 ];
 
 if (YII_ENV_DEV) {

@@ -46,7 +46,12 @@ class Storagedevice extends \yii\db\ActiveRecord
 
     public function fields()
     {
-        return ['name', 'imageUrl', 'brand', 'storageDeviceType', 'size', 'storageDeviceInterface'];
+        return ['name',
+            'imageUrl',
+            'brand',
+            'storageDeviceType',
+            'size',
+            'storageDeviceInterface'];
     }
 
     /**

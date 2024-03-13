@@ -1,7 +1,6 @@
 RewriteEngine on
 
-#RewriteCond %{REQUEST_FILENAME} !-f
-#RewriteCond %{REQUEST_FILENAME} !-d
-Header set Access-Control-Allow-Origin "*"
-Header set Access-Control-Allow-Headers "Content-Type"
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
 RewriteRule . 'index.php'

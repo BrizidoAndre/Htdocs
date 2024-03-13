@@ -3,48 +3,71 @@
 namespace app\controllers;
 
 use app\models\User;
-use yii\filters\AccessControl;
-use yii\filters\auth\CompositeAuth;
-use yii\filters\auth\HttpBearerAuth;
 use yii\rest\Controller;
 
 class UserController extends Controller
 {
 
-    public function actionLogin(){
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+    public function actionSignin()
+    {
+        $user = new User();
 
-        $userSearch = \Yii::$app->request->getBodyParams();
+        if ($user->load(\Yii::$app->request->getBodyParams(), '')) {
 
-        $user = User::find()->andWhere(['=','username', $userSearch['username']])->andWhere(['=','password',$userSearch['password']])->one();
+            $user->password = hash_hmac('sha256', $user->password, '');
 
-
-        if($user === null){
-            \Yii::$app->response->statusCode = 422;
-            return[
-                'message'=>'Credenciais Inválidas'
-            ];
+            if ($user->save()) {
+                return [
+                    'Usuário cadastrado com sucesso'
+                ];
+            }
+            return $user;
         }
 
-        if($user->accessToken==="null"){
-            \Yii::$app->response->statusCode = 403;
-            return[
-                'message'=>'Usuário já autenticado'
-            ];
-        }
+        return 'Parametros incorretos';
+    }
 
-        else{
-            $user->accessToken = $user->GenerateToken();
+    public function actionLogin()
+    {
+        $user = new User();
+
+        $user->load(\Yii::$app->request->getBodyParams(), '');
+
+
+        $user = User::find()->where(['username' => $user->username])->andWhere(['password' => hash_hmac('sha256',$user->password,'')])->one();
+
+        if ($user) {
+
+            $user->generateToken();
+
             $user->save();
+
+            return [
+                'token' => $user->accessToken
+            ];
         }
         return [
-            'token' => $user->accessToken,
+            'message' => 'Credenciais inválidas'
         ];
-
     }
 
 
+    public function actionLogout(){
+        $token = \Yii::$app->request->headers->get('authorization');
 
+        $token = explode(' ', $token)[1];
 
+        $user = User::findIdentityByAccessToken($token);
+
+        if($user){
+           $user->accessToken = null;
+           $user->save();
+           return [
+               'message' => 'Logout com sucesso'
+           ];
+        }
+
+        return'';
+    }
 
 }

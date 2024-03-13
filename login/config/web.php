@@ -20,10 +20,6 @@ $config = [
             ]
         ],
         'response' => [
-            'on beforeSend' => [
-                \app\models\ErrorResponseHelper::class,
-                'beforeResponseSend'
-            ],
             'format' => yii\web\Response::FORMAT_JSON,
             'charset' => 'UTF-8',
         ],
@@ -66,11 +62,11 @@ $config = [
     ],
     'params' => $params,
     'as authenticator' => [
-        'class' => \yii\filters\auth\HttpBearerAuth::class,
+        'class' => app\services\BearerAuth::class,
         'except' => [
             'user/login',
             'user/logout',
-            'user/cadastro'
+            'user/cadastro',
         ]
     ]
 ];

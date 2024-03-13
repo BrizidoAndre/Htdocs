@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\User;
 use yii\data\ActiveDataProvider;
+use yii\filters\auth\HttpBasicAuth;
 use yii\rest\Controller;
 
 
@@ -62,7 +63,7 @@ class UserController extends Controller
 
         \Yii::$app->response->statusCode = 422;
         return [
-            'message' => 'Propriedades inválidas'
+            'message' => 'Credenciais inválidas'
         ];
     }
 
@@ -97,8 +98,6 @@ class UserController extends Controller
     public function actionListar(){
         return User::find()->all();
     }
-
-
 
 
 }
