@@ -14,13 +14,13 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'GWKl40868K4-7I7yiAc3ocHlr9925O_T',
+            'cookieValidationKey' => 'GfGOfS9sul596FW4mLdcP_lvHssEYGqg',
             'parsers' => [
                 'application/json' => \yii\web\JsonParser::class
             ]
         ],
-        'response' => [
-            'format' => \yii\web\Response::FORMAT_JSON,
+        'response' =>[
+            'format' => \yii\web\Response::FORMAT_JSON
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -53,25 +53,29 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 [
+
                     'class' => \yii\rest\UrlRule::class,
                     'pluralize' => false,
                     'controller' => [
-                        'search'
-                    ]
+                        'user'
+                    ],
                 ],
-                'GET <category>' => 'search/index',
+                    'GET <category>' => 'search/item',
+                    'GET search/<category>' => 'search/search',
+                    'GET images/<id>' => 'image/image',
+                    'POST machines' => 'machine/post',
+                    'DELETE machines/<id>' => 'machine/delete',
+                    'PUT machines/<id>' => 'machine/put',
+                    'POST verify-compatibility' => 'machine/verify'
             ],
         ],
     ],
     'params' => $params,
     'as authenticator' => [
-        'class' => \app\auth\BearerAuth::class,
-        'except' => [
+        'class' => \app\auth\BearerToken::class,
+        'except' =>[
             'user/login',
-            'user/signin',
-            'search/index',
-            'image/image',
-            'image/type'
+            'image/image'
         ]
     ]
 ];

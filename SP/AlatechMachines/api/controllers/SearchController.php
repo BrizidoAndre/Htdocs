@@ -10,34 +10,115 @@ use app\models\Powersupply;
 use app\models\Processor;
 use app\models\Rammemory;
 use app\models\Storagedevice;
+use Symfony\Component\VarDumper\Cloner\Data;
+use yii\data\ActiveDataProvider;
+use yii\debug\models\timeline\DataProvider;
 use yii\rest\Controller;
 use yii\web\Response;
 
 class SearchController extends Controller
 {
-    public function actionIndex(){
+
+    public function actionItem($pageSize = 20)
+    {
         $category = \Yii::$app->request->get('category');
+
+        switch ($category) {
+
+            case 'motherboards':
+                $query =  Motherboard::find();
+                break;
+
+            case 'processors':
+                $query =  Processor::find();
+                break;
+
+            case 'ram-memories':
+                $query =  Rammemory::find();
+                break;
+
+            case 'storage-devices':
+                $query =  Storagedevice::find();
+                break;
+
+            case 'graphic-cards':
+                $query =  Graphiccard::find();
+                break;
+
+            case 'power-supplies':
+                $query =  Powersupply::find();
+                break;
+
+            case 'machines':
+                $query =  Machine::find();
+                break;
+
+            case 'brands':
+                $query =  Brand::find();
+                break;
+        }
+
+        $provider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => $pageSize,
+            ]
+        ]);
 
         \Yii::$app->response->format = Response::FORMAT_JSON;
 
-        switch ($category){
+        return $provider;
+    }
+
+    public function actionSearch($q ,$pageSize = 20){
+
+        $category = \Yii::$app->request->get('category');
+
+        switch ($category) {
+
             case 'motherboards':
-                return Motherboard::find()->all();
+                $query =  Motherboard::find()->where(['LIKE','name', $q]);
+                break;
+
             case 'processors':
-                return Processor::find()->all();
+                $query =  Processor::find()->where(['LIKE','name', $q]);
+                break;
+
             case 'ram-memories':
-                return Rammemory::find()->all();
+                $query =  Rammemory::find()->where(['LIKE','name', $q]);
+                break;
+
             case 'storage-devices':
-                return Storagedevice::find()->all();
+                $query =  Storagedevice::find()->where(['LIKE','name', $q]);
+                break;
+
             case 'graphic-cards':
-                return Graphiccard::find()->all();
+                $query =  Graphiccard::find()->where(['LIKE','name', $q]);
+                break;
+
             case 'power-supplies':
-                return Powersupply::find()->all();
+                $query =  Powersupply::find()->where(['LIKE','name', $q]);
+                break;
+
             case 'machines':
-                return Machine::find()->all();
+                $query =  Machine::find()->where(['LIKE','name', $q]);
+                break;
+
             case 'brands':
-                return Brand::find()->all();
+                $query =  Brand::find()->where(['LIKE','name', $q]);
+                break;
         }
+
+        $provider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => $pageSize,
+            ]
+        ]);
+
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+
+        return $provider;
 
     }
 

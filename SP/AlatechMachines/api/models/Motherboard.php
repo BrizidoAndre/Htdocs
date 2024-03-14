@@ -52,8 +52,7 @@ class Motherboard extends \yii\db\ActiveRecord
 
     public function fields()
     {
-        return [
-            'name',
+        return ['name',
             'imageUrl',
             'brand',
             'socketType',
@@ -62,8 +61,7 @@ class Motherboard extends \yii\db\ActiveRecord
             'maxTdp',
             'sataSlots',
             'm2Slots',
-            'pciSlots'
-        ];
+            'pciSlots'];
     }
 
     /**

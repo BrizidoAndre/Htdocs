@@ -58,6 +58,7 @@ class Machine extends \yii\db\ActiveRecord
     public function fields()
     {
         return ['name',
+            'description',
             'imageUrl',
             'motherboard',
             'processor',
@@ -67,7 +68,6 @@ class Machine extends \yii\db\ActiveRecord
             'graphicCardAmount',
             'powerSupply'];
     }
-
 
     /**
      * {@inheritdoc}

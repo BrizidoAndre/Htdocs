@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Cassandra\Date;
 use Yii;
 use yii\web\IdentityInterface;
 
@@ -11,7 +12,6 @@ use yii\web\IdentityInterface;
  * @property int $id
  * @property string $username
  * @property string $password
- * @property-read void $authKey
  * @property string $accessToken
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
@@ -66,7 +66,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     public function getAuthKey()
     {
-
+        // TODO: Implement getAuthKey() method.
     }
 
     public function validateAuthKey($authKey)
@@ -74,26 +74,28 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         // TODO: Implement validateAuthKey() method.
     }
 
-//    MÉTODO PARA A CRIAÇÃO DE UM TOKEN DURANTE O LOGIN
+//    Método para a geração do token
     public function generateToken(){
         $header = [
             'typ' => 'JWT',
-            'alg' => 'sha-256'
+            'sig' => 'sha-256'
         ];
+
         $header = base64_encode(json_encode($header));
 
-
-
+//        payload com algumas aleatoriedades por segurança
         $payload = [
             'user' => $this->username,
-            'time' => date('Y-m-d H:m:s:v:u')
+            'date' => date('Y-m-d-m-Y-H-i-s'),
+            'rdom' => random_int(1,999)
         ];
 
         $payload = base64_encode(json_encode($payload));
 
-        $signature = hash_hmac('sha256',$header . '.' . $payload,'secret');
+        $signature = hash_hmac('sha256', $header . '.' . $payload, 'secret');
 
-        $this->accessToken = $header . '.' . $payload . '.' . $signature;
+        $token = $header . '.' . $payload . '.' . $signature;
 
+        $this->accessToken = $token;
     }
 }
