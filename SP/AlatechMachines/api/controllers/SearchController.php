@@ -26,35 +26,35 @@ class SearchController extends Controller
         switch ($category) {
 
             case 'motherboards':
-                $query =  Motherboard::find();
+                $query = Motherboard::find();
                 break;
 
             case 'processors':
-                $query =  Processor::find();
+                $query = Processor::find();
                 break;
 
             case 'ram-memories':
-                $query =  Rammemory::find();
+                $query = Rammemory::find();
                 break;
 
             case 'storage-devices':
-                $query =  Storagedevice::find();
+                $query = Storagedevice::find();
                 break;
 
             case 'graphic-cards':
-                $query =  Graphiccard::find();
+                $query = Graphiccard::find();
                 break;
 
             case 'power-supplies':
-                $query =  Powersupply::find();
+                $query = Powersupply::find();
                 break;
 
             case 'machines':
-                $query =  Machine::find();
+                $query = Machine::find();
                 break;
 
             case 'brands':
-                $query =  Brand::find();
+                $query = Brand::find();
                 break;
         }
 
@@ -70,42 +70,43 @@ class SearchController extends Controller
         return $provider;
     }
 
-    public function actionSearch($q ,$pageSize = 20){
+    public function actionSearch($q, $pageSize = 20)
+    {
 
         $category = \Yii::$app->request->get('category');
 
         switch ($category) {
 
             case 'motherboards':
-                $query =  Motherboard::find()->where(['LIKE','name', $q]);
+                $query = Motherboard::find()->where(['LIKE', 'name', $q]);
                 break;
 
             case 'processors':
-                $query =  Processor::find()->where(['LIKE','name', $q]);
+                $query = Processor::find()->where(['LIKE', 'name', $q]);
                 break;
 
             case 'ram-memories':
-                $query =  Rammemory::find()->where(['LIKE','name', $q]);
+                $query = Rammemory::find()->where(['LIKE', 'name', $q]);
                 break;
 
             case 'storage-devices':
-                $query =  Storagedevice::find()->where(['LIKE','name', $q]);
+                $query = Storagedevice::find()->where(['LIKE', 'name', $q]);
                 break;
 
             case 'graphic-cards':
-                $query =  Graphiccard::find()->where(['LIKE','name', $q]);
+                $query = Graphiccard::find()->where(['LIKE', 'name', $q]);
                 break;
 
             case 'power-supplies':
-                $query =  Powersupply::find()->where(['LIKE','name', $q]);
+                $query = Powersupply::find()->where(['LIKE', 'name', $q]);
                 break;
 
             case 'machines':
-                $query =  Machine::find()->where(['LIKE','name', $q]);
+                $query = Machine::find()->where(['LIKE', 'name', $q]);
                 break;
 
             case 'brands':
-                $query =  Brand::find()->where(['LIKE','name', $q]);
+                $query = Brand::find()->where(['LIKE', 'name', $q]);
                 break;
         }
 
@@ -120,6 +121,36 @@ class SearchController extends Controller
 
         return $provider;
 
+    }
+
+    public function behaviors()
+    {
+        return [
+            'corsFilter' => [
+                'class' => \yii\filters\Cors::class,
+                'cors' => [
+                    // restrict access to
+                    'Origin' => ['*'],
+                    // Allow only POST and PUT methods
+                    'Access-Control-Request-Method' => [
+                        'POST',
+                        'PUT',
+                        'GET',
+                        'DELETE',
+
+                    ],
+                    // Allow only headers 'X-Wsse'
+                    'Access-Control-Request-Headers' => ['*'],
+                    // Allow credentials (cookies, authorization headers, etc.) to be exposed to the browser
+                    'Access-Control-Allow-Credentials' => false,
+                    // Allow OPTIONS caching
+                    'Access-Control-Max-Age' => 3600,
+                    // Allow the X-Pagination-Current-Page header to be exposed to the browser.
+                    'Access-Control-Expose-Headers' => ['*'],
+                ],
+
+            ],
+        ];
     }
 
 }

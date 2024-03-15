@@ -19,8 +19,34 @@ $config = [
                 'application/json' => \yii\web\JsonParser::class
             ]
         ],
-        'response' =>[
+        'response' => [
             'format' => \yii\web\Response::FORMAT_JSON
+        ],
+        'cors' => [
+            'class' => \yii\filters\Cors::class,
+            'cors' => [
+                'Origin' => [
+                    'http://localhost:3000/'
+                ],
+                'Access-Control-Request-Method' => [
+                    'GET',
+                    'POST',
+                    'PUT',
+                    'PATCH',
+                    'DELETE',
+                    'HEAD',
+                    'OPTIONS',
+                ],
+                'Access-Control-Request-Headers' => [
+                    '*',
+                ],
+                'Access-Control-Allow-Credentials' => null,
+                'Access-Control-Allow-Origin' => [
+                    '*',
+                ],
+                'Access-Control-Max-Age' => 86400,
+                'Access-Control-Expose-Headers' => [],
+            ]
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -60,24 +86,25 @@ $config = [
                         'user'
                     ],
                 ],
-                    'GET <category>' => 'search/item',
-                    'GET search/<category>' => 'search/search',
-                    'GET images/<id>' => 'image/image',
-                    'POST machines' => 'machine/post',
-                    'DELETE machines/<id>' => 'machine/delete',
-                    'PUT machines/<id>' => 'machine/put',
-                    'POST verify-compatibility' => 'machine/verify'
+                'GET <category>' => 'search/item',
+                'GET search/<category>' => 'search/search',
+                'GET images/<id>' => 'image/image',
+                'POST machines' => 'machine/post',
+                'DELETE machines/<id>' => 'machine/delete',
+                'PUT machines/<id>' => 'machine/put',
+                'POST verify-compatibility' => 'machine/verify'
             ],
         ],
     ],
     'params' => $params,
-    'as authenticator' => [
-        'class' => \app\auth\BearerToken::class,
-        'except' =>[
-            'user/login',
-            'image/image'
-        ]
-    ]
+//    'as authenticator' => [
+//        'class' => \app\auth\BearerToken::class,
+//        'except' => [
+//            'user/login',
+//            'image/image',
+//            'search/item'
+//        ]
+//    ]
 ];
 
 if (YII_ENV_DEV) {
