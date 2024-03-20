@@ -10,14 +10,43 @@ use app\models\Powersupply;
 use app\models\Processor;
 use app\models\Rammemory;
 use app\models\Storagedevice;
-use Symfony\Component\VarDumper\Cloner\Data;
 use yii\data\ActiveDataProvider;
-use yii\debug\models\timeline\DataProvider;
 use yii\rest\Controller;
 use yii\web\Response;
 
 class SearchController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'corsFilter' => [
+                'class' => \yii\filters\Cors::class,
+                'cors' => [
+                    'Origin' => [
+                        '*',
+                    ],
+                    'Access-Control-Request-Method' => [
+                        'GET',
+                        'POST',
+                        'PUT',
+                        'PATCH',
+                        'DELETE',
+                        'HEAD',
+                        'OPTIONS',
+                    ],
+                    'Access-Control-Request-Headers' => [
+                        '*',
+                    ],
+                    'Access-Control-Allow-Credentials' => null,
+                    'Access-Control-Allow-Origin' => [
+                        '*',
+                    ],
+                    'Access-Control-Max-Age' => 86400,
+                    'Access-Control-Expose-Headers' => [],
+                ]
+            ],
+        ];
+    }
 
     public function actionItem($pageSize = 20)
     {
@@ -121,36 +150,6 @@ class SearchController extends Controller
 
         return $provider;
 
-    }
-
-    public function behaviors()
-    {
-        return [
-            'corsFilter' => [
-                'class' => \yii\filters\Cors::class,
-                'cors' => [
-                    // restrict access to
-                    'Origin' => ['*'],
-                    // Allow only POST and PUT methods
-                    'Access-Control-Request-Method' => [
-                        'POST',
-                        'PUT',
-                        'GET',
-                        'DELETE',
-
-                    ],
-                    // Allow only headers 'X-Wsse'
-                    'Access-Control-Request-Headers' => ['*'],
-                    // Allow credentials (cookies, authorization headers, etc.) to be exposed to the browser
-                    'Access-Control-Allow-Credentials' => false,
-                    // Allow OPTIONS caching
-                    'Access-Control-Max-Age' => 3600,
-                    // Allow the X-Pagination-Current-Page header to be exposed to the browser.
-                    'Access-Control-Expose-Headers' => ['*'],
-                ],
-
-            ],
-        ];
     }
 
 }

@@ -14,12 +14,16 @@ class ImageController extends Controller
     {
 
         try {
-            $id .= '.png';
+            $imagePNG = $id . '.png';
 
-            $imagePath = \Yii::getAlias('@webroot' . '/images/') . $id;
+            $imageJPG = $id . '.jpg';
 
-            if (file_exists($imagePath)) {
-                $data = file_get_contents($imagePath);
+            $imagePNG = \Yii::getAlias('@webroot' . '/images/') . $imagePNG;
+            $imageJPG = \Yii::getAlias('@webroot' . '/images/') . $imageJPG;
+
+            if (file_exists($imagePNG)) {
+                $data = file_get_contents($imagePNG);
+
 
                 \Yii::$app->response->headers->set('Content-Type', 'image/png');
 
@@ -27,9 +31,17 @@ class ImageController extends Controller
 
                 \Yii::$app->response->data = $data;
                 return;
-            }
+            } else if (file_exists($imageJPG)) {
+                $data = file_get_contents($imageJPG);
 
-            throw new NotFoundHttpException('Imagem não encontrada');
+                \Yii::$app->response->headers->set('Content-Type', 'image/jpeg');
+                \Yii::$app->response->format = Response::FORMAT_RAW;
+
+                \Yii::$app->response->data = $data;
+                return;
+            } else {
+                throw new NotFoundHttpException('Imagem não encontrada');
+            }
         } catch (Exception $exception) {
 
             throw new NotFoundHttpException('Imagem não encontrada');
@@ -38,7 +50,37 @@ class ImageController extends Controller
 
     }
 
-
+    public function behaviors()
+    {
+        return [
+            'corsFilter' => [
+                'class' => \yii\filters\Cors::class,
+                'cors' => [
+                    'Origin' => [
+                        '*',
+                    ],
+                    'Access-Control-Request-Method' => [
+                        'GET',
+                        'POST',
+                        'PUT',
+                        'PATCH',
+                        'DELETE',
+                        'HEAD',
+                        'OPTIONS',
+                    ],
+                    'Access-Control-Request-Headers' => [
+                        '*',
+                    ],
+                    'Access-Control-Allow-Credentials' => null,
+                    'Access-Control-Allow-Origin' => [
+                        '*',
+                    ],
+                    'Access-Control-Max-Age' => 86400,
+                    'Access-Control-Expose-Headers' => [],
+                ]
+            ],
+        ];
+    }
 
 
 }

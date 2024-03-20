@@ -358,15 +358,64 @@ class MachineController extends Controller
     public function generateImageId($base)
     {
 
-        $imageId = random_int(0, 999999);
+        if(str_starts_with($base,"iVBORw0KGg")){
+            $imageId = random_int(0, 999999);
 
-        $imageAll = $imageId . '.png';
+            $imageAll = $imageId . '.png';
 
-        $folderPath = \Yii::getAlias('@webroot/images/');
+            $folderPath = \Yii::getAlias('@webroot/images/');
 
-        file_put_contents($folderPath . $imageAll, base64_decode($base));
+            file_put_contents($folderPath . $imageAll, base64_decode($base));
 
-        return (string)$imageId;
+            return (string)$imageId;
+        } else if(str_starts_with($base, '/9j/')){
+            $imageId = random_int(0, 999999);
+
+            $imageAll = $imageId . '.jpg';
+
+            $folderPath = \Yii::getAlias('@webroot/images/');
+
+            file_put_contents($folderPath . $imageAll, base64_decode($base));
+
+            return (string)$imageId;
+        }
+        else{
+            return 'Imagem não foi retornada corretamente';
+        }
+
+
+    }
+
+    public function behaviors()
+    {
+        return [
+            'corsFilter' => [
+                'class' => \yii\filters\Cors::class,
+                'cors' => [
+                    'Origin' => [
+                        '*',
+                    ],
+                    'Access-Control-Request-Method' => [
+                        'GET',
+                        'POST',
+                        'PUT',
+                        'PATCH',
+                        'DELETE',
+                        'HEAD',
+                        'OPTIONS',
+                    ],
+                    'Access-Control-Request-Headers' => [
+                        '*',
+                    ],
+                    'Access-Control-Allow-Credentials' => null,
+                    'Access-Control-Allow-Origin' => [
+                        '*',
+                    ],
+                    'Access-Control-Max-Age' => 86400,
+                    'Access-Control-Expose-Headers' => [],
+                ]
+            ],
+        ];
     }
 
 }

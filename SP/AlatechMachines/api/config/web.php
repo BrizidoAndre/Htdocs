@@ -1,5 +1,7 @@
 <?php
 
+use yii\web\Response;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -20,34 +22,9 @@ $config = [
             ]
         ],
         'response' => [
-            'format' => \yii\web\Response::FORMAT_JSON
+            'format' => \yii\web\Response::FORMAT_JSON,
         ],
-        'cors' => [
-            'class' => \yii\filters\Cors::class,
-            'cors' => [
-                'Origin' => [
-                    'http://localhost:3000/'
-                ],
-                'Access-Control-Request-Method' => [
-                    'GET',
-                    'POST',
-                    'PUT',
-                    'PATCH',
-                    'DELETE',
-                    'HEAD',
-                    'OPTIONS',
-                ],
-                'Access-Control-Request-Headers' => [
-                    '*',
-                ],
-                'Access-Control-Allow-Credentials' => null,
-                'Access-Control-Allow-Origin' => [
-                    '*',
-                ],
-                'Access-Control-Max-Age' => 86400,
-                'Access-Control-Expose-Headers' => [],
-            ]
-        ],
+
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -102,10 +79,12 @@ $config = [
 //        'except' => [
 //            'user/login',
 //            'image/image',
-//            'search/item'
 //        ]
 //    ]
 ];
+
+
+
 
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
