@@ -1,0 +1,39 @@
+
+
+.box-card{
+    width: 250px;
+    height: fit-content;
+    border: 1px solid rebeccapurple;
+
+    position:relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.box-card--bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    height:fit-content;
+}
+
+
+.icon{
+    width: 20px;
+    height: 20px;
+
+}
+
+.image-component{
+    width: 80%;
+}
+
+.card--name{
+    max-width: 300px;
+}

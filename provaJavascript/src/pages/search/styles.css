@@ -1,0 +1,26 @@
+
+.container-card {
+    width: 80%;
+
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+
+}
+
+.button-nav {
+    position: absolute;
+    left:5%;
+    top: 11%;
+
+    width: 200px;
+    height: 40px;
+
+    border:none;
+    border-radius: 10px;
+
+    background: blueviolet;
+
+    color: white;
+}

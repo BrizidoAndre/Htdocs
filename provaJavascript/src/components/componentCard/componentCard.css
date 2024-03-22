@@ -1,0 +1,63 @@
+.container-component {
+    width: 250px;
+    height: fit-content;
+
+    border: 1px solid purple;
+
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.container-component--text {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container-component button {
+    width: 60px;
+    height: 30px;
+}
+
+.container-component img {
+    width: 100%;
+}
+
+
+.container-component--select {
+    width: 360px;
+}
+
+.container-component--list {
+    width: 360px;
+    height: 213px;
+}
+
+.container-component--select img {
+    width: 230px;
+}
+
+.container-component--select input {
+    width: 100px;
+}
+
+.container-flex--space {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+}
+
+.container-component--list img {
+    width: 60px;
+}
+
+.details{
+    border: 1px solid red;
+}

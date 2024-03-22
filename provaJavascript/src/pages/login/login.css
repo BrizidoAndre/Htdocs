@@ -1,0 +1,49 @@
+
+
+.container-page{
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+
+    align-items: center;
+
+    padding: 50px 0;
+}
+
+.container-login{
+    width: 250px;
+    height: 300px;
+
+    display: flex;
+    flex-direction: column;
+
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 40px 2%;
+    margin: 20px;
+}
+
+.container-login label{
+    font-weight: bold;
+}
+
+.container-login input{
+    margin-bottom: 20px;
+}
+
+.container-login input:focus{
+    outline:none;
+}
+
+
+.container-login button{
+    background-color: blue;
+    border:1px solid black;
+    border-radius: 10px;
+
+    height: 90%;
+
+    color:white;
+    margin-top: 90px;
+
+}

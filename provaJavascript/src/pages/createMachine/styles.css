@@ -1,0 +1,25 @@
+.container-top{
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-save{
+    width: 200px;
+    height: 50px;
+
+    border-radius: 12px;
+    border: none;
+    background-color: darkgreen;
+    color: white;
+
+}
+
+.container-create{
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+}
