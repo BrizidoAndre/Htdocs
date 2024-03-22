@@ -24,7 +24,6 @@ $config = [
         'response' => [
             'format' => \yii\web\Response::FORMAT_JSON,
         ],
-
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -60,7 +59,10 @@ $config = [
                     'class' => \yii\rest\UrlRule::class,
                     'pluralize' => false,
                     'controller' => [
-                        'user'
+                        'user',
+                        'search',
+                        'machine',
+                        'image'
                     ],
                 ],
                 'GET <category>' => 'search/item',
@@ -74,6 +76,7 @@ $config = [
         ],
     ],
     'params' => $params,
+
 //    'as authenticator' => [
 //        'class' => \app\auth\BearerToken::class,
 //        'except' => [
@@ -82,8 +85,6 @@ $config = [
 //        ]
 //    ]
 ];
-
-
 
 
 if (YII_ENV_DEV) {
