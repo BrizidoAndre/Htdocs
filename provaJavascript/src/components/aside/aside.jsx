@@ -2,23 +2,8 @@ import './styles.css'
 import {useEffect, useState} from "react";
 import {CreateCard} from "../createCard/createCard";
 
-export const Aside = () => {
+export const Aside = ({listSelect, select, setSelect}) => {
 
-    const listSelect = [{
-        value: 'motherboards', text: 'Placa-mãe'
-    }, {
-        value: 'processors', text: 'Processador'
-    }, {
-        value: 'ram-memories', text: 'Memória ram'
-    }, {
-        value: 'graphic-cards', text: 'Placa de vídeo'
-    }, {
-        value: 'storage-devices', text: 'Dispositivo de armazenamento'
-    }, {
-        value: 'power-supplies', text: 'Fonte de alimentação'
-    }]
-
-    const [select, setSelect] = useState('');
 
     const [listComponents, setListComponents] = useState([])
 
