@@ -12,6 +12,10 @@
 
     align-items: center;
 }
+.container-component--image{
+    width: 300px;
+    gap: 10px;
+}
 
 .container-component--text {
     width: 100%;

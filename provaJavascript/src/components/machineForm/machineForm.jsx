@@ -1,37 +1,39 @@
 import ComponentCard, {
-    ComponentCardQuantity,
-    ComponentCardSelect, GraphicCard,
-    MotherboardCard, PowerCard, ProcessorCard
+    ComponentCardQuantity, ComponentCardSelect, GraphicCard, MachineCard, MotherboardCard, PowerCard, ProcessorCard
 } from "../componentCard/componentCard";
-import {useContext, useState} from "react";
+import {memo, useContext, useEffect, useState} from "react";
 import './machineForm.css'
 import {DragContext} from "../../pages/createMachine/createMachine";
+import Login from "../../pages/login/login";
 
 export const MachineForm = ({select}) => {
 
+    // useContext do elemento que está sendo carregado pelo mouse e da máquina a ser cadastrada
     const [drag, setDrag, newMachine, setNewMachine] = useContext(DragContext)
+
 
     // useStates para determinar os componentes da máquina
     const [motherboard, setMotherboard] = useState({})
     const [power, setPower] = useState({})
     const [graphic, setGraphic] = useState({})
     const [processor, setProcessor] = useState({})
+    const [memoryRam, setMemoryRam] = useState({})
 
-    const [list, setList] = useState([{
-        name: 'Computador',
-        imageUrl: 33,
+    // useStates para mostrar a lista de armazenamento pro usuário
+    const [memoryList, setMemoryList] = useState([])
 
-    }, {
-        name: 'Computador',
-        imageUrl: 33,
+    // Use state for when we are altering the amount of storage
+    // and i nedded something to call the useEffect
+    const [callEffect, setCallEffect] = useState('')
 
-    }])
+    // state for image
+    const [image, setImage] = useState()
+
 
     function motherboardFunction() {
         if (select === 'motherboards') {
             setNewMachine({
-                ...newMachine,
-                motherboardId: drag.id
+                ...newMachine, motherboardId: drag.id
             })
             setMotherboard(drag)
         }
@@ -40,47 +42,175 @@ export const MachineForm = ({select}) => {
     function powerFunction() {
         if (select === 'power-supplies') {
             setNewMachine({
-                ...newMachine,
-                powerSupplyId: drag.id
+                ...newMachine, powerSupplyId: drag.id
             })
             setPower(drag)
         }
     }
 
     function graphicFunction() {
-        if(select ==='graphic-cards'){
+        if (newMachine.motherboardId && newMachine.powerSupplyId && select === 'graphic-cards') {
             setNewMachine({
-                ...newMachine,
-                graphicCardId: drag.id
+                ...newMachine, graphicCardId: drag.id
             })
             setGraphic(drag)
         }
     }
 
     function processorFunction() {
-        if (select === 'processors') {
+
+        if (newMachine.motherboardId && newMachine.powerSupplyId && select === 'processors') {
             setNewMachine({
-                ...newMachine,
-                processorId: drag.id
+                ...newMachine, processorId: drag.id
             })
             setProcessor(drag)
         }
     }
 
-    return (
-        <form className={'form-machine'}>
+    function memoryFunction() {
+        if (newMachine.motherboardId && newMachine.powerSupplyId && select === 'ram-memories') {
+            setNewMachine({
+                ...newMachine, ramMemoryId: drag.id
+            })
+            setMemoryRam(drag)
+        }
+    }
+
+    // function for when we are altering the amount of memoryRam in the machine
+    function setQuantityMemoryFunction(e) {
+
+        e = parseInt(e)
+        setNewMachine({
+            ...newMachine, ramMemoryAmount: e
+        })
+    }
+
+    function memoryListFunction() {
+        if (newMachine.motherboardId && newMachine.powerSupplyId && select === 'storage-devices') {
+
+            let newItem = true;
+            memoryList.map(e => {
+                if (e.name === drag.name) {
+                    newItem = false
+                }
+            })
+
+            if (newItem) {
+                setMemoryList([...memoryList, drag,])
+
+                setNewMachine({
+                    ...newMachine, storageDevices: memoryList
+                })
+                return
+            }
+        }
+    }
+
+    function adaptLists() {
+        const lista = []
+        memoryList.map(item => {
+            lista.push({
+                amount: item.amount, storageDeviceId: item.id
+            })
+        })
+        setNewMachine({
+            ...newMachine, storageDevices: lista
+        })
+    }
+
+    function getBase64(file) {
+        return new Promise(resolve => {
+            let baseURL;
+            //     make new Filereader
+            let reader = new FileReader();
+
+            //     convert the file to base 64 text
+            reader.readAsDataURL(file)
+
+            //     on reader load something
+            reader.onload = () => {
+                //     make a fileinfo Object
+                baseURL = reader.result
+                resolve(baseURL);
+            };
+
+        })
+    }
+
+    const handleFileInputChange = e => {
+        let {file} = '';
+
+        file = e.target.files[0];
+
+        getBase64(file).then(result => {
+
+            let code = result.split('base64,')[1]
+            setNewMachine({
+                ...newMachine,
+                imageUrl: code
+            });
+        })
+            .catch(err => {
+                console.log(err)
+            })
+    };
+
+    async function verifyMachine() {
+
+        try {
+
+            const res = await fetch("http://localhost/SP/AlatechMachines/api/machines/verify-compatibility", {
+                method: 'POST',
+                headers: {
+                    "Content-Type": 'application/json'
+                },
+                body: JSON.stringify(newMachine)
+            });
+
+            const data = await res.json()
+
+            console.log(data)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    useEffect(() => {
+        adaptLists()
+    }, [memoryList, callEffect]);
+
+    useEffect(() => {
+        verifyMachine()
+    }, [newMachine])
+
+    return (<form className={'form-machine'} onSubmit={e => {
+        e.preventDefault()
+    }}>
+
+        <ComponentCard name={'*Placa-mãe'} checkSelect={motherboardFunction} item={motherboard}/>
+        <ComponentCard name={'*Fonte de alimentação'} checkSelect={powerFunction} item={power}/>
+        <ComponentCard name={'Processador'} checkSelect={processorFunction} item={processor}/>
+        <ComponentCard name={'Placa de vídeo'} checkSelect={graphicFunction} item={graphic}/>
+
+        <ComponentCardQuantity item={memoryRam} checkSelect={memoryFunction}
+                               setQuantity={setQuantityMemoryFunction}/>
+
+        <ComponentCardSelect list={memoryList} setList={setCallEffect} addList={memoryListFunction}/>
+
+        <MachineCard
+            name={newMachine.name}
+            setName={(e) => setNewMachine({
+                ...newMachine, name: e.target.value
+            })}
+            description={newMachine.description}
+            setDescription={(e) => setNewMachine({
+                ...newMachine, description: e.target.value
+            })}
+            setImage={(e) => handleFileInputChange(e)}
+        />
 
 
-            <ComponentCard name={'Placa-mãe'} checkSelect={motherboardFunction} item={motherboard} setItem={setMotherboard}/>
-            <ComponentCard name={'Fonte de alimentação'} checkSelect={powerFunction} item={power} setItem={setPower}/>
-            <ComponentCard name={'Placa de vídeo'} checkSelect={graphicFunction} item={graphic} setItem={setGraphic}/>
-            <ComponentCard name={'Processador'} checkSelect={processorFunction} item={processor} setItem={setProcessor}/>
-
-            <ComponentCardQuantity select={select} name={'Memória ram'}/>
-
-            <ComponentCardSelect list={list} select={select} name={'Dispositivos de armazenamento'}/>
-        </form>
-    )
+    </form>)
 }
 
 export default MachineForm

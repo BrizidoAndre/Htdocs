@@ -9,9 +9,13 @@ export const Aside = ({listSelect, select, setSelect}) => {
 
     async function loadComponents() {
         try {
-            const address = 'http://localhost/SP/AlatechMachines/api/' + select;
+            const address = 'http://localhost/SP/AlatechMachines/api/search/item?category=' + select;
 
-            const res = await fetch(address,{})
+            const res = await fetch(address,{
+                headers:{
+                    'authorization': 'Bearer ' + localStorage.getItem('token')
+                }
+            })
 
             const data = await res.json();
 
@@ -32,7 +36,6 @@ export const Aside = ({listSelect, select, setSelect}) => {
     return (<div className="container-aside">
 
         <select name="componentPart" onChange={(e) => setSelect(e.target.value)}>
-            <option value="" selected hidden>Selecione um componente</option>
             {listSelect.map(item => {
                 return (<option value={item.value}>{item.text}</option>)
             })}

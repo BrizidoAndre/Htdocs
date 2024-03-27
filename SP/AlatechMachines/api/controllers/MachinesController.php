@@ -5,12 +5,15 @@ namespace app\controllers;
 use app\models\Machine;
 use app\models\Machinehasstoragedevice;
 use app\models\Storagedevice;
+use app\models\ViewModel\MachineVerify;
 use yii\base\Exception;
+use yii\filters\VerbFilter;
 use yii\rest\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\web\UnprocessableEntityHttpException;
 
-class MachineController extends Controller
+class MachinesController extends Controller
 {
 
     public function actionPost()
@@ -76,7 +79,7 @@ class MachineController extends Controller
                 $errors['Tipo de memória RAM'] = 'O tipo de memória ram é diferente do suportado pela placa-mãe';
             }
             if ($machine->motherboard->ramMemorySlots < $machine->ramMemoryAmount) {
-                $errors['Slots de memória RAM'] = 'A quantidade da memória RAM supear o suportado pela placa-mãe';
+                $errors['Slots de memória RAM'] = 'A quantidade da memória RAM supera o suportado pela placa-mãe';
             }
             if ($machine->motherboard->pciSlots < $machine->graphicCardAmount || $machine->graphicCardAmount < 1) {
                 $errors['Quantidade de placas de vídeo'] = 'A quantidade de placas de vídeo não condiz o suportado pela placa-mãe';
@@ -118,7 +121,7 @@ class MachineController extends Controller
             \Yii::$app->response->statusCode = 422;
             return $errors;
 
-        } catch (\ErrorException $exception){
+        } catch (\ErrorException $exception) {
             throw new UnprocessableEntityHttpException('Não foram fornecidos parâmetros suficientes para a criação da máquina');
         }
     }
@@ -188,7 +191,7 @@ class MachineController extends Controller
             $errors['Tipo de memória RAM'] = 'O tipo de memória ram é diferente do suportado pela placa-mãe';
         }
         if ($machine->motherboard->ramMemorySlots < $machine->ramMemoryAmount) {
-            $errors['Slots de memória RAM'] = 'A quantidade da memória RAM supear o suportado pela placa-mãe';
+            $errors['Slots de memória RAM'] = 'A quantidade da memória RAM supera o suportado pela placa-mãe';
         }
         if ($machine->motherboard->pciSlots < $machine->graphicCardAmount || $machine->graphicCardAmount < 1) {
             $errors['Quantidade de placas de vídeo'] = 'A quantidade de placas de vídeo não condiz o suportado pela placa-mãe';
@@ -233,43 +236,62 @@ class MachineController extends Controller
 
     }
 
-    public function actionVerify()
+    public function actionVerifyCompatibility()
     {
 
         try {
-
-
             $model = \Yii::$app->request->getBodyParams();
-
 
 //        Declarando o array que conterá as mensagens de resposta
             $errors = [];
 
 //        verificação simples se as propriedades obrigatórias existem
-            if (!isset($model['powerSupplyId']) || !isset($model['motherboardId'])) {
+            if (   (!isset($model['powerSupplyId']) || $model['powerSupplyId'] === '')   ||    (!isset($model['motherboardId']) || $model['motherboardId'] === '')   ){
+                \Yii::$app->response->statusCode = 422;
                 $errors['Propriedades faltando'] = 'Não é possível verificar uma máquina sem o id da máquina ou o id do Processador';
-
                 return $errors;
             }
 
 
 //        criando os modelos que serão usado para validação do cadastro de máquina
             $machine = new Machine();
+            if (isset($model['name'])) {
+                $machine->name = $model['name'];
+            }
+            if (isset($model['description'])) {
+                $machine->description = $model['description'];
+            }
+            if (isset($model['motherboardId'])) {
+                $machine->motherboardId = $model['motherboardId'];
+            }
+            if (isset($model['processorId'])) {
+                $machine->processorId = $model['processorId'];
+            }
+            if (isset($model['ramMemoryId'])) {
+                $machine->ramMemoryId = $model['ramMemoryId'];
+            }
+            if (isset($model['ramMemoryAmount'])) {
+                $machine->ramMemoryAmount = $model['ramMemoryAmount'];
+            }
+            if (isset($model['graphicCardId'])) {
+                $machine->graphicCardId = $model['graphicCardId'];
+            }
+            if (isset($model['graphicCardAmount'])) {
+                $machine->graphicCardAmount = $model['graphicCardAmount'];
+            }
+            if (isset($model['powerSupplyId'])) {
+                $machine->powerSupplyId = $model['powerSupplyId'];
+            }
+            if (isset($model['imageUrl'])) {
+                $machine->imageUrl = $model['imageUrl'];
+            }
 
-            $machine->name = $model['name'];
-            $machine->description = $model['description'];
-            $machine->motherboardId = $model['motherboardId'];
-            $machine->processorId = $model['processorId'];
-            $machine->ramMemoryId = $model['ramMemoryId'];
-            $machine->ramMemoryAmount = $model['ramMemoryAmount'];
-            $machine->graphicCardId = $model['graphicCardId'];
-            $machine->graphicCardAmount = $model['graphicCardAmount'];
-            $machine->powerSupplyId = $model['powerSupplyId'];
-            $machine->imageUrl = $model['imageUrl'];
 
             $machine->imageUrl = $this->generateImageId($machine->imageUrl);
 
-            $storageDevices = $model['storageDevices'];
+            if (isset($model['storageDevices'])) {
+                $storageDevices = $model['storageDevices'];
+            }
 
 //         criando variáveis para validação dos dispositivos de armazenamento
             $sataAmount = 0;
@@ -295,19 +317,19 @@ class MachineController extends Controller
             }
 
 
-            if ($machine->motherboard->socketTypeId !== $machine->processor->socketTypeId) {
+            if (isset($machine->processor) && $machine->motherboard->socketTypeId !== $machine->processor->socketTypeId) {
                 $errors['Tipo de soquete'] = 'Tipo de soquete da placa-mãe e processador distintos';
             }
-            if ($machine->motherboard->maxTdp < $machine->processor->tdp) {
+            if (isset($machine->processor) && $machine->motherboard->maxTdp < $machine->processor->tdp) {
                 $errors['TDP'] = 'O tdp do processador supera o suportado pela placa-mãe';
             }
-            if ($machine->motherboard->ramMemoryTypeId !== $machine->ramMemory->ramMemoryTypeId) {
+            if (isset($machine->ramMemory) && $machine->motherboard->ramMemoryTypeId !== $machine->ramMemory->ramMemoryTypeId) {
                 $errors['Tipo de memória RAM'] = 'O tipo de memória ram é diferente do suportado pela placa-mãe';
             }
-            if ($machine->motherboard->ramMemorySlots < $machine->ramMemoryAmount) {
-                $errors['Slots de memória RAM'] = 'A quantidade da memória RAM supear o suportado pela placa-mãe';
+            if (isset($machine->ramMemoryAmount) && $machine->motherboard->ramMemorySlots < $machine->ramMemoryAmount) {
+                $errors['Slots de memória RAM'] = 'A quantidade da memória RAM supera o suportado pela placa-mãe';
             }
-            if ($machine->motherboard->pciSlots < $machine->graphicCardAmount || $machine->graphicCardAmount < 1) {
+            if (isset($machine->graphicCardAmount) && ($machine->motherboard->pciSlots < $machine->graphicCardAmount || $machine->graphicCardAmount < 1)) {
                 $errors['Quantidade de placas de vídeo'] = 'A quantidade de placas de vídeo não condiz o suportado pela placa-mãe';
             }
             if ($machine->motherboard->sataSlots < $sataAmount) {
@@ -316,13 +338,13 @@ class MachineController extends Controller
             if ($machine->motherboard->m2Slots < $m2Amount) {
                 $errors['Armazenamento m2'] = 'A quantidade de armazenamento m2 é maior que o suportado pela placa-mãe';
             }
-            if ($sataAmount + $m2Amount < 1) {
+            if (count($storageDevices)>0 && $sataAmount + $m2Amount < 1) {
                 $errors['Armazenamento'] = 'A máquina não contém um dispositivo de armazenamento';
             }
-            if ($machine->graphicCardAmount > 1 && !$machine->graphicCard->supportMultiGpu) {
+            if (isset($machine->graphicCard) && $machine->graphicCardAmount > 1 && !$machine->graphicCard->supportMultiGpu) {
                 $errors['Multi GPU'] = 'A placa de vídeo não suporta CROSSFIRE';
             }
-            if ($machine->powerSupply->potency < $machine->graphicCard->minimumPowerSupply * $machine->graphicCardAmount) {
+            if ($machine->powerSupply && isset($machine->graphicCard) && isset($machine->graphicCardAmount) && $machine->powerSupply->potency < $machine->graphicCard->minimumPowerSupply * $machine->graphicCardAmount) {
                 $errors['Potência'] = 'A potência do carregador é inferior ao exigido pelas placas de vídeo';
             }
 
@@ -336,7 +358,8 @@ class MachineController extends Controller
             \Yii::$app->response->statusCode = 422;
             return $errors;
 
-        } catch (\ErrorException $exception){
+        } catch (\ErrorException $exception) {
+            return $exception->getMessage();
             throw new UnprocessableEntityHttpException('A requisição não contém todos os parâmetros necessários');
         }
     }
@@ -358,7 +381,7 @@ class MachineController extends Controller
     public function generateImageId($base)
     {
 
-        if(str_starts_with($base,"iVBORw0KGg")){
+        if (str_starts_with($base, "iVBORw0KGg")) {
             $imageId = random_int(0, 999999);
 
             $imageAll = $imageId . '.png';
@@ -368,7 +391,7 @@ class MachineController extends Controller
             file_put_contents($folderPath . $imageAll, base64_decode($base));
 
             return (string)$imageId;
-        } else if(str_starts_with($base, '/9j/')){
+        } else if (str_starts_with($base, '/9j/')) {
             $imageId = random_int(0, 999999);
 
             $imageAll = $imageId . '.jpg';
@@ -378,8 +401,7 @@ class MachineController extends Controller
             file_put_contents($folderPath . $imageAll, base64_decode($base));
 
             return (string)$imageId;
-        }
-        else{
+        } else {
             return 'Imagem não foi retornada corretamente';
         }
 
@@ -388,9 +410,48 @@ class MachineController extends Controller
 
     public function behaviors()
     {
-        return [
 
+        $behaviors = parent::behaviors();
+
+        $behaviors['corsFilter'] = [
+            'class' => \yii\filters\Cors::class,
+            'cors' => [
+                'Origin' => [
+                    '*',
+                ],
+                'Access-Control-Request-Method' => [
+                    'GET',
+                    'POST',
+                    'PUT',
+                    'PATCH',
+                    'DELETE',
+                    'HEAD',
+                    'OPTIONS',
+                ],
+                'Access-Control-Request-Headers' => [
+                    '*',
+                ],
+                'Access-Control-Allow-Credentials' => null,
+                'Access-Control-Max-Age' => 86400,
+                'Access-Control-Expose-Headers' => [],
+            ]
         ];
+
+//        $behaviors['verbs'] = [
+//            'class' => VerbFilter::class,
+//            'actions' => [
+//                'post' => ['POST'],
+//                'verify-compatibility' => ['POST'],
+//                'delete' => ['DELETE'],
+//                'put' => ['PUT']
+//            ],
+//        ];
+
+//            $behaviors['access'] = [
+//                'class' => BearerToken::class
+//            ];
+
+        return $behaviors;
     }
 
 }

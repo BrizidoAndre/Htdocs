@@ -3,7 +3,6 @@
 .form-machine{
     display: flex;
     flex-wrap: wrap;
-
     justify-content: flex-start;
 
     margin-left: 30px;

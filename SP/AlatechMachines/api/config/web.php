@@ -60,18 +60,14 @@ $config = [
                     'pluralize' => false,
                     'controller' => [
                         'user',
-                        'search',
-                        'machine',
-                        'image'
                     ],
                 ],
-                'GET <category>' => 'search/item',
-                'GET search/<category>' => 'search/search',
-                'GET images/<id>' => 'image/image',
-                'POST machines' => 'machine/post',
-                'DELETE machines/<id>' => 'machine/delete',
-                'PUT machines/<id>' => 'machine/put',
-                'POST verify-compatibility' => 'machine/verify'
+                        'POST machines' => 'machine/post',
+                        'PUT machines/<id>' => 'machine/put',
+                        'DELETE machines/<id>' => 'machine/delete',
+                        'GET images/<id>' => 'image/image',
+                        'POST verify-compatibility' => 'machines/verify-compatibility',
+                        'GET <category>' => 'search/item'
             ],
         ],
     ],

@@ -1,11 +1,8 @@
 .container-aside{
     display:flex;
     flex-direction: column;
-    gap: 10px;
-
-    justify-content: space-between;
-
-
+    justify-content: flex-start;
+    gap:20px
 }
 
 select{
@@ -31,8 +28,8 @@ select{
     width: 2px;
 }
 .container-aside--cards::-webkit-scrollbar-track{
- background-color: darkgray;
+ background-color: lightblue;
 }
 .container-aside--cards::-webkit-scrollbar-thumb{
-    background-color: lightblue;
+    background-color:  rebeccapurple;
 }

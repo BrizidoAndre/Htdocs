@@ -19,9 +19,8 @@ use yii\web\Response;
 class SearchController extends Controller
 {
 
-    public function actionItem($pageSize = 20)
+    public function actionItem($category,$pageSize = 40)
     {
-        $category = \Yii::$app->request->get('category');
 
         switch ($category) {
 
@@ -144,17 +143,14 @@ class SearchController extends Controller
                 ]
             ];
 
-            $behaviors['verbs'] = [
-                'class' => VerbFilter::class,
-                'actions' => [
-                    'item' => ['GET'],
-                    'search' => ['GET']
-                ],
-            ];
-
-//            $behaviors['access'] = [
-//                'class' => BearerToken::class
+//            $behaviors['verbs'] = [
+//                'class' => VerbFilter::class,
+//                'actions' => [
+//                    'item' => ['GET'],
+//                    'search' => ['GET']
+//                ],
 //            ];
+
 
         return $behaviors;
     }

@@ -1,53 +1,99 @@
 import {Aside} from "../../components/aside/aside";
 import './styles.css'
 import MachineForm from "../../components/machineForm/machineForm";
-import {createContext, useState} from "react";
+import {createContext, useEffect, useState} from "react";
 
 export const DragContext = createContext()
 
 export const CreateMachine = () => {
 
-    const [select, setSelect] = useState('');
+    const [select, setSelect] = useState('motherboards');
 
-    const listSelect = [{
-        value: 'motherboards', text: 'Placa-mãe'
-    }, {
-        value: 'power-supplies', text: 'Fonte de alimentação'
-    }, {
-        value: 'ram-memories', text: 'Memória ram'
-    }, {
-        value: 'graphic-cards', text: 'Placa de vídeo'
-    }, {
-        value: 'storage-devices', text: 'Dispositivo de armazenamento'
-    }, {
-        value: 'processors', text: 'Processador'
-    }]
+    const listSelect = [
+
+        {
+            value: 'motherboards', text: 'Placa-mãe'
+        },
+        {
+            value: 'power-supplies', text: 'Fonte de alimentação'
+        },
+        {
+            value: 'processors', text: 'Processador'
+        },
+        {
+            value: 'graphic-cards', text: 'Placa de vídeo'
+        },
+        {
+            value: 'ram-memories', text: 'Memória ram'
+        },
+        {
+            value: 'storage-devices', text: 'Dispositivo de armazenamento'
+        },
+    ]
 
 
     const [drag, setDrag] = useState({})
     const [newMachine, setNewMachine] = useState({
-        name: "Novo computador do react",
-        description: "Um computador criado através do react",
+        name: "",
+        description: "",
         motherboardId: '',
         powerSupplyId: '',
         processorId: '',
         ramMemoryId: '',
         ramMemoryAmount: '',
-        storageDevices:[],
+        storageDevices: [],
         graphicCardId: '',
         graphicCardAmount: 1,
         imageUrl: ""
     })
 
+
+    async function postMachine(){
+        try{
+            console.log(newMachine)
+            const res = await fetch('http://localhost/SP/AlatechMachines/api/machines/post',{
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newMachine)
+            })
+
+            console.log(res.ok)
+
+
+        } catch(e){
+            console.log(e)
+        }
+    }
+
+    useEffect(() => {
+        setNewMachine({
+            name: "",
+            description: "",
+            motherboardId: '',
+            powerSupplyId: '',
+            processorId: '',
+            ramMemoryId: '',
+            ramMemoryAmount: '',
+            storageDevices: [],
+            graphicCardId: '',
+            graphicCardAmount: 1,
+            imageUrl: ""
+        })
+    }, []);
+
     return (
-        <DragContext.Provider value={[drag,setDrag,newMachine,setNewMachine]}>
+        <DragContext.Provider value={[drag, setDrag, newMachine, setNewMachine]}>
 
             <div className={'container-page'}>
 
                 <div className="container-top">
                     <h1>Criar nova máquina</h1>
-                    <button className="button-save" onClick={()=>{
-                        console.log(newMachine)}}>Salvar máquina</button>
+                    <button className="button-save" onClick={() => {
+                        postMachine()
+                    }}>Salvar máquina
+                    </button>
                 </div>
 
                 <main className={'container-create'}>

@@ -14,7 +14,12 @@ export const Search = () => {
         // obtendo o token para a requisição
         const localToken = localStorage.getItem('token')
 
-        const res = await fetch('http://localhost/SP/AlatechMachines/api/' + pageNow,)
+        const res = await fetch('http://localhost/SP/AlatechMachines/api//search/item?category=' + pageNow,{
+            method:'get',
+            headers:{
+                'authorization':'Bearer ' + localToken
+            }
+        })
 
         const data = await res.json();
 
@@ -30,7 +35,7 @@ export const Search = () => {
     return (
         <div className={'container-page'}>
 
-                {pageNow ==='machines' ?
+                {pageNow ==='machines'?
                     <button className={'button-nav'} onClick={()=>setPageNow('CreateMachine')}>Criar máquina</button>
                 :
                 <></>}
