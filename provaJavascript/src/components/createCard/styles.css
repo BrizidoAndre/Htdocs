@@ -1,40 +1,78 @@
+@keyframes wiggle {
+    0% {
+        border: 3px solid red;
+        filter: opacity(60%);
+        background-color: rgba(255, 0, 0, 0.600);
+    }
+    10% {
+        transform: translateX(5px);
+    }
+    20% {
+        transform: translateX(-5px);
+    }
+    30% {
+        transform: translateX(5px);
+    }
+    40% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(0);
+    }
+    70%{
+        transform: translateX(100px);
+    }
+    100%{
+        transform: translateX(-700px);
+        filter: opacity(60%);
+    }
+}
 
-
-.box-card{
+.box-card {
     width: 250px;
     height: fit-content;
     border: 1px solid rebeccapurple;
+    background-color: white;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 
-
     padding: 10px;
-
 }
 
-.box-card--bottom{
+.box-card--animation {
+    animation-name: wiggle;
+    animation-duration: 500ms;
+    transition: all 1s;
+    position: absolute;
+    top: -20px;
+
+    z-index: 1;
+}
+
+
+.box-card--bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     width: 100%;
-    height:fit-content;
+    height: fit-content;
 }
 
 
-.icon{
+.icon {
     width: 20px;
     height: 20px;
 
 }
 
-.image-component{
+.image-component {
     width: 80%;
 }
 
-.card--name{
+.card--name {
     max-width: 300px;
 }

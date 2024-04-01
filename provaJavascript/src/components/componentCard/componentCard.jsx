@@ -1,20 +1,27 @@
 import './componentCard.css'
 import noImage from '../../assets/image/no-image.png'
 import login from "../../pages/login/login";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {DragContext} from "../../pages/createMachine/createMachine";
+import {CreateCard} from "../createCard/createCard";
 
 
-export const ComponentCardQuantity = ({item, checkSelect, setQuantity}) => {
+export const ComponentCardQuantity = ({item, checkSelect, setQuantity, trigger}) => {
+
 
 
     return (<div
         className="container-component container-component--select"
         onDragOver={e => e.preventDefault()}
         onDrop={e => {
+            // Checando se o componente arrastado é válido ou não
             checkSelect()
         }}
     >
+
+        {/*Esse createCard serve para quando usuário levar um componente que não é válido */}
+        {trigger ? <CreateCard animated={true} item={item}/> : <></>}
+
         <div className={'container-component--text'}>
             <h4>Memória Ram</h4>
             <button>Deletar</button>
@@ -42,6 +49,7 @@ export const ComponentCardQuantity = ({item, checkSelect, setQuantity}) => {
 
 export const ComponentCardSelect = ({list, setList, addList}) => {
 
+    const [trigger, setTrigger] = useState(false)
 
     return (<div
         className="container-component container-component--list"
@@ -50,6 +58,9 @@ export const ComponentCardSelect = ({list, setList, addList}) => {
             addList()
         }}
     >
+
+        {/*Esse createCard serve para quando usuário levar um componente que não é válido */}
+        {trigger ? <CreateCard animated={true} item={list}/> : <></>}
         <h4>Dispositivos de armazenamento</h4>
         <div className="scroll">
             {list.map(item => {
@@ -89,23 +100,31 @@ export const ComponentCardSelect = ({list, setList, addList}) => {
     </div>)
 }
 
-export const ComponentCard = ({checkSelect, name, item}) => {
+export const ComponentCard = ({checkSelect, name, item, trigger, drag}) => {
 
 
-    return (<div className="container-component"
-                 onDragOver={(e) => {
-                     e.preventDefault()
-                 }}
-                 onDrop={(e) => {
-                     checkSelect()
-                 }}>
-        <div className={'container-component--text'}>
-            <h4>{name}</h4>
-            <button>Deletar</button>
-        </div>
-        <img src={item.imageUrl ? "http://localhost/SP/AlatechMachines/api/images/" + item.imageUrl : noImage}
-             alt=""/>
-    </div>)
+    return (
+        <>
+            <div
+                className={`container-component`}
+                onDragOver={(e) => {
+                    e.preventDefault()
+                }}
+                onDrop={// Checando se o componente arrastado é válido ou não
+                    checkSelect}>
+
+
+                {/*Esse createCard serve para quando usuário levar um componente que não é válido */}
+                {trigger ? <CreateCard animated={true} item={drag}/> : <></>}
+                <div className={'container-component--text'}>
+                    <h4>{name}</h4>
+                    <button>Deletar</button>
+                </div>
+                <img src={item.imageUrl ? "http://localhost/SP/AlatechMachines/api/images/" + item.imageUrl : noImage}
+                     alt=""/>
+            </div>
+        </>
+    )
 }
 
 export const MachineCard = ({name, setName, description, setDescription, setImage}) => {

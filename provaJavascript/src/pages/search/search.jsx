@@ -23,8 +23,6 @@ export const Search = () => {
 
         const data = await res.json();
 
-        console.log(data)
-
         setList(data)
     }
 

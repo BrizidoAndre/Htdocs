@@ -29,39 +29,50 @@ export const MachineForm = ({select}) => {
     // state for image
     const [image, setImage] = useState()
 
+    // state for telling when the machine is valid and when not it set to true to activate de animation
+    const [trigger, setTrigger] = useState('')
+
+    const prepareAnimation = (value) => {
+        setTrigger(value)
+        // resetando os states para reiniciar a animação
+        setTimeout(() => setTrigger(''), 500)
+    }
 
     function motherboardFunction() {
         if (select === 'motherboards') {
             setNewMachine({
-                ...newMachine, motherboardId: drag.id
+                ...newMachine,
+                motherboardId: drag.id,
+                motherboard: drag
             })
             setMotherboard(drag)
         }
     }
-
     function powerFunction() {
         if (select === 'power-supplies') {
             setNewMachine({
-                ...newMachine, powerSupplyId: drag.id
+                ...newMachine,
+                powerSupplyId: drag.id,
+                powerSupply: drag
             })
             setPower(drag)
         }
     }
-
     function graphicFunction() {
         if (newMachine.motherboardId && newMachine.powerSupplyId && select === 'graphic-cards') {
             setNewMachine({
-                ...newMachine, graphicCardId: drag.id
+                ...newMachine,
+                graphicCardId: drag.id
             })
             setGraphic(drag)
         }
     }
 
     function processorFunction() {
-
         if (newMachine.motherboardId && newMachine.powerSupplyId && select === 'processors') {
             setNewMachine({
-                ...newMachine, processorId: drag.id
+                ...newMachine,
+                processorId: drag.id
             })
             setProcessor(drag)
         }
@@ -73,6 +84,7 @@ export const MachineForm = ({select}) => {
                 ...newMachine, ramMemoryId: drag.id
             })
             setMemoryRam(drag)
+        } else {
         }
     }
 
@@ -101,6 +113,10 @@ export const MachineForm = ({select}) => {
                 setNewMachine({
                     ...newMachine, storageDevices: memoryList
                 })
+
+                // resetando as armadinhas para reiniciar a animação
+                setTrigger({memoryRam: true})
+                setTimeout(() => setTrigger({}), 500)
                 return
             }
         }
@@ -154,26 +170,26 @@ export const MachineForm = ({select}) => {
                 console.log(err)
             })
     };
-
+    
     async function verifyMachine() {
-
         try {
+            if (newMachine.motherboardId && newMachine.powerSupplyId) {
+                return;
 
-            const res = await fetch("http://localhost/SP/AlatechMachines/api/machines/verify-compatibility", {
-                method: 'POST',
-                headers: {
-                    "Content-Type": 'application/json'
-                },
-                body: JSON.stringify(newMachine)
-            });
+                const res = await fetch('http://localhost/SP/AlatechMachines/api/verify-compatibility', {
+                    method: 'post',
+                    body: JSON.stringify(newMachine)
+                })
 
-            const data = await res.json()
+                const data = res.json()
 
-            console.log(data)
+                console.log(data)
+            }
         } catch (e) {
             console.log(e)
         }
     }
+
 
     useEffect(() => {
         adaptLists()
@@ -187,15 +203,47 @@ export const MachineForm = ({select}) => {
         e.preventDefault()
     }}>
 
-        <ComponentCard name={'*Placa-mãe'} checkSelect={motherboardFunction} item={motherboard}/>
-        <ComponentCard name={'*Fonte de alimentação'} checkSelect={powerFunction} item={power}/>
-        <ComponentCard name={'Processador'} checkSelect={processorFunction} item={processor}/>
-        <ComponentCard name={'Placa de vídeo'} checkSelect={graphicFunction} item={graphic}/>
+        <ComponentCard
+            drag={drag}
+            trigger={trigger === 'motherboard'}
+            name={'*Placa-mãe'}
+            checkSelect={() => motherboardFunction()}
+            item={motherboard}/>
 
-        <ComponentCardQuantity item={memoryRam} checkSelect={memoryFunction}
-                               setQuantity={setQuantityMemoryFunction}/>
+        <ComponentCard
+            drag={drag}
+            trigger={trigger === 'power-supply'}
+            name={'*Fonte de alimentação'}
+            checkSelect={() => powerFunction()}
+            item={power}/>
 
-        <ComponentCardSelect list={memoryList} setList={setCallEffect} addList={memoryListFunction}/>
+        <ComponentCard
+            drag={drag}
+            trigger={trigger === 'processor'}
+            name={'Processador'}
+            checkSelect={() => {
+                processorFunction()
+            }}
+
+            item={processor}/>
+        <ComponentCard
+            drag={drag}
+            trigger={trigger === 'graphic-card'}
+            name={'Placa de vídeo'}
+            checkSelect={() => {
+                graphicFunction()
+            }}
+            item={graphic}/>
+
+        <ComponentCardQuantity
+            item={memoryRam}
+            checkSelect={memoryFunction}
+            setQuantity={setQuantityMemoryFunction}/>
+
+        <ComponentCardSelect
+            list={memoryList}
+            setList={setCallEffect}
+            addList={memoryListFunction}/>
 
         <MachineCard
             name={newMachine.name}

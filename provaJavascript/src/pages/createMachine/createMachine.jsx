@@ -1,11 +1,15 @@
 import {Aside} from "../../components/aside/aside";
 import './styles.css'
 import MachineForm from "../../components/machineForm/machineForm";
-import {createContext, useEffect, useState} from "react";
+import {createContext, useContext, useEffect, useState} from "react";
+import {Context} from "../../App";
 
 export const DragContext = createContext()
 
 export const CreateMachine = () => {
+
+    // useState global para mudar de página
+    const [pageNow, setPageNow] = useContext(Context)
 
     const [select, setSelect] = useState('motherboards');
 
@@ -30,7 +34,6 @@ export const CreateMachine = () => {
             value: 'storage-devices', text: 'Dispositivo de armazenamento'
         },
     ]
-
 
     const [drag, setDrag] = useState({})
     const [newMachine, setNewMachine] = useState({
@@ -59,8 +62,9 @@ export const CreateMachine = () => {
                 body: JSON.stringify(newMachine)
             })
 
-            console.log(res.ok)
-
+            if(res.ok){
+                setPageNow('Search')
+            }
 
         } catch(e){
             console.log(e)

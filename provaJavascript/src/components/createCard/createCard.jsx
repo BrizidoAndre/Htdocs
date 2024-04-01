@@ -6,7 +6,7 @@ import {Tooltip} from "../tooltip/tooltip";
 import login from "../../pages/login/login";
 import {DragContext} from "../../pages/createMachine/createMachine";
 
-export const CreateCard = ({item}) => {
+export const CreateCard = ({item, animated = false}) => {
 
     const [tip, setTip] = useState(false);
 
@@ -22,7 +22,7 @@ export const CreateCard = ({item}) => {
     }
 
     return (
-        <article className="box-card"
+        <article className={`box-card ${animated ? 'box-card--animation' : ''}`}
                  draggable={"true"}
                  onMouseEnter={() => showTool()}
                  onMouseLeave={() => hideTool()}>
@@ -34,7 +34,7 @@ export const CreateCard = ({item}) => {
                 <img className='icon' src={icon} alt="seta para retornar"/>
             </div>
 
-            {tip ? <Tooltip name={item.name} brand={item.brand.name}/> : null}
+            {tip && !animated ? <Tooltip name={item.name} brand={item.brand.name}/> : null}
         </article>
     )
 }

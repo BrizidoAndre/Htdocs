@@ -1,3 +1,4 @@
+
 .container-component {
     width: 250px;
     height: fit-content;
@@ -9,10 +10,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
     align-items: center;
+
+    position: relative;
 }
-.container-component--image{
+
+
+.container-component--image {
     width: 300px;
     gap: 10px;
 }
@@ -58,31 +62,34 @@
     width: 300px;
     margin-bottom: 20px;
 }
-.scroll{
+
+.scroll {
     max-height: 120px;
     min-height: 60px;
     overflow-y: auto;
 }
 
-.container-component--details{
+.container-component--details {
     display: flex;
     height: 60px;
 }
 
-.details{
+.details {
     height: 70px;
 }
 
-.quantity{
+.quantity {
     display: flex;
     align-items: center;
     gap: 10px;
 }
-.quantity input{
+
+.quantity input {
     width: 40px;
     height: 20px;
 }
-.details p{
+
+.details p {
     font-size: 12px;
     margin: 7px 0;
 }

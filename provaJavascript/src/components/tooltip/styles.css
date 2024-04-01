@@ -1,27 +1,22 @@
 .tooltip-container{
     display: flex;
-
     height: fit-content;
     position: absolute;
 
     pointer-events: none;
-}
-
-.triangle{
-    width: 0;
-    height: 0;
-    border-right: 20px solid purple;
-    border-bottom: 20px solid transparent;
+    bottom: 10px;
 }
 
 .tooltip-container--box{
     display: flex;
     flex-direction: column;
 
-    padding: 15px;
+    padding: 10px 5px;
 
     width: 200px;
+    height: fit-content;
     background:purple;
+    border-radius: 20px;
 }
 
 .item-description{
@@ -29,3 +24,7 @@
     text-align: left;
 }
 
+
+.tooltip-container--box label, .tooltip-container--box h3{
+    font-size: 12px;
+}

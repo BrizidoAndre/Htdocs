@@ -7,7 +7,6 @@ export const Tooltip = ({name, brand}) => {
 
     return(
         <div className="tooltip-container">
-            <div className="triangle" />
 
             <div className="tooltip-container--box">
                 <label className="item-description">Nome</label>
