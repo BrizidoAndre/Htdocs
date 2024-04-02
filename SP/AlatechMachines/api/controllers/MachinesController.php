@@ -437,15 +437,15 @@ class MachinesController extends Controller
             ]
         ];
 
-//        $behaviors['verbs'] = [
-//            'class' => VerbFilter::class,
-//            'actions' => [
-//                'post' => ['POST'],
-//                'verify-compatibility' => ['POST'],
-//                'delete' => ['DELETE'],
-//                'put' => ['PUT']
-//            ],
-//        ];
+        $behaviors['verbs'] = [
+            'class' => VerbFilter::class,
+            'actions' => [
+                'post' => ['POST'],
+                'verify-compatibility' => ['POST'],
+                'delete' => ['DELETE'],
+                'put' => ['PUT']
+            ],
+        ];
 
 //            $behaviors['access'] = [
 //                'class' => BearerToken::class

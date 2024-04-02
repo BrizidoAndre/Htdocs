@@ -31,7 +31,7 @@
 .box-card {
     width: 250px;
     height: fit-content;
-    border: 1px solid rebeccapurple;
+    border: 1px solid mediumpurple;
     background-color: white;
 
     display: flex;

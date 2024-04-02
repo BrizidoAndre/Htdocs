@@ -66,7 +66,7 @@ $config = [
                         'PUT machines/<id>' => 'machine/put',
                         'DELETE machines/<id>' => 'machine/delete',
                         'GET images/<id>' => 'image/image',
-                        'POST verify-compatibility' => 'machines/verify-compatibility',
+//                        'POST verify-compatibility' => 'machines/verify-compatibility',
                         'GET <category>' => 'search/item'
             ],
         ],

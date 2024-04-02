@@ -1,15 +1,15 @@
-import ComponentCard, {
-    ComponentCardQuantity, ComponentCardSelect, GraphicCard, MachineCard, MotherboardCard, PowerCard, ProcessorCard
-} from "../componentCard/componentCard";
-import {memo, useContext, useEffect, useState} from "react";
+import ComponentCard, {ComponentCardQuantity, ComponentCardSelect, MachineCard} from "../componentCard/componentCard";
+import {useContext, useEffect, useState} from "react";
 import './machineForm.css'
 import {DragContext} from "../../pages/createMachine/createMachine";
-import Login from "../../pages/login/login";
 
 export const MachineForm = ({select}) => {
 
     // useContext do elemento que está sendo carregado pelo mouse e da máquina a ser cadastrada
     const [drag, setDrag, newMachine, setNewMachine] = useContext(DragContext)
+
+    // use state para salvar o valor anterior da máquina
+    const [oldMachine, setOldMachine] = useState({})
 
 
     // useStates para determinar os componentes da máquina
@@ -32,37 +32,35 @@ export const MachineForm = ({select}) => {
     // state for telling when the machine is valid and when not it set to true to activate de animation
     const [trigger, setTrigger] = useState('')
 
+
     const prepareAnimation = (value) => {
         setTrigger(value)
         // resetando os states para reiniciar a animação
-        setTimeout(() => setTrigger(''), 500)
+        setTimeout(() => setTrigger(''), 495)
     }
 
     function motherboardFunction() {
         if (select === 'motherboards') {
             setNewMachine({
-                ...newMachine,
-                motherboardId: drag.id,
-                motherboard: drag
+                ...newMachine, motherboardId: drag.id,
             })
             setMotherboard(drag)
         }
     }
+
     function powerFunction() {
         if (select === 'power-supplies') {
             setNewMachine({
-                ...newMachine,
-                powerSupplyId: drag.id,
-                powerSupply: drag
+                ...newMachine, powerSupplyId: drag.id,
             })
             setPower(drag)
         }
     }
+
     function graphicFunction() {
         if (newMachine.motherboardId && newMachine.powerSupplyId && select === 'graphic-cards') {
             setNewMachine({
-                ...newMachine,
-                graphicCardId: drag.id
+                ...newMachine, graphicCardId: drag.id
             })
             setGraphic(drag)
         }
@@ -71,8 +69,7 @@ export const MachineForm = ({select}) => {
     function processorFunction() {
         if (newMachine.motherboardId && newMachine.powerSupplyId && select === 'processors') {
             setNewMachine({
-                ...newMachine,
-                processorId: drag.id
+                ...newMachine, processorId: drag.id
             })
             setProcessor(drag)
         }
@@ -162,42 +159,89 @@ export const MachineForm = ({select}) => {
 
             let code = result.split('base64,')[1]
             setNewMachine({
-                ...newMachine,
-                imageUrl: code
+                ...newMachine, imageUrl: code
             });
         })
             .catch(err => {
                 console.log(err)
             })
     };
-    
+
     async function verifyMachine() {
         try {
             if (newMachine.motherboardId && newMachine.powerSupplyId) {
-                return;
-
-                const res = await fetch('http://localhost/SP/AlatechMachines/api/verify-compatibility', {
-                    method: 'post',
-                    body: JSON.stringify(newMachine)
+                const res = await fetch('http://localhost/SP/AlatechMachines/api/machines/verify-compatibility', {
+                    method: 'POST', headers: {
+                        'Content-Type': 'application/json'
+                    }, body: JSON.stringify(newMachine)
                 })
 
-                const data = res.json()
+                const data = await res.json();
 
-                console.log(data)
+                const object = {
+                    data: data,
+                    res:res
+                }
+
+                return object;
+
             }
         } catch (e) {
             console.log(e)
         }
     }
 
+    function seeWhatChanges(){
+        console.log(select)
+        switch (select){
+            case 'motherboards':
+                prepareAnimation('motherboard')
+                if(motherboard){
+                setMotherboard({})
+                }
+                break
+            case 'power-supllies':
+                prepareAnimation('power-suplly')
+                if(power){
+                setPower({})
+                }
+                break
+            case 'processors':
+                prepareAnimation('processor')
+                if(processor){
+                setProcessor({})
+                }
+                break
+            case 'graphic-cards':
+                prepareAnimation('graphic-card')
+                if(graphic){
+                setGraphic({})
+                }
+                break
+        }
+    }
+
+
 
     useEffect(() => {
         adaptLists()
     }, [memoryList, callEffect]);
 
+
     useEffect(() => {
-        verifyMachine()
-    }, [newMachine])
+
+        verifyMachine().then((e)=>{
+            if(!e){
+                return
+            }
+            if(e.res.status !== 200){
+                setNewMachine(oldMachine)
+                seeWhatChanges()
+            }
+        })
+
+        setOldMachine(newMachine)
+    }, [newMachine]);
 
     return (<form className={'form-machine'} onSubmit={e => {
         e.preventDefault()
@@ -207,14 +251,18 @@ export const MachineForm = ({select}) => {
             drag={drag}
             trigger={trigger === 'motherboard'}
             name={'*Placa-mãe'}
-            checkSelect={() => motherboardFunction()}
+            checkSelect={() => {
+                motherboardFunction()
+            }}
             item={motherboard}/>
 
         <ComponentCard
             drag={drag}
             trigger={trigger === 'power-supply'}
             name={'*Fonte de alimentação'}
-            checkSelect={() => powerFunction()}
+            checkSelect={() => {
+                powerFunction()
+            }}
             item={power}/>
 
         <ComponentCard

@@ -7,12 +7,14 @@ export const Aside = ({listSelect, select, setSelect}) => {
 
     const [listComponents, setListComponents] = useState([])
 
+    const [loadIcon, setLoadIcon] = useState(false)
+
     async function loadComponents() {
         try {
             const address = 'http://localhost/SP/AlatechMachines/api/search/item?category=' + select;
 
-            const res = await fetch(address,{
-                headers:{
+            const res = await fetch(address, {
+                headers: {
                     'authorization': 'Bearer ' + localStorage.getItem('token')
                 }
             })
@@ -29,7 +31,9 @@ export const Aside = ({listSelect, select, setSelect}) => {
 
 
     useEffect(() => {
+        setLoadIcon(false)
         loadComponents()
+        setTimeout(()=>setLoadIcon(true),500)
     }, [select]);
 
 
@@ -42,9 +46,16 @@ export const Aside = ({listSelect, select, setSelect}) => {
         </select>
 
         <section className="container-aside--cards">
-            {listComponents.map(item => {
-                return (<CreateCard item={item}/>)
-            })}
+
+            {loadIcon ?
+                <>
+                    {listComponents.map(item => {
+                        return (<CreateCard item={item}/>)
+                    })}
+                </>
+                : <div className={'container-icon'}><div className="icon-load"></div></div>}
+
+
         </section>
 
     </div>);

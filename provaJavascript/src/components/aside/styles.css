@@ -1,17 +1,25 @@
-.container-aside{
-    display:flex;
+@keyframes rotate {
+    from{
+        rotate: 0;
+    }
+    to{
+        rotate:360deg;
+    }
+}
+.container-aside {
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap:20px
+    gap: 20px
 }
 
-select{
+select {
 
     width: 255px;
     height: 40px;
 }
 
-.container-aside--cards{
+.container-aside--cards {
     display: flex;
     flex-direction: column;
 
@@ -19,17 +27,37 @@ select{
 
     gap: 10px;
 
-    max-height: 500px;
+    max-height: 800px;
     overflow-x: visible;
     overflow-y: scroll;
 }
 
-.container-aside--cards::-webkit-scrollbar{
+.container-aside--cards::-webkit-scrollbar {
     width: 2px;
 }
-.container-aside--cards::-webkit-scrollbar-track{
- background-color: lightblue;
+
+.container-aside--cards::-webkit-scrollbar-track {
+    background-color: lightblue;
 }
-.container-aside--cards::-webkit-scrollbar-thumb{
-    background-color:  rebeccapurple;
+
+.container-aside--cards::-webkit-scrollbar-thumb {
+    background-color: rebeccapurple;
+}
+
+.container-icon {
+    width: 255px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-load {
+    width: 20px;
+    height: 10px;
+    border-top: 10px solid mediumpurple;
+    border-bottom: 10px solid rebeccapurple;
+
+    border-radius: 50%;
+    animation: rotate 1s infinite linear;
 }

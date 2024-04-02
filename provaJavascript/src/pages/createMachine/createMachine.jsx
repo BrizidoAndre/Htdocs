@@ -14,25 +14,12 @@ export const CreateMachine = () => {
     const [select, setSelect] = useState('motherboards');
 
     const listSelect = [
-
-        {
-            value: 'motherboards', text: 'Placa-mãe'
-        },
-        {
-            value: 'power-supplies', text: 'Fonte de alimentação'
-        },
-        {
-            value: 'processors', text: 'Processador'
-        },
-        {
-            value: 'graphic-cards', text: 'Placa de vídeo'
-        },
-        {
-            value: 'ram-memories', text: 'Memória ram'
-        },
-        {
-            value: 'storage-devices', text: 'Dispositivo de armazenamento'
-        },
+        {value: 'motherboards', text: 'Placa-mãe'},
+        {value: 'power-supplies', text: 'Fonte de alimentação'},
+        {value: 'processors', text: 'Processador'},
+        {value: 'graphic-cards', text: 'Placa de vídeo'},
+        {value: 'ram-memories', text: 'Memória ram'},
+        {value: 'storage-devices', text: 'Dispositivo de armazenamento'},
     ]
 
     const [drag, setDrag] = useState({})
@@ -63,7 +50,7 @@ export const CreateMachine = () => {
             })
 
             if(res.ok){
-                setPageNow('Search')
+                setPageNow('machines')
             }
 
         } catch(e){
@@ -95,7 +82,7 @@ export const CreateMachine = () => {
                 <div className="container-top">
                     <h1>Criar nova máquina</h1>
                     <button className="button-save" onClick={() => {
-                        postMachine()
+                        console.log(newMachine)
                     }}>Salvar máquina
                     </button>
                 </div>

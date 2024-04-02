@@ -100,7 +100,7 @@ export const ComponentCardSelect = ({list, setList, addList}) => {
     </div>)
 }
 
-export const ComponentCard = ({checkSelect, name, item, trigger, drag}) => {
+export const ComponentCard = ({checkSelect, name, item, trigger, drag, deleteAll = null}) => {
 
 
     return (
@@ -118,7 +118,7 @@ export const ComponentCard = ({checkSelect, name, item, trigger, drag}) => {
                 {trigger ? <CreateCard animated={true} item={drag}/> : <></>}
                 <div className={'container-component--text'}>
                     <h4>{name}</h4>
-                    <button>Deletar</button>
+                    <button >Deletar</button>
                 </div>
                 <img src={item.imageUrl ? "http://localhost/SP/AlatechMachines/api/images/" + item.imageUrl : noImage}
                      alt=""/>
