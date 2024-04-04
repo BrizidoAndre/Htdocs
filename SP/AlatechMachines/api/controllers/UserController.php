@@ -2,118 +2,34 @@
 
 namespace app\controllers;
 
+use app\Bases\JsonController;
 use app\models\User;
-use yii\filters\VerbFilter;
-use yii\rest\Controller;
-use yii\web\ForbiddenHttpException;
-use yii\web\Response;
-use yii\web\UnprocessableEntityHttpException;
 
-class UserController extends Controller
+class UserController extends JsonController
 {
 
-    public function actionSign()
-    {
-        \Yii::$app->response->format = Response::FORMAT_JSON;
-        $user = new User();
+    public function actionSign(){
+        try {
+            $user = new User;
 
-        $model = \Yii::$app->request->getBodyParams();
+            $allUser = new User;
 
-        $user->username = $model['username'];
-        $user->password = $model['password'];
+            if($user->load(\Yii::$app->request->getBodyParams(),'')){
 
-        $user->password = hash_hmac('sha256', $user->password, '');
+                $allUser->setAttributes($user->attributes);
 
+                if($allUser->password < $allUser->accessToken){
+                    return 'boa';
+                }
 
-        if ($user->save()) {
-            return [
-                'message' => 'Usuario salvo'
-            ];
-        }
+                return $allUser;
 
-        return $user;
-    }
-
-    public function actionLogin()
-    {
-        \Yii::$app->response->format = Response::FORMAT_JSON;
-        $model = \Yii::$app->request->getBodyParams();
-
-        $user = User::find()->where(['username' => $model['username']])->andWhere(['password' => hash_hmac('sha256', $model['password'], '')])->one();
-
-        if ($user) {
-
-            if ($user->accessToken) {
-                throw new ForbiddenHttpException('Usuário já autenticado');
             }
+            return $user;
 
-            $user->generateToken();
-            if ($user->save()) {
-                return [
-                    'token' => $user->accessToken
-                ];
-            }
-
-        }
-
-
-        throw new UnprocessableEntityHttpException('Credenciais inválidas');
-    }
-
-
-    public function actionLogout()
-    {
-        \Yii::$app->response->format = Response::FORMAT_JSON;
-
-//        Obtendo o token através do header
-        $token = \Yii::$app->request->headers->get('authorization');
-
-        $token = explode(' ', $token)[1];
-
-        $user = User::findIdentityByAccessToken($token);
-
-        if ($user) {
-            $user->accessToken = null;
-            $user->save();
-
-            \Yii::$app->response->statusCode = 204;
-            return '';
+        }catch (\ErrorException $e){
+            return $e->getMessage();
         }
     }
-
-
-    public function behaviors()
-    {
-        $behaviors = parent::behaviors();
-        $behaviors['corsFilter'] = [
-            'class' => \yii\filters\Cors::class,
-            'cors' => [
-                'Origin' => [
-                    '*',
-                ],
-                'Access-Control-Request-Method' => [
-                    'GET',
-                    'POST',
-                    'PUT',
-                    'PATCH',
-                    'DELETE',
-                    'HEAD',
-                    'OPTIONS',
-                ],
-                'Access-Control-Request-Headers' => [
-                    '*',
-                ],
-                'Access-Control-Allow-Credentials' => null,
-                'Access-Control-Allow-Origin' => [
-                    '*',
-                ],
-                'Access-Control-Max-Age' => 86400,
-                'Access-Control-Expose-Headers' => [],
-            ]
-        ];
-
-        return $behaviors;
-    }
-
 
 }

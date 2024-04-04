@@ -55,20 +55,6 @@ class Machine extends \yii\db\ActiveRecord
         ];
     }
 
-    public function fields()
-    {
-        return ['name',
-            'description',
-            'imageUrl',
-            'motherboard',
-            'processor',
-            'ramMemory',
-            'ramMemoryAmount',
-            'graphicCard',
-            'graphicCardAmount',
-            'powerSupply'];
-    }
-
     /**
      * {@inheritdoc}
      */

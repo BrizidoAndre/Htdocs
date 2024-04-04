@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\auth\BearerToken;
+use app\Bases\JsonController;
 use app\models\Brand;
 use app\models\Graphiccard;
 use app\models\Machine;
@@ -12,146 +12,61 @@ use app\models\Processor;
 use app\models\Rammemory;
 use app\models\Storagedevice;
 use yii\data\ActiveDataProvider;
-use yii\filters\VerbFilter;
-use yii\rest\Controller;
-use yii\web\Response;
 
-class SearchController extends Controller
+class SearchController extends JsonController
 {
-
-    public function actionItem($category,$pageSize = 40)
+    public function actionIndex($category, $pageSize = 20)
     {
+        try {
+            $category = \Yii::$app->request->get('category');
 
-        switch ($category) {
+            $list = $this->getRight($category);
 
-            case 'motherboards':
-                $query = Motherboard::find();
-                break;
+            $orderedList = new ActiveDataProvider();
 
-            case 'processors':
-                $query = Processor::find();
-                break;
+            $orderedList->pagination->pageSize = $pageSize;
+            $orderedList->query = $list;
 
-            case 'ram-memories':
-                $query = Rammemory::find();
-                break;
+            return $orderedList;
 
-            case 'storage-devices':
-                $query = Storagedevice::find();
-                break;
 
-            case 'graphic-cards':
-                $query = Graphiccard::find();
-                break;
-
-            case 'power-supplies':
-                $query = Powersupply::find();
-                break;
-
-            case 'machines':
-                $query = Machine::find();
-                break;
-
-            case 'brands':
-                $query = Brand::find();
-                break;
+        } catch (\ErrorException $e) {
+            return $e->getMessage();
         }
-
-        $provider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => [
-                'pageSize' => $pageSize,
-            ]
-        ]);
-
-        \Yii::$app->response->format = Response::FORMAT_JSON;
-
-        return $provider;
     }
 
     public function actionSearch($q, $pageSize = 20)
     {
+        $category= \Yii::$app->request->get('category');
 
-        $category = \Yii::$app->request->get('category');
+        $list = $this->getRight($category, true, $q);
 
-        switch ($category) {
-            case 'motherboards':
-                $query = Motherboard::find()->where(['LIKE', 'name', $q]);
-                break;
-            case 'processors':
-                $query = Processor::find()->where(['LIKE', 'name', $q]);
-                break;
-            case 'ram-memories':
-                $query = Rammemory::find()->where(['LIKE', 'name', $q]);
-                break;
-            case 'storage-devices':
-                $query = Storagedevice::find()->where(['LIKE', 'name', $q]);
-                break;
-            case 'graphic-cards':
-                $query = Graphiccard::find()->where(['LIKE', 'name', $q]);
-                break;
+        $orderedList = new ActiveDataProvider();
 
-            case 'power-supplies':
-                $query = Powersupply::find()->where(['LIKE', 'name', $q]);
-                break;
+        $orderedList->pagination->pageSize = $pageSize;
+        $orderedList->query = $list;
 
-            case 'machines':
-                $query = Machine::find()->where(['LIKE', 'name', $q]);
-                break;
-
-            case 'brands':
-                $query = Brand::find()->where(['LIKE', 'name', $q]);
-                break;
-        }
-
-        $provider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => [
-                'pageSize' => $pageSize,
-            ]
-        ]);
-
-        \Yii::$app->response->format = Response::FORMAT_JSON;
-        return $provider;
+        return $orderedList;
     }
-    public function behaviors()
+
+    function getRight($key, $hasName=false, $name=null)
     {
-
-        $behaviors = parent::behaviors();
-
-            $behaviors['corsFilter'] = [
-                'class' => \yii\filters\Cors::class,
-                'cors' => [
-                    'Origin' => [
-                        '*',
-                    ],
-                    'Access-Control-Request-Method' => [
-                        'GET',
-                        'POST',
-                        'PUT',
-                        'PATCH',
-                        'DELETE',
-                        'HEAD',
-                        'OPTIONS',
-                    ],
-                    'Access-Control-Request-Headers' => [
-                        '*',
-                    ],
-                    'Access-Control-Allow-Credentials' => null,
-                    'Access-Control-Max-Age' => 86400,
-                    'Access-Control-Expose-Headers' => [],
-                ]
-            ];
-
-//            $behaviors['verbs'] = [
-//                'class' => VerbFilter::class,
-//                'actions' => [
-//                    'item' => ['GET'],
-//                    'search' => ['GET']
-//                ],
-//            ];
-
-
-        return $behaviors;
+        switch ($key) {
+            case'motherboards':
+                return ($hasName ? Motherboard::find()->where(['LIKE', 'name', $name]) : Motherboard::find());
+            case 'processors':
+                return ($hasName ? Processor::find()->where(['LIKE', 'name', $name]) : Motherboard::find());
+            case 'ram-memories':
+                return ($hasName ? Rammemory::find()->where(['LIKE', 'name', $name]) : Motherboard::find());
+            case'storage-devices':
+                return ($hasName ? Storagedevice::find()->where(['LIKE', 'name', $name]) : Motherboard::find());
+            case'graphic-cards':
+                return ($hasName ? Graphiccard::find()->where(['LIKE', 'name', $name]) : Motherboard::find());
+            case'power-supplies':
+                return ($hasName ? Powersupply::find()->where(['LIKE', 'name', $name]) : Motherboard::find());
+            case'machines':
+                return ($hasName ? Machine::find()->where(['LIKE', 'name', $name]) : Motherboard::find());
+        }
     }
+
 }

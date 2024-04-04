@@ -48,21 +48,6 @@ class Processor extends \yii\db\ActiveRecord
         ];
     }
 
-    public function fields()
-    {
-        return [
-            'id',
-            'name',
-            'imageUrl',
-            'brand',
-            'socketType',
-            'cores',
-            'baseFrequency',
-            'maxFrequency',
-            'cacheMemory',
-            'tdp'];
-    }
-
     /**
      * {@inheritdoc}
      */

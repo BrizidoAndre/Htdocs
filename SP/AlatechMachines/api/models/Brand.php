@@ -38,11 +38,6 @@ class Brand extends \yii\db\ActiveRecord
         ];
     }
 
-    public function fields()
-    {
-        return ['name'];
-    }
-
     /**
      * {@inheritdoc}
      */

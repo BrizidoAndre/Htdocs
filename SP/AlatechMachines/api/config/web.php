@@ -1,6 +1,6 @@
 <?php
 
-use yii\web\Response;
+use yii\web\JsonResponseFormatter;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
@@ -11,18 +11,15 @@ $config = [
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm' => '@vendor/npm-asset',
+        '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'GfGOfS9sul596FW4mLdcP_lvHssEYGqg',
-            'parsers' => [
-                'application/json' => \yii\web\JsonParser::class
+            'cookieValidationKey' => '1JBqFryXqq51EwFVTL5LqK8yvrBV8UTG',
+            'parsers'=>[
+                'application/json'=>\yii\web\JsonParser::class
             ]
-        ],
-        'response' => [
-            'format' => \yii\web\Response::FORMAT_JSON,
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -55,33 +52,19 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 [
-
                     'class' => \yii\rest\UrlRule::class,
-                    'pluralize' => false,
                     'controller' => [
-                        'user',
-                    ],
+                        'search'
+                    ]
+
                 ],
-                        'POST machines' => 'machine/post',
-                        'PUT machines/<id>' => 'machine/put',
-                        'DELETE machines/<id>' => 'machine/delete',
-                        'GET images/<id>' => 'image/image',
-//                        'POST verify-compatibility' => 'machines/verify-compatibility',
-                        'GET <category>' => 'search/item'
+                'GET <category>' => 'search/index',
+                'GET search/<category>' => 'search/search'
             ],
         ],
     ],
     'params' => $params,
-
-//    'as authenticator' => [
-//        'class' => \app\auth\BearerToken::class,
-//        'except' => [
-//            'user/login',
-//            'image/image',
-//        ]
-//    ]
 ];
-
 
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
