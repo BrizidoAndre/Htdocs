@@ -29,6 +29,10 @@ use Yii;
  */
 class Machine extends \yii\db\ActiveRecord
 {
+     const SCENARIO_TEST = 'test';
+
+    public $storageDevices = [];
+
     /**
      * {@inheritdoc}
      */
@@ -36,6 +40,7 @@ class Machine extends \yii\db\ActiveRecord
     {
         return 'machine';
     }
+
 
     /**
      * {@inheritdoc}
@@ -52,6 +57,23 @@ class Machine extends \yii\db\ActiveRecord
             [['ramMemoryId'], 'exist', 'skipOnError' => true, 'targetClass' => Rammemory::class, 'targetAttribute' => ['ramMemoryId' => 'id']],
             [['graphicCardId'], 'exist', 'skipOnError' => true, 'targetClass' => Graphiccard::class, 'targetAttribute' => ['graphicCardId' => 'id']],
             [['powerSupplyId'], 'exist', 'skipOnError' => true, 'targetClass' => Powersupply::class, 'targetAttribute' => ['powerSupplyId' => 'id']],
+        ];
+    }
+
+
+    public function fields()
+    {
+        return [
+            'name',
+            'description',
+            'imageUrl',
+            'motherboard',
+            'processor',
+            'ramMemory',
+            'ramMemoryAmount',
+            'graphicCard',
+            'graphicCardAmount',
+            'powerSupply'
         ];
     }
 
@@ -144,4 +166,43 @@ class Machine extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Storagedevice::class, ['id' => 'storageDeviceId'])->viaTable('machinehasstoragedevice', ['machineId' => 'id']);
     }
+
+
+    public function verifyMachine($sataAmount, $m2Amount){
+        $errors = [];
+
+        if($this->motherboard->socketTypeId !== $this->processor->socketTypeId){
+            $errors['Tipo do soquete'] = 'O tipo do soquete da placa-mãe e do processador são distintos';
+        }
+        if($this->motherboard->maxTdp < $this->processor->tdp){
+            $errors['TDP'] = 'O TPD do processador é superior ao máximo permitido pela placa-mãe';
+        }
+        if($this->motherboard->ramMemoryTypeId !== $this->ramMemory->ramMemoryTypeId){
+            $errors['Tipo da memória'] = 'O tipo da memória RAM é diferente do suportado pela placa-mãe';
+        }
+        if($this->motherboard->ramMemorySlots < $this->ramMemoryAmount && $this->ramMemoryAmount === 0){
+            $errors['Quantidade da memória RAM'] = 'A quantidade de memória RAM é incompatível com a placa-mãe';
+        }
+        if($this->motherboard->pciSlots < $this->graphicCardAmount && $this->graphicCardAmount === 0){
+            $errors['Quantidade da placa de vídeo'] = 'A quantidade de placas de vídeo é incompatível com a placa-mãe';
+        }
+        if($this->motherboard->sataSlots < $sataAmount){
+            $errors['Quantidade de memória sata'] = 'A quantidade de armazemanento tipo sata é incompatível com a placa-mãe';
+        }
+        if($this->motherboard->m2Slots < $m2Amount){
+            $errors['Quantidade de memória m2'] = 'A quantidade de armazemanento tipo m2 é incompatível com a placa-mãe';
+        }
+        if($sataAmount + $m2Amount === 0){
+            $errors['Sem armazenamento'] = 'A máquina não contem armazenamento';
+        }
+        if($this->graphicCardAmount > 1 && $this->graphicCard->supportMultiGpu){
+            $errors['Placa de vídeo'] = 'A placa de vídeo não suporta SLI/Crossfire';
+        }
+        if($this->powerSupply->potency < $this->graphicCard->minimumPowerSupply * $this->graphicCardAmount){
+            $errors['Sem potência'] = 'A fonte de alimentação não suporta o exigido mínimo pela máquina';
+        }
+
+        return $errors;
+    }
+
 }

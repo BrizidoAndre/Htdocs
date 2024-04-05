@@ -38,6 +38,11 @@ class Brand extends \yii\db\ActiveRecord
         ];
     }
 
+    public function fields()
+    {
+        return ['name'];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -48,6 +53,7 @@ class Brand extends \yii\db\ActiveRecord
             'name' => 'Name',
         ];
     }
+
 
     /**
      * Gets query for [[Graphiccards]].

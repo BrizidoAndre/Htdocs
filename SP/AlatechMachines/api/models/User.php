@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "user".
@@ -12,9 +13,9 @@ use Yii;
  * @property string $password
  * @property string $accessToken
  */
-class User extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
-    const all = 'all';
+    public const all = 'all';
     /**
      * {@inheritdoc}
      */
@@ -76,5 +77,30 @@ class User extends \yii\db\ActiveRecord
         $signature = hash_hmac('sha256', $header . '.' . $payload,'M');
 
         $this->accessToken = $header . '.' . $payload . '.' . $signature;
+    }
+
+    public static function findIdentity($id)
+    {
+        return self::findOne(['id' => $id]);
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return self::findOne(['accessToken' => $token]);
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getAuthKey()
+    {
+        // TODO: Implement getAuthKey() method.
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        // TODO: Implement validateAuthKey() method.
     }
 }

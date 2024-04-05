@@ -4,6 +4,11 @@ namespace app\controllers;
 
 use app\Bases\JsonController;
 use app\models\User;
+use Psy\Util\Json;
+use yii\rest\Controller;
+use yii\web\BadRequestHttpException;
+use yii\web\ForbiddenHttpException;
+use yii\web\UnprocessableEntityHttpException;
 
 class UserController extends JsonController
 {
@@ -16,18 +21,71 @@ class UserController extends JsonController
 
             if($user->load(\Yii::$app->request->getBodyParams(),'')){
 
-                $allUser->setAttributes($user->attributes);
+               if($user->validate()){
+                   $user->password = hash_hmac('sha256', $user->password, '');
 
-                if($allUser->password < $allUser->accessToken){
-                    return 'boa';
-                }
+                   $user->save();
+                   return \Yii::$app->response->statusCode = 204;
+               }
 
-                return $allUser;
-
+               throw new UnprocessableEntityHttpException('Cedenciais inválidas');
             }
-            return $user;
+            throw new BadRequestHttpException('Objeto inválido');
 
         }catch (\ErrorException $e){
+            return $e->getMessage();
+        }
+    }
+
+
+    public function actionLogin(){
+        try {
+            $user = new User;
+
+            if($user->load(\Yii::$app->request->getBodyParams(),'')){
+
+//                Encontrando um usuário com as mesmas caracteríscticas do usuário postado pelo cliente
+                $findedUser = User::find()->where(['username' => $user->username])->andWhere(['password'=> hash_hmac('sha256',$user->password,'')])->one();
+
+                if($findedUser){
+                    if($findedUser->accessToken){
+                        throw new ForbiddenHttpException('Usuário já autenticado');
+                    }
+                    $findedUser->createToken();
+                    $findedUser->save();
+                    return [
+                        'token' => $findedUser->accessToken
+                    ];
+                }
+
+                throw new UnprocessableEntityHttpException('Credenciais inválidas');
+            }
+
+            throw new BadRequestHttpException('Requisição de maneira incorreta');
+        } catch(\ErrorException $e){
+            return $e->getMessage();
+        }
+    }
+
+
+
+    public function actionLogout(){
+        try {
+
+            $token = \Yii::$app->request->headers->get('authorization');
+
+            $token = explode(' ',$token)[1];
+
+            $user = User::findIdentityByAccessToken($token);
+
+            $user->accessToken = null;
+
+            $user->save();
+
+            return[
+                'message' => 'Logout com sucesso'
+            ];
+        }catch(\Exception $e){
             return $e->getMessage();
         }
     }

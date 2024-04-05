@@ -42,6 +42,11 @@ class Powersupply extends \yii\db\ActiveRecord
         ];
     }
 
+    public function fields()
+    {
+        return ['id', 'name', 'imageUrl', 'brand', 'potency', 'badge80Plus'];
+    }
+
     /**
      * {@inheritdoc}
      */

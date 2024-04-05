@@ -3,7 +3,6 @@
 namespace app\controllers;
 
 use app\Bases\JsonController;
-use app\models\Brand;
 use app\models\Graphiccard;
 use app\models\Machine;
 use app\models\Motherboard;

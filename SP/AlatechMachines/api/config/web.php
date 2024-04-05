@@ -21,6 +21,9 @@ $config = [
                 'application/json'=>\yii\web\JsonParser::class
             ]
         ],
+        'response' => [
+            'format' => \yii\web\Response::FORMAT_JSON,
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -58,12 +61,24 @@ $config = [
                     ]
 
                 ],
+                'POST machines' => 'machine/index',
+                'POST login' => 'user/login',
+                'DELETE logout' => 'user/logout',
+                'GET images/<id>' => 'image/index',
                 'GET <category>' => 'search/index',
-                'GET search/<category>' => 'search/search'
+                'GET search/<category>' => 'search/search',
             ],
         ],
     ],
     'params' => $params,
+    'as authenticator' => [
+        'class' => \app\Bases\BearerAuth::class,
+        'response' => '',
+        'except' => [
+            'user/login',
+            'image/index'
+        ]
+    ]
 ];
 
 if (YII_ENV_DEV) {
