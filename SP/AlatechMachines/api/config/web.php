@@ -61,12 +61,27 @@ $config = [
                     ]
 
                 ],
-                'POST machines' => 'machine/index',
+
+                //Formatação machine controller
+                'POST machines' => 'machine/post',
+                'POST verify-compatibility' => 'machine/verify',
+                'DELETE machines/<id>' => 'machine/delete',
+                'PUT machines/<id>' => 'machine/put',
+
+
+                //Formatação USER controller
                 'POST login' => 'user/login',
                 'DELETE logout' => 'user/logout',
+
+
+                //Formatação IMAGE controller
                 'GET images/<id>' => 'image/index',
+
+
+                //Formatação SEARCH controller
                 'GET <category>' => 'search/index',
                 'GET search/<category>' => 'search/search',
+                ''
             ],
         ],
     ],

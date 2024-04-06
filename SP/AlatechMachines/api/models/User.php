@@ -60,6 +60,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
 
     public function createToken(){
+
         $header = [
             'alg' => 'SHA256',
             'typ' => 'JWT'
@@ -72,6 +73,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'pwd' => $this->password,
             'time' => date('d-m-Y-H-i-s')
         ];
+
         $payload = base64_encode(json_encode($payload));
 
         $signature = hash_hmac('sha256', $header . '.' . $payload,'M');

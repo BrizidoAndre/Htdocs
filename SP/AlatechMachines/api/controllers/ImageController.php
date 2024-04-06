@@ -9,11 +9,9 @@ use yii\web\Response;
 
 class ImageController extends Controller
 {
-    public function actionIndex()
+    public function actionIndex($id)
     {
         try {
-            $id = \Yii::$app->request->get('id');
-
             $imagePathPng = \Yii::getAlias('@webroot') . '/images/' . $id . '.png';
             $imagePathJpg = \Yii::getAlias('@webroot') . '/images/' . $id . '.jpg';
 

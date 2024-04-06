@@ -17,16 +17,16 @@ class SearchController extends JsonController
     public function actionIndex($category, $pageSize = 20)
     {
         try {
-            $category = \Yii::$app->request->get('category');
-
             $list = $this->getRight($category);
 
-            $orderedList = new ActiveDataProvider();
+            $orderedList = new ActiveDataProvider([
+                'query' => $list,
+                'pagination' => [
+                    'pageSize' => $pageSize
+                ]
+            ]);
 
-            $orderedList->pagination->pageSize = $pageSize;
-            $orderedList->query = $list;
-
-            return $orderedList;
+            return $orderedList->getModels();
 
 
         } catch (\ErrorException $e) {
@@ -34,16 +34,17 @@ class SearchController extends JsonController
         }
     }
 
-    public function actionSearch($q, $pageSize = 20)
+    public function actionSearch($category, $q, $pageSize = 20)
     {
-        $category= \Yii::$app->request->get('category');
 
         $list = $this->getRight($category, true, $q);
 
-        $orderedList = new ActiveDataProvider();
-
-        $orderedList->pagination->pageSize = $pageSize;
-        $orderedList->query = $list;
+        $orderedList = new ActiveDataProvider([
+            'query' => $list,
+            'pagination' => [
+                'pageSize' => $pageSize
+            ]
+        ]);
 
         return $orderedList;
     }
@@ -54,17 +55,17 @@ class SearchController extends JsonController
             case'motherboards':
                 return ($hasName ? Motherboard::find()->where(['LIKE', 'name', $name]) : Motherboard::find());
             case 'processors':
-                return ($hasName ? Processor::find()->where(['LIKE', 'name', $name]) : Motherboard::find());
+                return ($hasName ? Processor::find()->where(['LIKE', 'name', $name]) : Processor::find());
             case 'ram-memories':
-                return ($hasName ? Rammemory::find()->where(['LIKE', 'name', $name]) : Motherboard::find());
+                return ($hasName ? Rammemory::find()->where(['LIKE', 'name', $name]) : Rammemory::find());
             case'storage-devices':
-                return ($hasName ? Storagedevice::find()->where(['LIKE', 'name', $name]) : Motherboard::find());
+                return ($hasName ? Storagedevice::find()->where(['LIKE', 'name', $name]) : Storagedevice::find());
             case'graphic-cards':
-                return ($hasName ? Graphiccard::find()->where(['LIKE', 'name', $name]) : Motherboard::find());
+                return ($hasName ? Graphiccard::find()->where(['LIKE', 'name', $name]) : Graphiccard::find());
             case'power-supplies':
-                return ($hasName ? Powersupply::find()->where(['LIKE', 'name', $name]) : Motherboard::find());
+                return ($hasName ? Powersupply::find()->where(['LIKE', 'name', $name]) : Powersupply::find());
             case'machines':
-                return ($hasName ? Machine::find()->where(['LIKE', 'name', $name]) : Motherboard::find());
+                return ($hasName ? Machine::find()->where(['LIKE', 'name', $name]) : Machine::find());
         }
     }
 
