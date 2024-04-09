@@ -1,0 +1,12 @@
+
+
+
+.container-home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-home h1{
+    font-size: 48px;
+}

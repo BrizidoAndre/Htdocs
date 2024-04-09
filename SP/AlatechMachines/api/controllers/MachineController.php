@@ -48,7 +48,7 @@ class MachineController extends JsonController
             $machine = new Machine();
 
 //            setando valores para a validação
-            $machine->name = 'Retestando método de cadastro';
+            $machine->name = 'Nova máquina';
             $machine->description = 'Descrição longa';
             $machine->imageUrl = 'ainda não decidida';
 
@@ -80,7 +80,6 @@ class MachineController extends JsonController
                 $errors = array_merge($machine->verifyMachine($storageInfo['sata'], $storageInfo['m2']), $errors);
 
                 if (count($errors) > 0) {
-
                     \Yii::$app->response->statusCode = 422;
                     return $errors;
                 }
@@ -119,10 +118,11 @@ class MachineController extends JsonController
 
             if ($machineRequest->load(\Yii::$app->request->getBodyParams(), '')) {
 
+
                 $machine->setAttributes($machineRequest->attributes);
 
-                if (!$machine->validate()) {
-                    return $machine->errors;
+                if (!$machineRequest->validate()) {
+                    return $machineRequest->errors;
                 }
 
                 $storageInfo = $machineRequest->getStorages();
@@ -132,7 +132,19 @@ class MachineController extends JsonController
                     return $errors;
                 }
 
-                $errors = array_merge($machine->verifyMachine($storageInfo['sata'], $storageInfo['m2']), $errors);
+                if ($storageInfo['error'] === 'No Storage') {
+                    $m2Amount = null;
+                    $sataAmount = null;
+                }
+
+                if (!$storageInfo['error']) {
+                    $sataAmount = $storageInfo['sata'];
+                    $m2Amount = $storageInfo['m2'];
+                }
+
+
+
+                $errors = array_merge($machine->verifyMachine($sataAmount, $m2Amount), $errors);
 
                 if (count($errors) > 0) {
                     \Yii::$app->response->statusCode = 422;
@@ -150,12 +162,13 @@ class MachineController extends JsonController
         }
     }
 
-    public function actionDelete($id){
+    public function actionDelete($id)
+    {
         try {
 
             $machine = Machine::findOne(['id' => $id]);
 
-            if(Machinehasstoragedevice::deleteAll(['machineId' => $id]) > 0 && $machine->delete()){
+            if (Machinehasstoragedevice::deleteAll(['machineId' => $id]) > 0 && $machine->delete()) {
                 \Yii::$app->response->statusCode = 204;
                 return '';
             }
@@ -163,9 +176,9 @@ class MachineController extends JsonController
             \Yii::$app->response->statusCode = 404;
             return [
                 'message' => 'Modelo de máquina não encontrado'
-                ];
+            ];
 
-        } catch(\Exception $e){
+        } catch (\Exception $e) {
             return $e->getMessage();
         } catch (\Throwable $e) {
             throw new NotFoundHttpException('Modelo de máquina não encontrado');
@@ -173,15 +186,16 @@ class MachineController extends JsonController
     }
 
 
-    public function actionPut($id){
+    public function actionPut($id)
+    {
         try {
 
-            $errors =[];
+            $errors = [];
 
             $machineRequest = new MachineRequest();
             $machine = Machine::findOne(['id' => $id]);
 
-            if(!$machine){
+            if (!$machine) {
                 \Yii::$app->response->statusCode = 404;
                 return [
                     'message' => 'Máquina não encontrada'
@@ -238,7 +252,6 @@ class MachineController extends JsonController
             return $e->getMessage();
         }
     }
-
 
 
 }

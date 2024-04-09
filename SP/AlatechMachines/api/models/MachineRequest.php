@@ -10,14 +10,14 @@ class MachineRequest extends Model
     const SCENARIO_VERIFY = 'verify';
 
     public $storageDevices = [];
-    public $imageBase64 = '';
-    public $motherboardId = '';
-    public $processorId = '';
-    public $ramMemoryId = '';
-    public $ramMemoryAmount = '';
-    public $graphicCardId = '';
-    public $graphicCardAmount = '';
-    public $powerSupplyId = '';
+    public $imageBase64 = null;
+    public $motherboardId = null;
+    public $processorId = null;
+    public $ramMemoryId = null;
+    public $ramMemoryAmount = null;
+    public $graphicCardId = null;
+    public $graphicCardAmount = null;
+    public $powerSupplyId = null;
 
     public function scenarios()
     {
@@ -30,8 +30,8 @@ class MachineRequest extends Model
     public function rules()
     {
         return [
-            [['imageBase64', 'motherboardId', 'processorId', 'ramMemoryId', 'ramMemoryAmount', 'graphicCardId', 'graphicCardAmount', 'powerSupplyId', 'storageDevices'], 'required'],
-            [['motherboardId', 'powerSupplyId'], 'required', 'on' => self::SCENARIO_VERIFY],
+            [['imageBase64', 'motherboardId', 'processorId', 'ramMemoryId', 'ramMemoryAmount', 'graphicCardId', 'graphicCardAmount', 'powerSupplyId', 'storageDevices'], 'required', 'except' => self::SCENARIO_VERIFY],
+            [['motherboardId', 'powerSupplyId'], 'required' , 'on' => self::SCENARIO_VERIFY],
         ];
     }
 
@@ -65,7 +65,6 @@ class MachineRequest extends Model
     {
         $sataAmount = 0;
         $m2Amount = 0;
-
         $machineHasStorages = [];
 
         foreach ($this->storageDevices as $storageDevice) {

@@ -6,8 +6,6 @@ const NavBar = () => {
     const [pageNow, setPageNow] = useContext(Context)
 
 
-
-
     return (<nav className={"nav"}>
 
 

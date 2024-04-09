@@ -3,9 +3,9 @@
 namespace app\controllers;
 
 use yii\db\Exception;
+use yii\filters\Cors;
 use yii\rest\Controller;
 use yii\web\NotFoundHttpException;
-use yii\web\Response;
 
 class ImageController extends Controller
 {
@@ -33,5 +33,15 @@ class ImageController extends Controller
         } catch (Exception $e) {
             return $e->getMessage();
         }
+    }
+
+
+    public function behaviors()
+    {
+        $behaviors =  parent::behaviors();
+        $behaviors['corsFilter'] = [
+            'class' => Cors::class
+        ];
+        return $behaviors;
     }
 }

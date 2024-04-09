@@ -1,0 +1,51 @@
+header{
+    background-color: rebeccapurple;
+}
+
+
+.container-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 50px;
+}
+
+.container-header h1{
+    color: white;
+    transition: all 500ms;
+    border-bottom: 5px solid transparent;
+}
+
+
+.container-header h1:hover{
+    border-bottom: 5px solid mediumpurple;
+    cursor: pointer;
+}
+
+.container-header nav{
+    display: flex;
+    gap: 10px;
+    list-style-type: none;
+    color: white;
+    transition: all 500ms;
+    height: 100%;
+}
+
+nav li{
+    height: 100%;
+    padding: 10px 2px;
+
+    font-weight: bold;
+    vertical-align: center;
+
+    border-bottom: 5px solid transparent;
+
+
+    transition: all 500ms;
+}
+
+li:hover{
+    cursor: context-menu;
+    border-bottom: 5px solid mediumpurple;
+}

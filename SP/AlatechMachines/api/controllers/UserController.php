@@ -13,48 +13,56 @@ use yii\web\UnprocessableEntityHttpException;
 class UserController extends JsonController
 {
 
-    public function actionSign(){
+    public function actionSign()
+    {
         try {
             $user = new User;
 
-            $allUser = new User;
+            $allUser = new User(['scenario' => User::all]);
 
-            if($user->load(\Yii::$app->request->getBodyParams(),'')){
+            if ($allUser->load(\Yii::$app->request->getBodyParams(), '')) {
+                if (!$allUser->validate()) {
+                    return $allUser->attributes;
+                }
+            }
 
-               if($user->validate()){
-                   $user->password = hash_hmac('sha256', $user->password, '');
+            if ($user->load(\Yii::$app->request->getBodyParams(), '')) {
 
-                   $user->save();
-                   return \Yii::$app->response->statusCode = 204;
-               }
+                if ($user->validate()) {
+                    $user->password = hash_hmac('sha256', $user->password, '');
 
-               throw new UnprocessableEntityHttpException('Cedenciais inválidas');
+                    $user->save();
+                    return \Yii::$app->response->statusCode = 204;
+                }
+
+                throw new UnprocessableEntityHttpException('Cedenciais inválidas');
             }
             throw new BadRequestHttpException('Objeto inválido');
 
-        }catch (\ErrorException $e){
+        } catch (\ErrorException $e) {
             return $e->getMessage();
         }
     }
 
 
-    public function actionLogin(){
+    public function actionLogin()
+    {
         try {
             $user = new User;
 
-            if($user->load(\Yii::$app->request->getBodyParams(),'')){
+            if ($user->load(\Yii::$app->request->getBodyParams(), '')) {
 
 //                Encontrando um usuário com as mesmas caracteríscticas do usuário postado pelo cliente
-                $findedUser = User::find()->where(['username' => $user->username])->andWhere(['password'=> hash_hmac('sha256',$user->password,'')])->one();
+                $foundUser = User::find()->where(['username' => $user->username])->andWhere(['password' => hash_hmac('sha256', $user->password, '')])->one();
 
-                if($findedUser){
-                    if($findedUser->accessToken){
+                if ($foundUser) {
+                    if ($foundUser->accessToken) {
                         throw new ForbiddenHttpException('Usuário já autenticado');
                     }
-                    $findedUser->createToken();
-                    $findedUser->save();
+                    $foundUser->createToken();
+                    $foundUser->save();
                     return [
-                        'token' => $findedUser->accessToken
+                        'token' => $foundUser->accessToken
                     ];
                 }
 
@@ -62,19 +70,19 @@ class UserController extends JsonController
             }
 
             throw new BadRequestHttpException('Requisição de maneira incorreta');
-        } catch(\ErrorException $e){
+        } catch (\ErrorException $e) {
             return $e->getMessage();
         }
     }
 
 
-
-    public function actionLogout(){
+    public function actionLogout()
+    {
         try {
 
             $token = \Yii::$app->request->headers->get('authorization');
 
-            $token = explode(' ',$token)[1];
+            $token = explode(' ', $token)[1];
 
             $user = User::findIdentityByAccessToken($token);
 
@@ -82,10 +90,10 @@ class UserController extends JsonController
 
             $user->save();
 
-            return[
+            return [
                 'message' => 'Logout com sucesso'
             ];
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return $e->getMessage();
         }
     }

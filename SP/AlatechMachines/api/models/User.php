@@ -39,7 +39,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             [['username', 'password'], 'required'],
 //            creating a scenarion
-            [['username', 'password', 'accessToken'], 'required', 'on' => self::all],
+            [['accessToken' ], 'required', 'on' => self::all],
             [['username'], 'string', 'max' => 64],
             [['password', 'accessToken'], 'string', 'max' => 512],
         ];

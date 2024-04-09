@@ -29,7 +29,7 @@ use Yii;
  */
 class Machine extends \yii\db\ActiveRecord
 {
-     const SCENARIO_VERIFY = 'verify';
+     public const SCENARIO_VERIFY = 'verify';
 
     /**
      * {@inheritdoc}
@@ -55,7 +55,7 @@ class Machine extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description', 'imageUrl', 'motherboardId', 'processorId', 'ramMemoryId', 'ramMemoryAmount', 'graphicCardId', 'graphicCardAmount', 'powerSupplyId'], 'required'],
+            [['name', 'description', 'imageUrl', 'motherboardId', 'processorId', 'ramMemoryId', 'ramMemoryAmount', 'graphicCardId', 'graphicCardAmount', 'powerSupplyId'], 'required', 'except' => self::SCENARIO_VERIFY],
             [['motherboardId','powerSupplyId'], 'required', 'on' => self::SCENARIO_VERIFY],
             [['motherboardId', 'processorId', 'ramMemoryId', 'ramMemoryAmount', 'graphicCardId', 'graphicCardAmount', 'powerSupplyId'], 'integer'],
             [['name'], 'string', 'max' => 96],
@@ -180,13 +180,13 @@ class Machine extends \yii\db\ActiveRecord
     public function verifyMachine($sataAmount, $m2Amount){
         $errors = [];
 
-        if($this->motherboard->socketTypeId !== $this->processor->socketTypeId){
+        if($this->processor && $this->motherboard->socketTypeId !== $this->processor->socketTypeId){
             $errors['Tipo do soquete'] = 'O tipo do soquete da placa-mãe e do processador são distintos';
         }
-        if($this->motherboard->maxTdp < $this->processor->tdp){
+        if($this->processor && $this->motherboard->maxTdp < $this->processor->tdp){
             $errors['TDP'] = 'O TPD do processador é superior ao máximo permitido pela placa-mãe';
         }
-        if($this->motherboard->ramMemoryTypeId !== $this->ramMemory->ramMemoryTypeId){
+        if($this-> ramMemory && $this->motherboard->ramMemoryTypeId !== $this->ramMemory->ramMemoryTypeId){
             $errors['Tipo da memória'] = 'O tipo da memória RAM é diferente do suportado pela placa-mãe';
         }
         if($this->motherboard->ramMemorySlots < $this->ramMemoryAmount && $this->ramMemoryAmount === 0){
@@ -201,13 +201,13 @@ class Machine extends \yii\db\ActiveRecord
         if($this->motherboard->m2Slots < $m2Amount){
             $errors['Quantidade de memória m2'] = 'A quantidade de armazemanento tipo m2 é incompatível com a placa-mãe';
         }
-        if($sataAmount + $m2Amount === 0){
+        if($sataAmount!== null && $m2Amount !== null && $sataAmount + $m2Amount < 1){
             $errors['Sem armazenamento'] = 'A máquina não contem armazenamento';
         }
-        if($this->graphicCardAmount > 1 && !$this->graphicCard->supportMultiGpu){
+        if($this->graphicCard && $this->graphicCardAmount > 1 && !$this->graphicCard->supportMultiGpu){
             $errors['Placa de vídeo'] = 'A placa de vídeo não suporta SLI/Crossfire';
         }
-        if($this->powerSupply->potency < $this->graphicCard->minimumPowerSupply * $this->graphicCardAmount){
+        if($this->graphicCard && $this->powerSupply->potency < $this->graphicCard->minimumPowerSupply * $this->graphicCardAmount){
             $errors['Sem potência'] = 'A fonte de alimentação não suporta o exigido mínimo pela máquina';
         }
 
