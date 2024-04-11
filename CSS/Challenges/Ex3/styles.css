@@ -1,0 +1,132 @@
+:root {
+    --lightBlue: #c8daff;
+    --darkBlue: #2c4674;
+}
+
+@font-face {
+    font-family: Mont-Bold;
+    src: url("fonts/Montserrat-Bold.ttf");
+}
+
+@font-face {
+    font-family: Mont-Regular;
+    src: url("fonts/Montserrat-Regular.ttf");
+}
+
+@font-face {
+    font-family: Mont-Medium;
+    src: url("fonts/Montserrat-Medium.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+input {
+    display: none;
+}
+
+main {
+    height: 785px;
+    margin: 5px;
+    border-radius: 20px;
+    background: linear-gradient(to bottom right, var(--lightBlue), var(--darkBlue));
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow: hidden;
+    position:relative;
+}
+
+.container-label {
+    display: flex;
+    gap: 8px;
+
+    margin: 70px;
+}
+
+label {
+    border: 2px solid lightgray;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: lightgray;
+}
+
+label:hover{
+    border: 2px solid var(--darkBlue);
+    transition: all .25s;
+}
+
+#img1:checked ~ main .container-label label:nth-child(1) {
+    background: var(--darkBlue);
+    border: 2px solid var(--darkBlue);
+}
+
+#img2:checked ~ main .container-label label:nth-child(2) {
+    background: var(--darkBlue);
+    border: 2px solid var(--darkBlue);
+}
+
+main h1 {
+    font-size: 64px;
+    color: var(--darkBlue);
+    font-family: Mont-Regular;
+    font-weight: lighter;
+}
+
+
+main p {
+    font-size: 18px;
+    font-family: Mont-Regular;
+    color: white;
+    text-align: center;
+    margin: 50px;
+}
+
+
+#icon {
+    width: 55px;
+    aspect-ratio: 1/1;
+    background-color: var(--darkBlue);
+    border-radius: 50%;
+
+    display: grid;
+    place-items: center;
+
+    position: absolute;
+
+    bottom: 30px;
+    transition: all .25s;
+}
+
+#icon:hover {
+    width: 65px;
+
+    transform: translateY(5px) rotate(90deg);
+
+}
+main .image-background1 , main .image-background2 {
+    width: 100%;
+    height: auto;
+
+    position: absolute;
+    bottom:0;
+    transform: translateY(60%);
+
+    opacity: 0;
+    transition: opacity .5s, transform .5s;
+}
+#img1:checked ~ main .image-background1 {
+    transform: translateY(0);
+    opacity: 1;
+}
+#img1:not(:checked) ~ main .image-background2 {
+    transform: translateY(0);
+    opacity: 1;
+}
+

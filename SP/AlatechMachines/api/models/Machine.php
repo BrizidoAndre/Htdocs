@@ -82,7 +82,10 @@ class Machine extends \yii\db\ActiveRecord
             'ramMemoryAmount',
             'graphicCard',
             'graphicCardAmount',
-            'powerSupply'
+            'powerSupply',
+            'StorageDevices' => function(){
+                return Machinehasstoragedevice::findAll(['machineId' => $this->id]);
+            }
         ];
     }
 

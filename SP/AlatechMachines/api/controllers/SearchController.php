@@ -11,6 +11,7 @@ use app\models\Processor;
 use app\models\Rammemory;
 use app\models\Storagedevice;
 use yii\data\ActiveDataProvider;
+use yii\web\NotFoundHttpException;
 
 class SearchController extends JsonController
 {
@@ -18,6 +19,10 @@ class SearchController extends JsonController
     {
         try {
             $list = $this->getRight($category);
+
+            if($list === 'error'){
+                throw new NotFoundHttpException('Página não encontrada');
+            }
 
             $orderedList = new ActiveDataProvider([
                 'query' => $list,
@@ -38,6 +43,10 @@ class SearchController extends JsonController
     {
 
         $list = $this->getRight($category, true, $q);
+
+        if($list === 'error'){
+            throw new NotFoundHttpException('Página não encontrada');
+        }
 
         $orderedList = new ActiveDataProvider([
             'query' => $list,
@@ -66,6 +75,8 @@ class SearchController extends JsonController
                 return ($hasName ? Powersupply::find()->where(['LIKE', 'name', $name]) : Powersupply::find());
             case'machines':
                 return ($hasName ? Machine::find()->where(['LIKE', 'name', $name]) : Machine::find());
+            default:
+               return 'error';
         }
     }
 
