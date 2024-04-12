@@ -1,0 +1,335 @@
+:root{
+    --background-green: #cbe0db;
+    --background-orange: #e8dbd4;
+
+    --green: #519e8a;
+    --orange:#d1723f
+}
+main{
+    background: var(--background-green);
+}
+
+
+
+header{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+h2{
+    font-family: Mont-Regular;
+    color: var(--darkBlue);
+}
+
+header label{
+    width: 40px;
+    height: 40px;
+
+    border:none;
+    border-radius: 0;
+
+    background-image: url("1-search/menu-close.svg");
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    cursor: pointer;
+    z-index: 1;
+
+    transition: all 1s;
+}
+
+#side-menu:not(:checked) ~ main header label{
+    background-image: url("1-search/menu-open.svg");
+}
+
+header label:hover{
+    border: none;
+}
+
+header a img{
+    width: 40px;
+}
+header a{
+    transition: all .25s;
+}
+
+header a:hover{
+    transform: translateX(-5px);
+}
+
+
+.search-box{
+    width: 90%;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    padding: 10px;
+
+    border-radius: 40px;
+    background: white;
+}
+
+.search-box input{
+    width: 80%;
+    height: 35px;
+    display: block;
+    margin-left: 10px;
+
+    border: none;
+    outline: none;
+
+    font-family: Mont-Regular;
+    font-size: 18px;
+    color: var(--darkBlue);
+}
+
+
+nav{
+    margin: 20px 0;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .nav-button{
+    width: 45%;
+    height: 50px;
+    border-radius: 40px;
+
+    background: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 25px;
+
+
+    padding: 0 15px;
+
+    transition:all .5s;
+}
+
+nav a{
+    text-decoration: none;
+    font-family: Mont-Medium;
+    font-size: 18px;
+    color: var(--darkBlue);
+}
+
+.nav-button img{
+    width: 30px;
+    height: 30px;
+}
+
+#nav-button--dog{
+    background-color: var(--green);
+    color: white;
+}
+
+.nav-button:hover{
+    scale: 1.08;
+}
+
+
+
+
+.container-card{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    width: 90%;
+    gap: 35px;
+
+}
+
+
+.card-box{
+    width: 45%;
+    height: 250px;
+    border-radius: 20px;
+
+    position: relative;
+    overflow: hidden;
+    transition: all .5s;
+}
+
+.card-box .circle-animation--background{
+    width: 100px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+
+    position: absolute;
+    left: 15%;
+    top: 20%;
+
+
+    background-color: var(--green);
+
+    scale: 3;
+}
+
+.card-box > img{
+    position: absolute;
+    left: 50%;
+    top:50%;
+
+    transform: translateX(-50%) translateY(-50%);
+    transition: all .5s;
+    transition-delay: .3s;
+}
+
+.card-box--bottom{
+    position: absolute;
+    bottom:0;
+    border-radius: 0;
+
+    padding: 5px 15px;
+
+    width: 100%;
+    height: 30%;
+    background-color: white;
+}
+
+.card-box--bottom .text-name{
+    font-family: Mont-Bold;
+    font-size: 18px;
+    color: var(--darkBlue);
+}
+
+.card-box--bottom .text-dog_race{
+    font-family: Mont-Medium;
+    font-size: 12px;
+    color: var(--darkBlue);
+
+}
+
+.card-box--bottom .hearthome{
+    width:  35px;
+    height: 35px;
+
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+
+    background-image: url("1-search/hearthome.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.card-box--bottom, .card-box--bottom h3{
+    transition: all .5s;
+}
+
+
+.card-box:hover {
+    background-color: white;
+}
+.card-box:hover > .card-box--bottom{
+    background-color: var(--green);
+}
+.card-box:hover  h3 {
+    color: white;
+}
+.card-box:hover .hearthome{
+    background-image: url("1-search/hearthome-white.svg");
+}
+
+.card-box:hover > img{
+    transform: translateX(-50%) translateY(-60%);
+}
+
+@keyframes increase {
+    from{
+        scale: 0.1;
+    }
+    to{
+        scale:3;
+    }
+}
+
+.card-box:hover .circle-animation--background{
+    animation: increase .5s 1 ease-out;
+    background-color: white;
+    transition: background-color .5s .5s;
+}
+
+aside{
+    position: absolute;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+
+    border: 1px solid var(--darkBlue);
+    background: linear-gradient( #fff, rgba(255, 255, 255, 0.900));
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+
+    transition: all .5s;
+}
+
+#side-menu:not(:checked) ~ main aside{
+    left: 100%;
+}
+
+aside h2{
+ margin: 20px 0 ;
+}
+
+aside .button-side{
+    width: 90%;
+    height: 60px;
+    border-radius: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    gap: 20px;
+
+    cursor: pointer;
+    text-decoration: none;
+
+    transition: all .5s;
+
+    position: relative;
+}
+
+aside .button-side:hover{
+    scale: 1.05;
+}
+
+.button-side:nth-child(2){
+    background-color: var(--darkBlue);
+}
+.button-side:nth-child(3){
+    background-color: var(--green);
+}
+.button-side:nth-child(4){
+    background-color: var(--orange);
+}
+
+.button-side img{
+    scale: 1.3;
+    position: absolute;
+    left: 30px;
+}
+
+.button-side h4{
+    text-decoration: none;
+    font-family: Mont-Regular;
+    font-size: 18px;
+    color: white;
+}

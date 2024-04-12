@@ -1,0 +1,17 @@
+:root{
+    --background-green: #e8dbd4;
+
+    --green: #d1723f;
+
+    --background-green-real: #cbe0db;
+
+    --green-real: #519e8a;
+}
+
+.card-box:hover #toobig{
+    transform: translateX(-50%) translateY(-57%);
+}
+
+.button-side:nth-child(3){
+    background-color: var(--green-real);
+}
