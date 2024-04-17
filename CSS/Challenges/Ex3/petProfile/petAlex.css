@@ -1,0 +1,20 @@
+:root{
+    --background-green: #e8dbd4;
+
+    --green: #d1723f;
+
+    --background-green-real: #cbe0db;
+
+    --green-real: #519e8a;
+}
+
+
+.container-pet{
+    height: 163%;
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+}

@@ -223,6 +223,10 @@ nav a{
     background-position: center;
 }
 
+.card-box--bottom .hearthome:active {
+background-image: url("1-search/hearthome-active.svg");
+}
+
 .card-box--bottom, .card-box--bottom h3{
     transition: all .5s;
 }

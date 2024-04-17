@@ -1,0 +1,149 @@
+main{
+    background-color: var(--background-green);
+}
+
+
+.container-pet{
+    width: 100%;
+    height: 60%;
+    margin-top: -5px;
+    border-radius: 30px;
+    background-color: var(--green);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: relative;
+}
+
+.back-icon{
+    width: 40px;
+    height: 40px;
+
+    transition: all .5s;
+
+    position: absolute;
+    left: 20px;
+    top: 40px;
+}
+
+.back-icon:hover{
+    transform: translateX(-10px);
+}
+
+
+#image-pet{
+    min-width: 70%;
+    height: auto;
+    margin:-20px 0 ;
+}
+
+
+.container-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+}
+
+.info-box{
+    width: 80px;
+    height: 75px;
+
+    border-radius: 20px;
+    background-color: rgba(255,255,255, 0.9);
+
+    padding: 12px 0;
+    margin: -150px 0 0 0 ;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.info-box .text-property{
+    color: var(--darkBlue);
+    font-family: Mont-Bold;
+}
+
+.info-box .text-value{
+    color: var(--darkBlue);
+    font-family: Mont-Medium;
+}
+
+section{
+    width: 90%;
+}
+
+.container-general_info{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.text-pet_name_big{
+    font-size: 24px;
+    font-family: Mont-Bold;
+    color: var(--darkBlue);
+}
+
+.text-breed_big_info{
+    font-size: 16px;
+    font-family: Mont-Medium;
+    color: var(--darkBlue);
+
+}
+
+
+.container-profile{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+}
+
+.container-profile--text .text-breed_big_info{
+
+    font-family: Mont-Regular;
+    font-size: 16px;
+}
+
+
+.container-profile--text .text-breed_big_info:nth-child(2){
+    font-size: 14px;
+}
+
+
+.button-take{
+    width: 100%;
+    height: 50px;
+    border-radius: 300px;
+    background-color: var(--green);
+
+    display: grid;
+    place-items: center;
+
+    color: white;
+    font-family: Mont-Medium;
+    font-size: 18px;
+
+    cursor: pointer;
+    transition: all 0.5s;
+}
+.button-take:hover{
+    scale: 1.05;
+}
+
+.container-footer--info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 20px 0;
+
+    height: 100%
+}
