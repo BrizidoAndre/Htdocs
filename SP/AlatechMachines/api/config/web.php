@@ -1,7 +1,5 @@
 <?php
 
-use yii\web\JsonResponseFormatter;
-
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -16,13 +14,13 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => '1JBqFryXqq51EwFVTL5LqK8yvrBV8UTG',
-            'parsers'=>[
-                'application/json'=>\yii\web\JsonParser::class
+            'cookieValidationKey' => 'G0oJARf1SgAgPsaJ6owupBNmcSrR9yX-',
+            'parsers' => [
+                'application/json' => \yii\web\JsonParser::class
             ]
         ],
         'response' => [
-            'format' => \yii\web\Response::FORMAT_JSON,
+            'format' => \yii\web\Response::FORMAT_JSON
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -50,6 +48,7 @@ $config = [
             ],
         ],
         'db' => $db,
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -57,38 +56,36 @@ $config = [
                 [
                     'class' => \yii\rest\UrlRule::class,
                     'controller' => [
-                        'search'
+                        'list',
                     ]
-
                 ],
-
-                //Formatação machine controller
-                'POST machines' => 'machine/post',
-                'POST verify-compatibility' => 'machine/verify',
-                'DELETE machines/<id>' => 'machine/delete',
-                'PUT machines/<id>' => 'machine/put',
-
-
-                //Formatação USER controller
+//                personalizing user methods
                 'POST login' => 'user/login',
                 'DELETE logout' => 'user/logout',
 
+//                machines
+                'POST machines' => 'machine/post',
+                'DELETE machines/<id>' => 'machine/delete',
+                'POST verify-compatibility' => 'machine/verify',
+                'PUT machines/<id>' => 'machine/put',
 
-                //Formatação IMAGE controller
+//                images
                 'GET images/<id>' => 'image/index',
 
 
-                //Formatação SEARCH controller
-                'GET <category>' => 'search/index',
-                'GET search/<category>' => 'search/search',
-                ''
+//                personalizing list methods, the <component> is a variable to search the right modals
+                'GET <component>' => 'list/list',
+                'GET search/<component>'  => 'list/name',
+
+
             ],
         ],
+
     ],
     'params' => $params,
+
     'as authenticator' => [
-        'class' => \app\Bases\BearerAuth::class,
-        'response' => '',
+        'class' => \app\bases\BearerBase::class,
         'except' => [
             'user/login',
             'image/index'

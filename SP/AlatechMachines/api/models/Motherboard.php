@@ -50,22 +50,6 @@ class Motherboard extends \yii\db\ActiveRecord
         ];
     }
 
-    public function fields()
-    {
-        return [
-            'id',
-            'name',
-            'imageUrl',
-            'brand',
-            'socketType',
-            'ramMemoryType',
-            'ramMemorySlots',
-            'maxTdp',
-            'sataSlots',
-            'm2Slots',
-            'pciSlots'];
-    }
-
     /**
      * {@inheritdoc}
      */

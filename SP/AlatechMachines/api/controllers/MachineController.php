@@ -2,256 +2,192 @@
 
 namespace app\controllers;
 
-use app\Bases\JsonController;
+use app\bases\JsonController;
 use app\models\Machine;
 use app\models\Machinehasstoragedevice;
-use app\models\MachineRequest;
-use yii\web\BadRequestHttpException;
+use app\models\Viewmodels\MachineForm;
 use yii\web\NotFoundHttpException;
 
 class MachineController extends JsonController
 {
 
-//    todo ATENTAR-SE NESTE MÉTODO. ELE APLICA ÓTIMOS PASSOS
-    public function actionIndex()
-    {
-        try {
+    public function actionPost(){
 
-            $machineRequest = new MachineRequest();
-            $machine = new Machine();
+        $newMachineForm = new MachineForm();
+        $newMachine = new Machine();
 
-            if ($machineRequest->load(\Yii::$app->request->getBodyParams(), '')) {
+        if($newMachineForm->load(\Yii::$app->request->getBodyParams(), '')){
 
-                $machine->setAttributes($machineRequest->attributes);
-
-
-//                if($machineRequest->validate() && $machine->validate()){
-//                    $machine->save();
-//                    return $machine;
-//                }
-
-                return $machine->errors;
+            if(!$newMachineForm->validate()){
+                return $newMachineForm->errors;
             }
 
-//            esses bad request não setam o status code da resposta;
-            throw new BadRequestHttpException('Requisição não foi feita corretamente');
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
-    }
-
-    public function actionPost()
-    {
-        try {
-            $errors = [];
-            $machineRequest = new MachineRequest();
-            $machine = new Machine();
-
-//            setando valores para a validação
-            $machine->name = 'Nova máquina';
-            $machine->description = 'Descrição longa';
-            $machine->imageUrl = 'ainda não decidida';
-
-            if ($machineRequest->load(\Yii::$app->request->getBodyParams(), '')) {
-
-                $machine->setAttributes($machineRequest->attributes);
-
-                if (!$machine->validate()) {
-                    return $machine->errors;
-                }
-
-                if (!$machineRequest->validateImage()) {
-                    $errors['Imagem'] = 'Imagem inválida';
-                }
-
-                if ($machineRequest->validateImage()) {
-                    $machine->imageUrl = (string)$machineRequest->saveImage();
-                }
+            $newMachine->setAttributes($newMachineForm->attributes);
 
 
-                $storageInfo = $machineRequest->getStorages();
+            $newMachine->generateIdImage($newMachineForm->imageBase64);
 
+            $newMachine->name = 'Varios armazenamentos';
+            $newMachine->description = 'uma boa descrição';
 
-                if ($storageInfo['error']) {
-                    $errors['Dispositivo de armazenamento'] = 'Um dos id fornecidos para o armazenamneto é inválido';
-                    return $errors;
-                }
+            $storageResponse = $newMachineForm->prepareStorage();
 
-                $errors = array_merge($machine->verifyMachine($storageInfo['sata'], $storageInfo['m2']), $errors);
-
-                if (count($errors) > 0) {
-                    \Yii::$app->response->statusCode = 422;
-                    return $errors;
-                }
-
-                $machine->save();
-
-                foreach ($storageInfo['mhass'] as $mhass) {
-                    $MhasSSave = new Machinehasstoragedevice();
-
-                    $MhasSSave->machineId = $machine->id;
-                    $MhasSSave->storageDeviceId = $mhass['storageDeviceId'];
-                    $MhasSSave->amount = $mhass['amount'];
-
-                    $MhasSSave->save();
-                }
-
-                return $machine;
-            }
-
-
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
-    }
-
-    public function actionVerify()
-    {
-        try {
-            $errors = [];
-            $machineRequest = new MachineRequest();
-            $machine = new Machine();
-
-            $machineRequest->setScenario(MachineRequest::SCENARIO_VERIFY);
-            $machine->setScenario(Machine::SCENARIO_VERIFY);
-
-
-            if ($machineRequest->load(\Yii::$app->request->getBodyParams(), '')) {
-
-
-                $machine->setAttributes($machineRequest->attributes);
-
-                if (!$machineRequest->validate()) {
-                    return $machineRequest->errors;
-                }
-
-                $storageInfo = $machineRequest->getStorages();
-
-                if ($storageInfo['error']) {
-                    $errors['Dispositivo de armazenamento'] = 'Um dos id fornecidos para o armazenamento é inválido';
-                    return $errors;
-                }
-
-                if ($storageInfo['error'] === 'No Storage') {
-                    $m2Amount = null;
-                    $sataAmount = null;
-                }
-
-                if (!$storageInfo['error']) {
-                    $sataAmount = $storageInfo['sata'];
-                    $m2Amount = $storageInfo['m2'];
-                }
-
-
-
-                $errors = array_merge($machine->verifyMachine($sataAmount, $m2Amount), $errors);
-
-                if (count($errors) > 0) {
-                    \Yii::$app->response->statusCode = 422;
-                    return $errors;
-                }
-
+            if(!is_array($storageResponse)){
+                \Yii::$app->response->statusCode = 422;
                 return [
-                    'message' => 'Máquina válida'
+                    'Armazenamento da máquina' => $storageResponse
                 ];
             }
 
+            $errors = $newMachine->verify($storageResponse['sata'], $storageResponse['m2']);
 
-        } catch (\Exception $e) {
-            return $e->getMessage();
+            if(count($errors) > 0){
+                \Yii::$app->response->statusCode= 422;
+                return $errors;
+            }
+
+            if(!$newMachine->save()){
+                return $newMachine;
+            }
+
+            $this->saveStorages($storageResponse['storages'], $newMachine->id);
+
+            \Yii::$app->response->statusCode = 201;
+            return $newMachine;
         }
     }
 
-    public function actionDelete($id)
-    {
-        try {
+    public function actionDelete($id){
+        $deleteMachine = Machine::findOne(['id' => $id]);
 
-            $machine = Machine::findOne(['id' => $id]);
-
-            if (Machinehasstoragedevice::deleteAll(['machineId' => $id]) > 0 && $machine->delete()) {
-                \Yii::$app->response->statusCode = 204;
-                return '';
-            }
-
-            \Yii::$app->response->statusCode = 404;
-            return [
-                'message' => 'Modelo de máquina não encontrado'
-            ];
-
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        } catch (\Throwable $e) {
+        if(!$deleteMachine){
             throw new NotFoundHttpException('Modelo de máquina não encontrado');
         }
+
+        Machinehasstoragedevice::deleteAll(['machineId' => $id]);
+        $deleteMachine->delete();
+        \Yii::$app->response->statusCode = 204;
     }
 
+    public function actionVerify(){
+        $verifyMachine = new MachineForm();
+        $machine = new Machine();
 
-    public function actionPut($id)
-    {
-        try {
+        $verifyMachine->setScenario(MachineForm::SCENARIO_VERIFY);
 
-            $errors = [];
+        if($verifyMachine->load(\Yii::$app->request->getBodyParams(),'')){
 
-            $machineRequest = new MachineRequest();
-            $machine = Machine::findOne(['id' => $id]);
+            if(!$verifyMachine->validate()){
+                return $verifyMachine->errors;
+            }
 
-            if (!$machine) {
-                \Yii::$app->response->statusCode = 404;
+
+            $machine->setAttributes($verifyMachine->attributes);
+
+            $machine->name = 'Varios armazenamentos';
+            $machine->description = 'uma boa descrição';
+
+            $storageResponse = $verifyMachine->prepareStorage();
+
+
+            if(!is_array($storageResponse)){
+                \Yii::$app->response->statusCode = 422;
                 return [
-                    'message' => 'Máquina não encontrada'
+                    'Armazenamento da máquina' => $storageResponse
                 ];
             }
 
+            $errors = $machine->verify($storageResponse['sata'], $storageResponse['m2']);
 
-            if ($machineRequest->load(\Yii::$app->request->getBodyParams(), '')) {
-
-                $machine->setAttributes($machineRequest->attributes);
-
-
-                if (!$machine->validate()) {
-                    return $machine->errors;
-                }
-
-                if ($machineRequest->validateImage()) {
-                    $machine->imageUrl = (string)$machineRequest->saveImage();
-                }
-
-                $storageInfo = $machineRequest->saveStoragesPut($machine->id);
-
-
-                if ($storageInfo['error']) {
-                    $errors['Dispositivo de armazenamento'] = 'Um dos id fornecidos para o armazenamento é inválido';
-                    return $errors;
-                }
-
-                $errors = array_merge($machine->verifyMachine($storageInfo['sata'], $storageInfo['m2']), $errors);
-
-                if (count($errors) > 0) {
-
-                    \Yii::$app->response->statusCode = 422;
-                    return $errors;
-                }
-
-                $machine->save();
-
-                foreach ($storageInfo['mhass'] as $mhass) {
-                    $MhasSSave = new Machinehasstoragedevice();
-
-                    $MhasSSave->machineId = $machine->id;
-                    $MhasSSave->storageDeviceId = $mhass['storageDeviceId'];
-                    $MhasSSave->amount = $mhass['amount'];
-
-                    $MhasSSave->save();
-                }
-
-                return $machine;
+            if(count($errors) > 0){
+                \Yii::$app->response->statusCode= 422;
+                return $errors;
             }
 
-
-        } catch (\Exception $e) {
-            return $e->getMessage();
+            return [
+                'message' => 'máquina válida'
+            ];
         }
     }
 
+
+    public function actionPut($id){
+        $newMachineForm = new MachineForm();
+        $newMachine = new Machine();
+
+
+        $newMachineForm->imageBase64 = 'nothing';
+
+        $searchedMachine = Machine::findOne(['id' => $id]);
+
+        if(!$searchedMachine){
+            return [
+                'message' => 'máquina não encontrada'
+            ];
+        }
+
+        Machinehasstoragedevice::deleteAll(['machineId' => $id]);
+        $searchedMachine->delete();
+
+        if($newMachineForm->load(\Yii::$app->request->getBodyParams(), '')){
+
+            if(!$newMachineForm->validate()){
+                return $newMachineForm->errors;
+            }
+
+            $newMachine->setAttributes($newMachineForm->attributes);
+
+
+            if($newMachineForm->imageBase64 !== 'nothing'){
+                $newMachine->generateIdImage($newMachineForm->imageBase64);
+            }
+
+
+            $newMachine->name = 'Varios armazenamentos';
+            $newMachine->description = 'uma boa descrição';
+
+            $storageResponse = $newMachineForm->prepareStorage();
+
+            if(!is_array($storageResponse)){
+                \Yii::$app->response->statusCode = 422;
+                return [
+                    'Armazenamento da máquina' => $storageResponse
+                ];
+            }
+
+            $errors = $newMachine->verify($storageResponse['sata'], $storageResponse['m2']);
+
+            if(count($errors) > 0){
+                \Yii::$app->response->statusCode= 422;
+                return $errors;
+            }
+
+            $newMachine->id = $id;
+
+            if(!$newMachine->save()){
+                return $newMachine;
+            }
+
+            $this->saveStorages($storageResponse['storages'], $newMachine->id);
+
+            \Yii::$app->response->statusCode = 201;
+            return $newMachine;
+        }
+    }
+
+
+    function saveStorages($storageDevices, $idMachine){
+
+        foreach ( $storageDevices as $storageDevice) {
+
+            $MhasS = new Machinehasstoragedevice();
+
+            $MhasS->storageDeviceId = $storageDevice['id'];
+            $MhasS->amount = $storageDevice['amount'];
+            $MhasS->machineId = $idMachine;
+
+            $MhasS->save();
+        }
+    }
 
 }

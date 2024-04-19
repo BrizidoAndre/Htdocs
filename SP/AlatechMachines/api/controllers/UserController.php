@@ -2,100 +2,73 @@
 
 namespace app\controllers;
 
-use app\Bases\JsonController;
+use app\bases\JsonController;
 use app\models\User;
-use Psy\Util\Json;
-use yii\rest\Controller;
-use yii\web\BadRequestHttpException;
 use yii\web\ForbiddenHttpException;
 use yii\web\UnprocessableEntityHttpException;
 
 class UserController extends JsonController
 {
+    public function actionIndex(){
+        return 'hello';
+    }
 
-    public function actionSign()
-    {
-        try {
-            $user = new User;
 
-            $allUser = new User(['scenario' => User::all]);
+    public function actionSign(){
+        $newUser = new User();
 
-            if ($allUser->load(\Yii::$app->request->getBodyParams(), '')) {
-                if (!$allUser->validate()) {
-                    return $allUser->attributes;
-                }
+
+        if($newUser->load(\Yii::$app->request->getBodyParams(), '')){
+
+            $newUser->password = hash_hmac('sha256',$newUser->password,'' );
+
+            if($newUser->save()){
+                return $newUser;
             }
-
-            if ($user->load(\Yii::$app->request->getBodyParams(), '')) {
-
-                if ($user->validate()) {
-                    $user->password = hash_hmac('sha256', $user->password, '');
-
-                    $user->save();
-                    return \Yii::$app->response->statusCode = 204;
-                }
-
-                throw new UnprocessableEntityHttpException('Cedenciais inválidas');
-            }
-            throw new BadRequestHttpException('Objeto inválido');
-
-        } catch (\ErrorException $e) {
-            return $e->getMessage();
         }
     }
 
 
-    public function actionLogin()
-    {
-        try {
-            $user = new User;
+    public function actionLogin(){
+        $findUser = new User();
 
-            if ($user->load(\Yii::$app->request->getBodyParams(), '')) {
+        if($findUser->load(\Yii::$app->request->getBodyParams(), '')){
 
-//                Encontrando um usuário com as mesmas caracteríscticas do usuário postado pelo cliente
-                $foundUser = User::find()->where(['username' => $user->username])->andWhere(['password' => hash_hmac('sha256', $user->password, '')])->one();
+            $findUser = User::find()->where(['username' => $findUser->username])->andWhere(['password' => hash_hmac('sha256', $findUser->password, '')])->one();
 
-                if ($foundUser) {
-                    if ($foundUser->accessToken) {
-                        throw new ForbiddenHttpException('Usuário já autenticado');
-                    }
-                    $foundUser->createToken();
-                    $foundUser->save();
-                    return [
-                        'token' => $foundUser->accessToken
-                    ];
-                }
-
+            if(!$findUser){
                 throw new UnprocessableEntityHttpException('Credenciais inválidas');
             }
 
-            throw new BadRequestHttpException('Requisição de maneira incorreta');
-        } catch (\ErrorException $e) {
-            return $e->getMessage();
+            if($findUser->accessToken){
+                throw new ForbiddenHttpException('Usuário já autenticado');
+            }
+
+            $findUser->generateToken();
+
+            $findUser->save();
+
+            return [
+                'token' => $findUser->accessToken
+            ];
+
         }
     }
 
 
-    public function actionLogout()
-    {
-        try {
+    public function actionLogout(){
+        $token = explode(' ', \Yii::$app->request->headers->get('Authorization'))[1];
 
-            $token = \Yii::$app->request->headers->get('authorization');
 
-            $token = explode(' ', $token)[1];
+        $deleteKeyUser = User::findIdentityByAccessToken($token);
 
-            $user = User::findIdentityByAccessToken($token);
+        $deleteKeyUser->accessToken = null;
 
-            $user->accessToken = null;
+        $deleteKeyUser->save();
 
-            $user->save();
-
-            return [
-                'message' => 'Logout com sucesso'
-            ];
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        return [
+            'message' => 'Logout com sucesso'
+        ];
     }
 
 }

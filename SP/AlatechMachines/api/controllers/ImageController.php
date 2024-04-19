@@ -2,46 +2,34 @@
 
 namespace app\controllers;
 
-use yii\db\Exception;
-use yii\filters\Cors;
 use yii\rest\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 class ImageController extends Controller
 {
-    public function actionIndex($id)
-    {
-        try {
-            $imagePathPng = \Yii::getAlias('@webroot') . '/images/' . $id . '.png';
-            $imagePathJpg = \Yii::getAlias('@webroot') . '/images/' . $id . '.jpg';
+    public function actionIndex($id){
 
-            if (file_exists($imagePathPng)) {
-                $image = file_get_contents($imagePathPng);
-                \Yii::$app->response->format = 'raw';
-                \Yii::$app->response->headers->set('Content-Type', 'image/png');
-                return $image;
-            }
-            if (file_exists($imagePathJpg)) {
-                $image = file_get_contents($imagePathJpg);
-                \Yii::$app->response->format = 'raw';
-                \Yii::$app->response->headers->set('Content-Type', 'image/jpeg');
-                return $image;
-            }
+//        creating two path, one for PNG and one for JPG
+        $imagePathPng = \Yii::getAlias('@webroot') . '/images/' . $id . '.png';
+        $imagePathJpg = \Yii::getAlias('@webroot') . '/images/' . $id . '.jpg';
 
-            throw new NotFoundHttpException('Imagem não encontrada');
+        if(file_exists($imagePathPng)){
+            \Yii::$app->response->headers->set('Content-type', ['image/png']);
+            \Yii::$app->response->format = Response::FORMAT_RAW;
 
-        } catch (Exception $e) {
-            return $e->getMessage();
+            \Yii::$app->response->data = file_get_contents($imagePathPng);
+            return;
         }
-    }
+        else if(file_exists($imagePathJpg)){
+            \Yii::$app->response->headers->set('Content-type', ['image/jpg']);
+            \Yii::$app->response->format = Response::FORMAT_RAW;
 
+            \Yii::$app->response->data = file_get_contents($imagePathJpg);
+            return;
+        }
 
-    public function behaviors()
-    {
-        $behaviors =  parent::behaviors();
-        $behaviors['corsFilter'] = [
-            'class' => Cors::class
-        ];
-        return $behaviors;
+        //if it doesn't exist then returns a Not Found
+        throw new NotFoundHttpException('Imagem não encontrada');
     }
 }

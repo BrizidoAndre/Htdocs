@@ -15,20 +15,12 @@ use yii\web\IdentityInterface;
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
-    public const all = 'all';
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
         return 'user';
-    }
-
-    public function scenarios()
-    {
-        $scenarios = parent::scenarios();
-        $scenarios[self::all] = ['username', 'password', 'accessToken'];
-        return $scenarios;
     }
 
     /**
@@ -38,8 +30,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             [['username', 'password'], 'required'],
-//            creating a scenarion
-            [['accessToken' ], 'required', 'on' => self::all],
             [['username'], 'string', 'max' => 64],
             [['password', 'accessToken'], 'string', 'max' => 512],
         ];
@@ -56,29 +46,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'password' => 'Password',
             'accessToken' => 'Access Token',
         ];
-    }
-
-
-    public function createToken(){
-
-        $header = [
-            'alg' => 'SHA256',
-            'typ' => 'JWT'
-        ];
-
-        $header = base64_encode(json_encode($header));
-
-        $payload = [
-            'username' => $this->username,
-            'pwd' => $this->password,
-            'time' => date('d-m-Y-H-i-s')
-        ];
-
-        $payload = base64_encode(json_encode($payload));
-
-        $signature = hash_hmac('sha256', $header . '.' . $payload,'M');
-
-        $this->accessToken = $header . '.' . $payload . '.' . $signature;
     }
 
     public static function findIdentity($id)
@@ -104,5 +71,25 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function validateAuthKey($authKey)
     {
         // TODO: Implement validateAuthKey() method.
+    }
+
+    public function generateToken(){
+        $headers = [
+            'hacsha' => 256,
+            'typ' => 'JWT'
+        ];
+
+        $headers = base64_encode(json_encode($headers));
+
+        $payload = [
+            'username' => $this->username,
+            'date'  => date('d-m-Y-H-i-s')
+        ];
+
+        $payload = base64_encode(json_encode($payload));
+
+        $signature = hash_hmac('sha256', $headers . '.' . $payload, '');
+
+        $this->accessToken = $headers . '.' . $payload . '.' . $signature;
     }
 }
