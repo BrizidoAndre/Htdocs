@@ -1,0 +1,15 @@
+
+
+.content-accordion .container-accordion{
+    width: 90%;
+    border-left: none;
+    border-right: none;
+    overflow: auto;
+}
+
+
+.container-row{
+    display: flex;
+    justify-content: space-between;
+
+}

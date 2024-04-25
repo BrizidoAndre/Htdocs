@@ -2,6 +2,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    height: 4000px;
 }
 
 div {
@@ -68,6 +70,28 @@ div {
 }
 
 .rotate{
-    animation:rotate 1s linear infinite;
+    animation:rotate 10s linear infinite;
     transform-origin: bottom;
+}
+
+
+.triangle{
+    margin-top: 250px;
+    width: 200px;
+    height: 200px;
+    background:blue;
+    clip-path: polygon(50% 0, 50% 0, 100% 100%, 0 100%);
+
+    animation: toSquare .5ms ease-in-out infinite ;
+    animation-direction: alternate;
+}
+
+@keyframes toSquare {
+    from{
+
+    }
+    to{
+        background:yellow;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
 }

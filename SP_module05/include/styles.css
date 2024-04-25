@@ -15,6 +15,7 @@ input[type='checkbox']{
     border: 3px solid black;
 
     padding: 20px 40px;
+    margin:20px 0;
 }
 
 .header-accordion{
@@ -37,7 +38,7 @@ input[type='checkbox']{
 }
 .content-accordion{
     transition: all .5s;
-    max-height: 1500px;
+    max-height: 800px;
     overflow: hidden;
 }
 .container-accordion input:checked ~ .content-accordion{

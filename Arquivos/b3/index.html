@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div id="principal">
+        <div id="texto">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum lorem sed auctor euismod. Proin
+            fringilla mattis rhoncus. Aliquam nec massa sem. Donec pulvinar at ligula vitae malesuada. Nam posuere
+            lobortis libero a ullamcorper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia, nisi ac
+            efficitur condimentum, turpis nisi dignissim risus, sed tincidunt massa ipsum vitae velit. Vivamus dolor ex, tempor
+            vitae blandit ut, sollicitudin non tortor. Vivamus porta, sem eget rutrum elementum, sapien ex tempus dolor, ac
+            scelerisque orci eros non mauris. Nam eu neque at magna iaculis bibendum non eget sem. Integer quis ex nisi.
+        </div>
+        <div id="divImagem">
+            <div> <img src="img/01.jpg" /> </div>
+            <div> <img src="img/02.jpg" /> </div>
+            <div> <img src="img/03.jpg" /> </div>
+            <div> <img src="img/04.jpg" /> </div>
+            <div> <img src="img/05.jpg" /> </div>
+            <div> <img src="img/06.jpg" /> </div>
+            <div> <img src="img/07.jpg" /> </div>
+            <div> <img src="img/08.jpg" /> </div>
+            <div> <img src="img/09.jpg" /> </div>
+            <div> <img src="img/10.jpg" /> </div>
+            <div> <img src="img/11.jpg" /> </div>
+            <div> <img src="img/12.jpg" /> </div>
+        </div>
+    </div>
+    <button id="botao">Remover primeira imagem</button>
+    <script>
+        document.getElementById('botao').addEventListener('click', function () {
+            var divPrincipal = document.getElementById('divImagem');
+            var imagensApagar = divPrincipal.getElementsByTagName('div');
+            if (imagensApagar.length > 0) {
+                divPrincipal.removeChild(imagensApagar[0]);
+            }
+        });
+    </script>
+</body>
+
+</html>
