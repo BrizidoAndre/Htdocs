@@ -1,0 +1,130 @@
+@font-face {
+    font-family: Mont-Medium;
+    src: url("fonts/Montserrat-Medium.ttf");
+}@font-face {
+    font-family: Mont-Regular;
+    src: url("fonts/Montserrat-Regular.ttf");
+}@font-face {
+    font-family: Mont-Bold;
+    src: url("fonts/Montserrat-Bold.ttf");
+}
+:root{
+    --background-home: #c8daff;
+    --background-home-dark: #3c4674;
+    --text: #2c4674;
+}
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+
+    padding: 0;
+}
+
+.container-background{
+    max-width: 414px;
+    min-height: 800px;
+    background: linear-gradient(to bottom right, var(--background-home), var(--background-home-dark));
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 70px 0 0 0 ;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+input[type='radio']{
+    display: none;
+}
+
+
+.container-label{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+#img1:checked ~ .container-label #img1-label{
+    background: var(--background-home-dark);
+}
+#img2:checked ~ .container-label #img2-label{
+    background: var(--background-home-dark);
+}
+
+.label-radio{
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+
+    background: white;
+
+    transition: all .5s;
+}
+
+
+
+h1{
+    font-family: Mont-Regular;
+    font-size: 64px;
+    color: var(--text);
+    margin: 60px 0 ;
+}
+
+
+p{
+    font-size: 18px;
+    font-family: Mont-Regular;
+    color: white;
+}
+
+
+.container-background > p {
+    text-align: center;
+}
+
+
+.img-slider{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    transform: translateY(100%);
+    opacity: 0;
+
+    transition: all .5s;
+}
+
+#img1:checked ~ img:nth-child(6){
+    transform: translateY(0);
+    opacity: 1;
+}
+#img2:checked ~ img:nth-child(7){
+    transform: translateY(0);
+    opacity: 1;
+}
+
+
+.icon-next{
+    display: grid;
+    place-items: center;
+
+    background: var(--background-home-dark);
+
+    position: fixed;
+    bottom: 20px;
+
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    transition: all .25s;
+}
+
+.icon-next:hover{
+    scale: 1.2;
+    rotate: 90deg;
+}

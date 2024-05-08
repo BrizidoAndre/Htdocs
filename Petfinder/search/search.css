@@ -1,0 +1,271 @@
+:root{
+    --dog: #519e8a;
+    --cat: #d1723f;
+
+    --search: #519e8a;
+    --search-background: #cbe0db;
+}
+
+
+.container-background{
+    background: var(--search-background);
+    padding: 0 5%;
+}
+
+
+
+#menu-lateral{
+    display: none;
+}
+
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 40px;
+}
+
+.icon-back{
+    transition: all .4s;
+}
+.icon-back:hover{
+    transform: translateX(-7px);
+}
+
+
+.container-search{
+    width: 100%;
+    height: 50px;
+    border-radius: 40px;
+
+    background: white;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+
+    padding: 0 0 0 20px;
+}
+
+#input-search{
+    outline: none;
+    border: none;
+
+    height: 100%;
+    width: 80%;
+}
+
+
+nav{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 20px;
+}
+
+.nav-button{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 25px;
+
+    border-radius: 40px;
+    width: 45%;
+    height: 50px;
+    background: white;
+
+    padding: 0 0 0 15px;
+
+    text-decoration: none;
+
+    transition: all .4s;
+}
+
+.nav-button:hover{
+    scale: 1.07;
+}
+
+.selected{
+    background: var(--search);
+    color: white;
+}
+
+.container-cards{
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    gap: 20px;
+}
+
+
+.container-card{
+    width: 45%;
+    height: 250px;
+    border-radius: 28px;
+    background: var(--search);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.container-card-bottom{
+    width: 100%;
+    height: 80px;
+    background: white;
+
+    position: absolute;
+    bottom: 0;
+
+    padding: 10px 20px;
+    transition: .5s;
+}
+
+
+.image-card{
+    position: absolute;
+    bottom: 60px;
+}
+
+.container-card-bottom > img{
+    position: absolute;
+
+    bottom:20px;
+    right: 20px;
+}
+
+
+.menu-lateral{
+    width: 100%;
+    height: 100%;
+
+    margin: 2px;
+    border: 2px solid var(--home-background--dark);
+    border-radius: 20px;
+    background: rgba(255,255,255, 0.900);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    position: absolute;
+    transform: translateX(100%);
+
+    transition: all .4s;
+}
+
+.menu-lateral .text-title{
+    margin: 40px;
+}
+
+.icon-menu-close{
+    position: absolute;
+    top: 40px;
+    right: 20px;
+}
+
+.button-lateral{
+    width: 90%;
+    height: 65px;
+
+    border-radius: 30px;
+
+    position: relative;
+
+    text-decoration: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    margin:10px;
+}
+
+.button-lateral .text-button{
+    color: white;
+}
+
+
+.button-lateral:nth-child(3){
+    background: var(--home-background--dark);
+}
+
+.button-lateral:nth-child(4){
+    background: var(--dog);
+}
+
+.button-lateral:nth-child(5){
+    background: var(--cat);
+}
+
+
+.button-lateral img{
+    position: absolute;
+    left: 20px;
+}
+
+#menu-lateral:checked ~ .menu-lateral{
+    transform: translateX(0%);
+}
+
+.label-menu-lateral{
+    cursor: pointer;
+}
+
+
+
+
+
+.circle{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    scale: 0;
+    background: var(--search);
+}
+
+.container-card:hover{
+    background: transparent;
+}
+.container-card > img{
+    transition: all 2.5s;
+}
+.container-card:hover > img{
+    transform: translateY(-20px);
+}
+
+.container-card:hover .circle{
+    scale: 7;
+    background: white;
+    transition: scale .4s, background-color 2s;
+}
+
+.container-card:hover .container-card-bottom{
+    background: var(--search);
+}
+
+.container-card:hover .text-pet-name,
+.container-card:hover .text-breed{
+    color: white;
+}
+
+.container-card:hover .container-card-bottom > img{
+    content: url("../images/1-search/hearthome-white.svg");
+}

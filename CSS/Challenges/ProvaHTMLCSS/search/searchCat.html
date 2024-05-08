@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="A list of sheltered cats available to the user to adopt">
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="search.css">
     <link rel="stylesheet" href="searchCat.css">
@@ -14,23 +15,26 @@
 <input type="checkbox" id="side-menu">
 <main>
     <header>
-        <a href="../index.html"> <img src="1-search/chevron-left.svg" alt=""></a>
+        <a href="../index.html"> <img src="1-search/chevron-left.svg" alt="Icon to return to the Home page"></a>
         <h2>Search</h2>
         <label for="side-menu"></label>
     </header>
 
+
     <div class="search-box">
-        <img src="./1-search/search.svg" alt="">
-        <input type="text">
+        <label for="search">
+            <img src="./1-search/search.svg" alt="A magnifing glass indicating its a search field">
+        </label>
+        <input id="search" type="text">
     </div>
 
     <nav>
-        <a href="search.html" class="nav-button" >
-            <img src="1-search/fa-solid_dog.svg" alt="">
+        <a href="search.html" class="nav-button">
+            <img src="1-search/fa-solid_dog.svg" alt="a dog icon, click to be redirected to the dog`s list">
             <h4 class="text-buttons">Dogs</h4>
         </a>
-        <a href="" class="nav-button" id="nav-button--dog">
-            <img src="1-search/fa-solid_cat_white.svg" alt="">
+        <a href="searchCat.html" class="nav-button" id="nav-button--dog">
+            <img src="1-search/fa-solid_cat_white.svg" alt="a cat icon, click to be redirected to the cat`s list">
             <h4 class="text-buttons">Cats</h4>
         </a>
     </nav>
@@ -43,7 +47,7 @@
             <div class="card-box--bottom">
                 <h3 class="text-name">Ariana</h3>
                 <h3 class="text-dog_race">Graycat</h3>
-                <div class="hearthome" src="" alt=""></div>
+                <div class="hearthome"></div>
             </div>
         </a>
         <a href="" class="card-box">
@@ -52,7 +56,7 @@
             <div class="card-box--bottom">
                 <h3 class="text-name">Remi</h3>
                 <h3 class="text-dog_race">White cat</h3>
-                <div class="hearthome" src="" alt=""></div>
+                <div class="hearthome"></div>
             </div>
         </a>
         <a href="../petProfile/petAlex.html" class="card-box">
@@ -61,7 +65,7 @@
             <div class="card-box--bottom">
                 <h3 class="text-name">Alex</h3>
                 <h3 class="text-dog_race">Siamese</h3>
-                <div class="hearthome" src="" alt=""></div>
+                <div class="hearthome"></div>
             </div>
         </a>
         <a href="" class="card-box">
@@ -70,7 +74,7 @@
             <div class="card-box--bottom">
                 <h3 class="text-name">Zoe</h3>
                 <h3 class="text-dog_race">Persa</h3>
-                <div class="hearthome" src="" alt=""></div>
+                <div class="hearthome"></div>
             </div>
         </a>
     </section>
@@ -78,18 +82,24 @@
     <aside>
         <h2>Menu</h2>
 
-        <a href="../index.html" class="button-side">
-            <img src="1-search/fa-solid_home.svg" alt="">
-            <h4 class="text-buttons">Home</h4>
-        </a>
-        <a href="search.html" class="button-side">
-            <img src="1-search/fa-solid_dog_white.svg" alt="">
-            <h4 class="text-buttons">Dogs</h4>
-        </a>
-        <a href="searchCat.html" class="button-side">
-            <img src="1-search/fa-solid_cat_white.svg" alt="">
-            <h4 class="text-buttons">Cats</h4>
-        </a>
+        <aside>
+            <h2>Menu</h2>
+
+            <a href="../index.html" class="button-side">
+                <img src="1-search/fa-solid_home.svg" alt="A home icon when clicked takes the user to the Home page">
+                <h4 class="text-buttons">Home</h4>
+            </a>
+            <a href="search.html" class="button-side">
+                <img src="1-search/fa-solid_dog_white.svg"
+                     alt="A Dog icon when clicked takes the user to the dog's list">
+                <h4 class="text-buttons">Dogs</h4>
+            </a>
+            <a href="searchCat.html" class="button-side">
+                <img src="1-search/fa-solid_cat_white.svg"
+                     alt="A Cat icon when clicked takes the user to the cat's list">
+                <h4 class="text-buttons">Cats</h4>
+            </a>
+        </aside>
     </aside>
 
 </main>

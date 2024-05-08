@@ -6,17 +6,18 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles.css">
+    <meta name="PetFinders'home page">
     <title>Document</title>
 </head>
 <body>
-<input type="radio" name="image-background" checked id="img1">
-<input type="radio" name="image-background" id="img2">
+<input  type="radio" name="image-background"  checked id="img1">
+<input  type="radio" name="image-background" id="img2">
 
 <main>
 
     <div class="container-label">
-        <label for="img1"></label>
-        <label for="img2"></label>
+        <label tabindex="0" for="img1"></label>
+        <label tabindex="1" for="img2"></label>
     </div>
 
     <h1>petfinder</h1>
@@ -24,11 +25,11 @@
     <p>Adopt the perfect pet of more than 700 animal shelters...</p>
 
 
-    <img src="images/slide1.png" class="image-background1"></img>
-    <img src="images/slide2.png" class="image-background2"></img>
+    <img src="images/slide1.png" class="image-background1" alt="Slider of a Boy holding a abandoned puppy"></img>
+    <img src="images/slide2.png" class="image-background2" alt="Slider of a Girl holding another abandoned puppy"></img>
 
-    <a id='icon' href="search/search.html">
-        <img  src="images/chevron-right.svg" alt="Ícone para entrar no App. Aperte para seguir com a  página">
+    <a tabindex="2" id='icon' href="search/search.html">
+        <img  src="images/chevron-right.svg" alt="Icon to enter the app. Click to navigate and see others sheltered animals">
     </a>
 
 </main>

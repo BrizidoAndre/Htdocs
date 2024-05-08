@@ -1,102 +1,120 @@
-*{
-    box-sizing: border-box;
-}
-
-body{
+* {
     margin: 0;
+    padding: 0;
 }
 
-:root{
-    --bar-width: 60px;
-    --bar-heigth: 8px;
-    --hamburger-gap:6px;
-    --hamburger-margin:8px;
-
-    --foreground:#333;
-    --background:white;
-
-    --animation-timing:250ms ease-in-out;
-
-    --hamburger-height: calc(var(--bar-heigth) * 3 + var(--hamburger-gap) * 2);
+#menu-lateral {
+    display: none;
 }
 
-.hamburger-menu{
-    --x-width: calc(var(--hamburger-height) * 1.41421);
+
+
+header {
+    width: 100%;
+    background: brown;
+    display: flex;
+    justify-content: flex-end;
+
+    position: fixed;
+}
+
+label {
+    width: 50px;
+    height: 50px;
+    content: url("hamburguer-menu.svg");
+}
+
+nav{
     display: flex;
     flex-direction: column;
-    gap: var(--hamburger-gap);
+    width: 80%;
 
-    width: max-content;
+    padding: 20px;
+
     position: absolute;
-    top: var(--hamburger-margin);
-    left: var(--hamburger-margin);
+    right: 0;
+    top: 100%;
+    transform: translateX(100%);
 
-    z-index: 2;
-    cursor:pointer;
-}
+    background: brown;
 
-.hamburger-menu:has(input:checked){
-    --foreground: white;
-    --background: #333;
-}
-
-.hamburger-menu::before,
-.hamburger-menu::after,
-.hamburger-menu input{
-    content:'';
-    width: var(--bar-width);
-    height: var(--bar-heigth);
-    background-color: var(--foreground);
-
-    transform-origin: left center;
-
-    border-radius: 900px;
-    transition: opacity var(--animation-timing), width var(--animation-timing),rotate var(--animation-timing), translaate var(--animation-timing), background-color var(--animation-timing);
-}
-
-.hamburger-menu input{
-    appearance: none;
-    padding: 0;
-    margin: 0;
-    outline: none;
-    pointer-events: none;
+    transition: all .4s;
 
 }
 
-.hamburger-menu:has(input:checked)::before{
-    rotate: 45deg;
-    width: var(--x-width);
-    translate: 0 calc(var(--bar-heigth) / -2);
-}
-.hamburger-menu:has(input:checked)::after{
-    rotate: -45deg;
-    width: var(--x-width);
-    translate: 0 calc(var(--bar-heigth) / 2);
-}
+nav a{
+    width: fit-content;
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    transition: all .4s;
 
-.hamburger-menu input:checked{
-    width: 0;
-    opacity: 0;
+    border-bottom: 2px solid transparent;
 }
 
-
-
-aside{
-    transition: translate var(--animation-timing);
-    translate: -100%;
-
-    padding: 0.5rem 1rem;
-    padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
-    background-color: var(--foreground);
-
-    color: var(--background);
-    max-width: 10rem;
-
-    min-height: 100vh;
-
+nav a:hover{
+    border-bottom: 2px solid white;
 }
 
+#menu-lateral:checked ~ header nav{
+    transform: translateX(0);
+}
 
-.hamburger-menu:has(input:checked) + .sidebar {
-    translate: 0;
+@media (min-width: 800px) {
+
+    label{
+        display: none;
+    }
+
+    nav{
+        position: initial;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 20px;
+        transform: translateX(0);
+    }
+}
+
+main{
+    display: grid;
+    place-items: center;
+    height: 500px;
+    background: lightblue;
+}
+
+.container{
+    display: inline;
+
+    border: 1px solid red;
+}
+
+main h1 {
+    font-family: "Comic Sans MS", serif;
+    font-size: 64px;
+
+    border-right: 25px solid yellow;
+
+    width: 100%;
+
+    overflow: hidden;
+    white-space: nowrap;
+
+    animation: none;
+}
+
+h1:hover{
+    user-select: none;
+    animation:
+            typing 2s steps(15) alternate-reverse infinite,
+            cursor .4s step-end infinite alternate;
+}
+
+@keyframes cursor{
+    50%{border-color: transparent}
+}
+
+@keyframes typing {
+    from{width: 0}
 }
