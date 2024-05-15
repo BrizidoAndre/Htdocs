@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="67672e6f-8d9e-4c83-9976-e2ba0d76fe1c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../CSS/005Grid/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CSS/005Grid/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/fonts/verdana-font-family/verdana-bold-italic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/fonts/verdana-font-family/verdana-bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/fonts/verdana-font-family/verdana.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/banner-01.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/banner-02.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/banner-03.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/footer-02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/footer-fim.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/gal-01.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/gal-03.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/gal-04.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/gal-05.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/gal-06.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/icons/arrow-up-card.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/icons/arrow-up-icon-small.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/icons/arrow-up-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/icons/arrow-up-svg.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/icons/button-background.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/icons/facebook.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/icons/favicon-byte-box.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/icons/hamburguer-menu.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/icons/instagram.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/icons/logo-byte-cafe.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/icons/youtube.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/logo-byte-box.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/map.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/ser-cafes-04.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/ser-delivery-06.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/ser-estudo-03.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/ser-gamer-01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/ser-office-02.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/ser-salgados-05.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mídias/img/sobre-img.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/.idea/XX_modulo3-AL.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/.idea/php.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/.idea/yiiframeworksettings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/fonts/verdana-font-family/verdana-bold-italic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/fonts/verdana-font-family/verdana-bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/fonts/verdana-font-family/verdana.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/banner-01.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/banner-02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/banner-03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/footer-02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/footer-fim.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/gal-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/gal-03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/gal-04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/gal-05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/gal-06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/icons/arrow-up-card.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/icons/arrow-up-icon-small.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/icons/arrow-up-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/icons/arrow-up-svg.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/icons/button-background.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/icons/facebook.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/icons/favicon-byte-box.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/icons/hamburguer-menu.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/icons/instagram.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/icons/logo-byte-cafe.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/icons/youtube.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/logo-byte-box.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/map.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/ser-cafes-04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/ser-delivery-06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/ser-estudo-03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/ser-gamer-01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/ser-office-02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/ser-salgados-05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/mídias/img/sobre-img.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL - Copia/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/.idea/XX_modulo3-AL.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/.idea/php.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/fonts/verdana-font-family/verdana-bold-italic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/fonts/verdana-font-family/verdana-bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/fonts/verdana-font-family/verdana.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/banner-01.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/banner-02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/banner-03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/footer-02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/footer-fim.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/gal-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/gal-03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/gal-04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/gal-05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/gal-06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/icons/arrow-up-card.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/icons/arrow-up-icon-small.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/icons/arrow-up-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/icons/arrow-up-svg.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/icons/button-background.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/icons/facebook.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/icons/favicon-byte-box.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/icons/hamburguer-menu.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/icons/instagram.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/icons/logo-byte-cafe.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/icons/youtube.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/logo-byte-box.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/map.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/ser-cafes-04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/ser-delivery-06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/ser-estudo-03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/ser-gamer-01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/ser-office-02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/ser-salgados-05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/mídias/img/sobre-img.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../XX_modulo3-AL/styles.css" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2gEqJHh8ohpwglQbsv6VZtRhG29" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/xampp/htdocs/XX_modulo-AL",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\XX_modulo-AL" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-php-predefined-ba97393d7c68-b4dcf6bb9de9-com.jetbrains.php.sharedIndexes-PS-233.13135.108" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="67672e6f-8d9e-4c83-9976-e2ba0d76fe1c" name="Changes" comment="" />
+      <created>1715273010554</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1715273010554</updated>
+      <workItem from="1715273011778" duration="13968000" />
+      <workItem from="1715620858015" duration="13614000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

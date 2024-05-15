@@ -1,0 +1,42 @@
+*{
+    margin:0;
+}
+
+/*.red{*/
+/*    min-height: 200px;*/
+
+/*    border: 1px solid purple;*/
+/*}*/
+
+/*.red img{*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    object-fit: cover;*/
+/*}*/
+
+body{
+    padding: 0;
+}
+.container-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-rows:  repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 10px 10px;
+    justify-content: space-around;
+}
+
+.blue{
+    /*min-height: 100px;*/
+    background: rgba(61, 16, 115, 0.67);
+}
+
+.blue:nth-child(2){
+    text-align: justify;
+}
+
+.background{
+    background-image: url("https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/009.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
