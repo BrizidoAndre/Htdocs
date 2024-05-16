@@ -71,4 +71,5 @@ class Reviewevaluation extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'userId']);
     }
+
 }

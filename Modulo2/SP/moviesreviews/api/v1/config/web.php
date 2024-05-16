@@ -58,15 +58,14 @@ $config = [
                     'class' => \yii\rest\UrlRule::class,
                     'pluralize' => false,
                     'controller' => [
-                        'movies'
+                        ''
                     ],
-
                 ],
-                'GET movies/<id>' => 'movies/view',
-                'GET artists/<id>' => 'artists/view',
+                'GET movies/<id>' => 'movies/get',
+                'GET artists/<id>' => 'artists/get',
 
 
-                'POST reviews/<idMovie>' => 'reviews/view',
+                'POST reviews/<idMovie>' => 'reviews/post',
                 'GET reviews/<movieId>' => 'reviews/get',
                 'DELETE reviews/<movieId>' => 'reviews/delete',
 

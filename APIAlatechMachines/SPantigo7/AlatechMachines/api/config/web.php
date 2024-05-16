@@ -11,7 +11,7 @@ $config = [
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'components' => [
         'request' => [
@@ -55,9 +55,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 [
-
-
-                'class' => \yii\rest\UrlRule::class,
+                    'class' => \yii\rest\UrlRule::class,
                     'pluralize' => false,
                     'controller' => [
                         'user'

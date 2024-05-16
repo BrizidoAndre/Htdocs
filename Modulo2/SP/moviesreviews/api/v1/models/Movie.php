@@ -83,7 +83,6 @@ class Movie extends \yii\db\ActiveRecord
 
                 return Yii::getAlias("@web") . '/movies/' . $this->id;
             },
-//            'credits'
 
         ];
     }

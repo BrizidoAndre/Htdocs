@@ -62,7 +62,8 @@ class Accesstoken extends \yii\db\ActiveRecord
     }
 
 
-    public function createToken(){
+    public function createToken()
+    {
         $header = [
             'typ' => 'JWT',
             'cod' => 'sha256'
@@ -78,18 +79,33 @@ class Accesstoken extends \yii\db\ActiveRecord
 
         $payload = base64_encode(json_encode($payload));
 
-        $signature = hash_hmac('sha256',$header . '.' . $payload, 'banana' );
+        $signature = hash_hmac('sha256', $header . '.' . $payload, 'banana');
 
         $this->tokenString = $header . '.' . $payload . '.' . $signature;
     }
 
 
-    public function createAccessToken($id){
+    public function createAccessToken($id)
+    {
         $this->userId = $id;
 
         date_default_timezone_set('America/Sao_Paulo');
         $this->creationDate = date('Y-m-d H:i:s');
         $this->createToken();
 
+    }
+
+
+    public function validateToken()
+    {
+        $tokenTime = date_create_from_format('Y-m-d H:i:s', $this->creationDate);
+        $now = new \DateTime();
+        $interval = date_diff($tokenTime, $now);
+
+        $minutes = $interval->days * 24 * 60;
+        $minutes += $interval->h * 60;
+        $minutes += $interval->i;
+
+        return $minutes < 60;
     }
 }

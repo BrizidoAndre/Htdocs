@@ -3,12 +3,9 @@
 namespace app\controllers;
 
 use app\bases\JsonController;
-use app\models\Artist;
-use app\models\Credit;
-use app\models\Genre;
+use app\models\bases\MovieSingle;
 use app\models\Movie;
 use yii\data\ActiveDataProvider;
-use yii\web\BadRequestHttpException;
 use yii\web\NotFoundHttpException;
 
 class MoviesController extends JsonController
@@ -27,10 +24,10 @@ class MoviesController extends JsonController
         return \Yii::$app->user->identity;
         $query = Movie::find();
 
-        if($sortDir === 'desc'){
+        if ($sortDir === 'desc') {
             $sortDirection = SORT_DESC;
         }
-        if($sortDir === 'asc'){
+        if ($sortDir === 'asc') {
             $sortDirection = SORT_ASC;
         }
 
@@ -49,12 +46,11 @@ class MoviesController extends JsonController
     }
 
 
-    public function actionView($id)
+    public function actionGet($id)
     {
-
-        $movie = Movie::findOne(['id' => $id]);
+        $movie = MovieSingle::findOne(['id' => $id]);
         if (!$movie) {
-            throw  new NotFoundHttpException('invalid movie id');
+            throw  new NotFoundHttpException('Invalid movie id');
         }
 
         return $movie;

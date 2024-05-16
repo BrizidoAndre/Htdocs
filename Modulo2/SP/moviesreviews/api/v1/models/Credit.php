@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\BaseUrl;
+use yii\web\UrlRule;
 
 /**
  * This is the model class for table "credit".
@@ -45,11 +47,17 @@ class Credit extends \yii\db\ActiveRecord
         return [
             'artistId',
             'artist' => function (){
-            return Artist::findOne(['id' => $this->artistId])->name;
+            return $this->artist->name;
             },
-            'movieId',
-            'roleId',
-            'movie'
+            'role' => function(){
+            return $this->role->title;
+            },
+            'photoUrl' => function(){
+            return BaseUrl::base(true) . '/media/' . $this->artist->photoUrl;
+            },
+            'singlePageUrl' => function(){
+            return BaseUrl::base(true) . '/artists/' .  $this->artistId;
+            }
         ];
     }
 

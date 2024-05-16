@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\BaseUrl;
 
 /**
  * This is the model class for table "artist".
@@ -39,38 +40,20 @@ class Artist extends \yii\db\ActiveRecord
 
     public function fields()
     {
-
-        $fields =  parent::fields();
-
-
-        $fields['singlePage'] = function (){
-                return Yii::getAlias("@web") . '/artists/' . $this->id;
-        };
-
-
-        $fields['moviesCount'] = function (){
-            $credits = Credit::findAll(['artistId' => $this->id]);
-
-            return count($credits);
-        };
-
-        $fields['movies'] = function(){
-            $credits = Credit::findAll(['artistId' => $this->id]);
-
-            $movies = [];
-
-            foreach ($credits as $credit) {
-                $newMovie = Movie::findOne(['id' => $credit->movieId]);
-
-                if($newMovie){
-                    unset($newMovie->synopsis);
-                    $movies[] = $newMovie;
-                }
+        return [
+            'id',
+            'name',
+            'photoUrl' => function () {
+                return BaseUrl::base(true) . '/media/' . $this->photoUrl;
+            },
+            'singlePage' => function () {
+                return BaseUrl::base(true) . '/artists/' . $this->id;
+            },
+            'moviesCount' => function () {
+                    $movies = Credit::findAll(['artistId' => $this->id]);
+                return count($movies);
             }
-            return $movies;
-        };
-
-        return $fields;
+        ];
     }
 
     /**
