@@ -1,0 +1,91 @@
+<?php
+
+namespace app\models;
+
+use Yii;
+use yii\base\NotSupportedException;
+use yii\web\ForbiddenHttpException;
+use yii\web\IdentityInterface;
+
+/**
+ * This is the model class for table "user".
+ *
+ * @property int $id
+ * @property string $username
+ * @property string $email
+ * @property string $password
+ * @property string $accessToken
+ */
+class User extends \yii\db\ActiveRecord implements IdentityInterface
+{
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'user';
+    }
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['username', 'email', 'password', 'accessToken'], 'required'],
+            [['username', 'email'], 'string', 'max' => 255],
+            [['password'], 'string', 'max' => 512],
+            [['accessToken'], 'string', 'max' => 1024],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => 'Username',
+            'email' => 'Email',
+            'password' => 'Password',
+            'accessToken' => 'Access Token',
+        ];
+    }
+
+    public static function findIdentity($id)
+    {
+        return self::findOne(['id' => $id]);
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        throw new NotSupportedException();
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getAuthKey()
+    {
+//        throw new ForbiddenHttpException();
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        throw new NotSupportedException();
+    }
+
+    public function validatePassword($password)
+    {
+        return $this->password === $password;
+    }
+
+    public static function findByUsername($username)
+    {
+        return self::findOne(['username' => $username]);
+    }
+}
