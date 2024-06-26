@@ -3,8 +3,10 @@
 namespace app\controllers;
 
 use Yii;
+use yii\db\Exception;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
@@ -20,14 +22,22 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout'],
+                'only' => ['about', 'contact', 'logout'],
                 'rules' => [
                     [
                         'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
+                    [
+                        'actions' => ['index', 'login'],
+                        'allow' => true,
+                        'roles' => ['?']
+                    ]
                 ],
+                'denyCallback' => function ($rule, $action) {
+                    throw new ForbiddenHttpException('You are not allowed to access this page');
+                }
             ],
             'verbs' => [
                 'class' => VerbFilter::class,
@@ -123,6 +133,12 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        return $this->render('about');
+        try {
+            return $this->render('about');
+
+        } catch (\Exception $e) {
+            throw new ForbiddenHttpException();
+        }
+
     }
 }
