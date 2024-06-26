@@ -1,0 +1,28 @@
+main{
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.container-flipper{
+    width: 200px;
+    height: 300px;
+    border: 1px solid red;
+}
+
+.container-flipper input{
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.flipper{
+    width: 100%;
+    height: 100%;
+}
+
+.flipper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
