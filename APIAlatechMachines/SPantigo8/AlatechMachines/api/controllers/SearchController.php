@@ -1,5 +1,6 @@
 <?php
 
+
 namespace app\controllers;
 
 use app\Bases\JsonController;
@@ -17,7 +18,8 @@ use yii\web\NotFoundHttpException;
 class SearchController extends JsonController
 {
 
-    public function actionSearch($component, $pageSize = 20){
+    public function actionSearch($component, $pageSize = 20)
+    {
 
         $query = $this->verifyComponent($component);
 
@@ -30,9 +32,10 @@ class SearchController extends JsonController
 
     }
 
-    public function actionName($component, $q, $pageSize = 20){
+    public function actionName($component, $q, $pageSize = 20)
+    {
 
-        $query = $this->verifyComponent($component,$q);
+        $query = $this->verifyComponent($component, $q);
 
         return new ActiveDataProvider([
             "query" => $query,
@@ -45,24 +48,25 @@ class SearchController extends JsonController
 
 
 //    method for verifyng if the components is right and return a list to the pre-determined component
-    function verifyComponent($component, $name=null){
-        switch ($component){
+    function verifyComponent($component, $name = null)
+    {
+        switch ($component) {
             case'motherboards':
-                return $name? Motherboard::find()->where(['LIKE', 'name', $name]) : Motherboard::find();
+                return $name ? Motherboard::find()->where(['LIKE', 'name', $name]) : Motherboard::find();
             case'processors':
-                return $name? Processor::find()->where(['LIKE', 'name', $name]) : Processor::find();
+                return $name ? Processor::find()->where(['LIKE', 'name', $name]) : Processor::find();
             case'ram-memories':
-                return $name? Rammemory::find()->where(['LIKE', 'name', $name]) : Rammemory::find();
+                return $name ? Rammemory::find()->where(['LIKE', 'name', $name]) : Rammemory::find();
             case'storage-devices':
-                return $name? Storagedevice::find()->where(['LIKE', 'name', $name]) : Storagedevice::find();
+                return $name ? Storagedevice::find()->where(['LIKE', 'name', $name]) : Storagedevice::find();
             case'graphic-cards':
-                return $name? Graphiccard::find()->where(['LIKE', 'name', $name]) : Graphiccard::find();
+                return $name ? Graphiccard::find()->where(['LIKE', 'name', $name]) : Graphiccard::find();
             case'power-supplies':
-                return $name? Powersupply::find()->where(['LIKE', 'name', $name]) : Powersupply::find();
+                return $name ? Powersupply::find()->where(['LIKE', 'name', $name]) : Powersupply::find();
             case'machines':
-                return $name? Machine::find()->where(['LIKE', 'name', $name]) : Machine::find();
+                return $name ? Machine::find()->where(['LIKE', 'name', $name]) : Machine::find();
             case'brands':
-                return $name? Brand::find()->where(['LIKE', 'name', $name]) : Brand::find();
+                return $name ? Brand::find()->where(['LIKE', 'name', $name]) : Brand::find();
             default:
                 throw  new NotFoundHttpException();
         }

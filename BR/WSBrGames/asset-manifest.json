@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/BR/WSBrGames/static/css/main.60997e14.css",
+    "main.js": "/BR/WSBrGames/static/js/main.6a80a85b.js",
+    "index.html": "/BR/WSBrGames/index.html",
+    "main.60997e14.css.map": "/BR/WSBrGames/static/css/main.60997e14.css.map",
+    "main.6a80a85b.js.map": "/BR/WSBrGames/static/js/main.6a80a85b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.60997e14.css",
+    "static/js/main.6a80a85b.js"
+  ]
+}

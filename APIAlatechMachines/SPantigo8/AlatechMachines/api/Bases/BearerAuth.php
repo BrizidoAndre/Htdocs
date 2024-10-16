@@ -12,11 +12,15 @@ class BearerAuth extends HttpBearerAuth
     public function handleFailure($response)
     {
         if(\Yii::$app->request->headers->get('Authorization')){
-            throw new ForbiddenHttpException('Token inválido');
+            \Yii::$app->response->data = [
+                'message' => 'Token inválido'
+            ];
+            return null;
         }
 
-        throw new UnauthorizedHttpException('Necessário estar autenticado no sistema');
-
+        \Yii::$app->response->data = [
+            'message' => 'Token inválido'
+        ];
     }
 
 }

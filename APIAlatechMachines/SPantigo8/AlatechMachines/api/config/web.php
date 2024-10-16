@@ -1,5 +1,7 @@
 <?php
 
+use app\modules\guest\Module;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -20,7 +22,7 @@ $config = [
             ]
         ],
         'response' => [
-            'format' => \yii\web\Response::FORMAT_JSON
+            'format' => \yii\web\Response::FORMAT_JSON,
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -73,7 +75,10 @@ $config = [
                 'POST machines' => 'machine/post',
                 'DELETE machines/<id>' => 'machine/delete',
                 'POST verify-compatibility' => 'machine/verify',
-                'PUT machines/<id>' => 'machine/put'
+                'PUT machines/<id>' => 'machine/put',
+
+
+                'GET v1/oi' =>  'api/v1/teste/oi'
 
             ],
         ],
