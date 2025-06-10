@@ -1,0 +1,16 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.person{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width: calc(1300px/6);
+    height: 256px;
+    background: url('spritestrip.avif') no-repeat;
+    background-position-x: -20px;
+}

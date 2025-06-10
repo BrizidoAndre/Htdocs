@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+<header>
+    <h1>Welcome Lyon</h1>
+    <nav>
+        <ul>
+            <li>
+                <a href="">
+                    Link
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    Link
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    Link
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <section id="banner">
+        <picture>
+            <source srcset="assets/images/cover-low-res.jpg" media="(max-width: 760px)"/>
+            <img src="assets/images/cover.jpg" alt="Path between houses in a small town">
+        </picture>
+        <div class="container-button-action">
+                <span class="hover-effect-action"></span>
+            <button class="btn-action" id='btn-action'>
+                Call to Action
+            </button>
+        </div>
+    </section>
+    <section id="map">
+        <h2>Map Attrations</h2>
+        <div class="container-map">
+            <picture>
+                <source srcset="assets/images/lyon-map-low-res.jpg" media="(max-width: 760px)"/>
+                <img src="assets/images/lyon-map.jpg" alt="map view from above Lyon">
+            </picture>
+            <div class="container-cards">
+                <div class="card">
+                    <div class="card-image">
+                        <picture>
+                            <source srcset="assets/images/attraction-a-low-res.jpg" media="(max-width: 760px)"/>
+                            <img src="assets/images/attraction-a.jpg" alt="Drone view from Parc de la Tête d'Or">
+                        </picture>
+                    </div>
+                    <p>Parc de la Tête d'Or</p>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <picture>
+                            <source srcset="assets/images/attraction-b-low-res.jpg" media="(max-width: 760px)"/>
+                            <img src="assets/images/attraction-b.jpg" alt="Pedestrian view from street">
+                        </picture>
+                    </div>
+                    <p>Street</p>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <picture>
+                            <source srcset="assets/images/attraction-c-low-res.jpg" media="(max-width: 760px)"/>
+                            <img src="assets/images/attraction-c.jpg" alt="River">
+                        </picture>
+                    </div>
+                    <p>River</p>
+                </div>
+                <a href="" class="card">
+                    <div class="card-image">
+                        <picture>
+                            <source srcset="assets/images/all-attractions-low-res.jpg" media="(max-width: 760px)"/>
+                            <img src="assets/images/all-attractions.jpg" alt="Other attractions">
+                        </picture>
+                    </div>
+                    <p>All attractions</p>
+                </a>
+            </div>
+            <div class="place-map" id="place-a">A</div>
+            <div class="place-map" id="place-b">B</div>
+            <div class="place-map" id="place-c">C</div>
+        </div>
+    </section>
+    <video id="video" autoplay muted src="assets/videos/lyon.mp4">
+    </video>
+    <section id="essential">
+        <div class="container-half">
+            <h3>Essential Information</h3>
+            <p>Contact: 04 72 10 30 30</p>
+            <p>Address: Mairie de Lyon, 69205 Lyon cedex 01</p>
+            <button class="button button-speak">Read it Loud</button>
+        </div>
+        <div class="container-half">
+            <h3>Latest Events</h3>
+            <div class="container-latest">
+                <div class="card card-latest">
+                    <div class="card-image">
+                        <picture>
+                            <source srcset="assets/latest-events-images/worldskills-2024-p-low-res.png"
+                                    media="(max-width: 760px)"/>
+                            <img src="assets/latest-events-images/worldskills-2024-p.jpg"
+                                 alt="Promotion image for world skills">
+                        </picture>
+                    </div>
+                    <p>Lyon accueille la finale mondiale des Worldskills 2024
+                    </p>
+                </div>
+                <div class="card card-latest">
+                    <div class="card-image">
+                        <picture>
+                            <source srcset="assets/latest-events-images/fda-p-low-res.jpg" media="(max-width: 760px)"/>
+                            <img src="assets/latest-events-images/fda-p.jpg" alt="Promotion image for associations">
+                        </picture>
+                    </div>
+                    <p>Forum des associations 2024
+                    </p>
+                </div>
+                <div class="card card-latest">
+                    <div class="card-image">
+                        <picture>
+                            <source srcset="assets/latest-events-images/lyon-kayak-p-0-low-res.jpg"
+                                    media="(max-width: 760px)"/>
+                            <img src="assets/latest-events-images/lyon-kayak-p-0.jpg" alt="Kayak image">
+                        </picture>
+                    </div>
+                    <p>Kayak
+                    </p>
+                </div>
+                <div class="card card-latest">
+                    <div class="card-image">
+                        <picture>
+                            <source srcset="assets/latest-events-images/semaine-bleue-2024-p-low-res.jpg"
+                                    media="(max-width: 760px)"/>
+                            <img src="assets/latest-events-images/semaine-bleue-2024-p.jpg" alt="Semaine image">
+                        </picture>
+                    </div>
+                    <p>
+                        La semaine bleue 2024
+                    </p>
+                </div>
+                <div class="card card-latest">
+                    <div class="card-image">
+                        <picture>
+                            <source srcset="assets/latest-events-images/village-des-metiers-p-low-res.jpg"
+                                    media="(max-width: 760px)"/>
+                            <img src="assets/latest-events-images/village-des-metiers-p.jpg"
+                                 alt="Village des metiers image">
+                        </picture>
+                    </div>
+                    <p>
+                        Le Village des Métiers
+                    </p>
+                </div>
+                <div class="card card-latest">
+                    <div class="card-image">
+                        <picture>
+                            <source srcset="assets/latest-events-images/journees_portes_ouvertes_entreprises_2023_p-low-res.jpg"
+                                    media="(max-width: 760px)"/>
+                            <img src="assets/latest-events-images/journees_portes_ouvertes_entreprises_2023_p.jpg"
+                                 alt="Village des metiers image">
+                        </picture>
+                    </div>
+                    <p>
+                        Les Journées Portes Ouvertes des Entreprises
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="other-information">
+        <h2>Other Information</h2>
+        <div class="container-tab">
+            <div class="tab">
+                Tab 1
+            </div>
+            <div class="tab">
+                Tag 2
+            </div>
+            <div class="tab">
+                Tag 3
+            </div>
+        </div>
+        <div class="container-tab-content" id="tab-content-1">
+            <p>This is the content for Tab 1.</p>
+        </div>
+        <div class="container-tab-content" id="tab-content-2">
+            <p>This is the content for Tab 2.</p>
+        </div>
+        <div class="container-tab-content" id="tab-content-3">
+            <p>This is the content for Tab 3.</p>
+        </div>
+    </section>
+    <section id="contact">
+        <form action="">
+            <fieldset>
+                <legend><h2>Contact Us</h2></legend>
+                <div class="container-input">
+                    <label for="first-name">First name</label>
+                    <input type="text" id="first-name" class="contact-input">
+                </div>
+                <div class="container-input">
+                    <label for="last-name">Last name</label>
+                    <input type="text" id="last-name" class="contact-input">
+                </div>
+                <div class="container-input">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="contact-input">
+                </div>
+                <div class="container-input">
+                    <label for="phone">Phone</label>
+                    <input type="text" id="phone" class="contact-input">
+                </div>
+            </fieldset>
+        </form>
+    </section>
+
+    <footer>
+        <div class="container-footer">
+            <ul class="container-footer-content">
+                <li><a href="">About us</a></li>
+                <li><a href="">Getting Here</a></li>
+                <li><a href="">FAQs</a></li>
+            </ul>
+            <ul class="container-footer-content">
+                <li><a href="">Places to Stay</a></li>
+                <li><a href="">Things to Do</a></li>
+                <li><a href="">Event Calendar</a></li>
+            </ul>
+            <ul class="container-footer-content">
+                <li><a href="">Restaurants</a></li>
+                <li><a href="">Things Nightlife</a></li>
+                <li><a href="">Shopping</a></li>
+            </ul>
+            <ul class="container-footer-content">
+                <li><a href="">Plan Your Trip</a></li>
+                <li><a href="">Contact Us</a></li>
+                <li><a href="">Newsletter Signup</a></li>
+            </ul>
+        </div>
+        <span>@ 2024. All Rights Reserved.</span>
+    </footer>
+</main>
+<script src="script.js"></script>
+</body>
+</html>

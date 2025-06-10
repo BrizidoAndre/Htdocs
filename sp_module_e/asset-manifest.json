@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/sp_module_e/static/css/main.c1ff4789.css",
+    "main.js": "/sp_module_e/static/js/main.3b871e86.js",
+    "static/js/453.d810b04c.chunk.js": "/sp_module_e/static/js/453.d810b04c.chunk.js",
+    "static/media/beautiful-view-in-lyon.jpg": "/sp_module_e/static/media/beautiful-view-in-lyon.a20f8c4f57c67fdfc890.jpg",
+    "static/media/tour-metalique-lyon.jpg": "/sp_module_e/static/media/tour-metalique-lyon.70573829972b66014072.jpg",
+    "static/media/place-bellecour-lyon.jpg": "/sp_module_e/static/media/place-bellecour-lyon.50ee2dd858790b3a706b.jpg",
+    "static/media/basilique-notre-dame-de-fourviere-lyon.jpg": "/sp_module_e/static/media/basilique-notre-dame-de-fourviere-lyon.4a6e951909d1f1020cdb.jpg",
+    "index.html": "/sp_module_e/index.html",
+    "main.c1ff4789.css.map": "/sp_module_e/static/css/main.c1ff4789.css.map",
+    "main.3b871e86.js.map": "/sp_module_e/static/js/main.3b871e86.js.map",
+    "453.d810b04c.chunk.js.map": "/sp_module_e/static/js/453.d810b04c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c1ff4789.css",
+    "static/js/main.3b871e86.js"
+  ]
+}

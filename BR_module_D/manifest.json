@@ -1,0 +1,9 @@
+{
+  "name": "Meu app Vue",
+  "short_name": "AppVue",
+  "description": "Um aplicativo incrível feito com Vue.js",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4DBA87"
+}

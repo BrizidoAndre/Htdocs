@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+<div class="toast-message">
+    Message
+    <span class="sizing"></span>
+</div>
+<button class="btn">Toast</button>
+<button class="button">Banana</button>
+<nav>
+    <a href="" >Home</a>
+    <a href="">Comments</a>
+    <a href="">Reviews</a>
+    <a href="">Products</a>
+</nav>
+<script>
+    let btn = document.querySelector('button');
+    let toast = document.querySelector('.toast-message');
+    let line = document.querySelector('.toast-message span');
+    let idTimeOut;
+    btn.addEventListener('click', () => {
+        if (toast.classList.contains('toast-show')) {
+            line.classList.remove('sizing');
+            void line.offsetWidth;
+            line.classList.add('sizing')
+        }
+        clearTimeout(idTimeOut);
+        toast.classList.add('toast-show')
+        toast.classList.remove('toast-hide')
+        line.classList.add('sizing')
+        idTimeOut = setTimeout(() => {
+            toast.classList.remove('toast-show');
+            toast.classList.add('toast-hide');
+            line.classList.remove('sizing')
+        }, 3500)
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.pagination{
+    position: absolute;
+    left: 50%;
+    translate: -50%;
+    bottom:20px;
+}
+
+.pagination ul{
+    list-style-type:none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pagination li{
+    width: 50px;
+    aspect-ratio: 1;
+    padding:10px;
+    background: skyblue;
+    color: white;
+    display: grid;
+    place-items: center;
+}
+
+.circle{
+    border-radius: 50%;
+}
+.rounded{
+    border-radius: 4px;
+}

@@ -1,0 +1,167 @@
+:root {
+    --white: #fbfbfb;
+    --black: #333a3f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: grid;
+    place-items: center;
+    background: var(--white);
+}
+
+.toast-message {
+    padding: 20px 40px;
+    background: #0d6efd;
+    display: inline-block;
+    margin: 20px;
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    transform: translateX(-200%);
+    transition: all .4s;
+}
+
+.toast-message span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    height: 2px;
+    background: green;
+}
+
+.sizing {
+    width: 100%;
+    animation: reducing 3s .5s linear forwards;
+}
+
+.toast-hide span {
+    width: 0;
+}
+
+@keyframes reducing {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0;
+    }
+}
+
+@keyframes toastShow {
+    from {
+        transform: translateX(-200%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes toastHide {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-200%);
+    }
+}
+
+.toast-show {
+    animation: toastShow .5s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
+}
+
+.toast-hide {
+    animation: toastHide .5s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    background: #0d6efd;
+    box-shadow: 0 -1px 0 0 #60a1ff, 0 0 4px 2px hsla(0, 0%, 0%, .1), 0 2px 2px 0 hsla(0, 0%, 0%, .2);
+    border-radius: 6px;
+    color: var(--white);
+}
+
+a {
+    display: inline-block;
+    position: relative;
+    border-radius: 9999px;
+    padding: 10px 20px;
+    color: var(--white);
+    background: var(--black);
+    overflow: hidden;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: gold;
+    color: var(--white);
+    width: 100%;
+    height: 100%;
+    border-radius: 99px;
+    display: grid;
+    place-items: center;
+    transition: .3s;
+}
+
+a:nth-child(1)::after {
+    content: 'Home';
+}
+
+a:nth-child(2)::after {
+    content: 'Comments';
+}
+
+a:nth-child(3)::after {
+    content: 'Reviews';
+}
+
+a:nth-child(4)::after {
+    content: 'Products';
+}
+
+a:hover {
+    &::after {
+        top: 0;
+    }
+}
+
+.button {
+    position: relative;
+    display: grid;
+    place-items: center;
+    background: rebeccapurple;
+    color: #e8e8e8;
+    width: 150px;
+    height: 60px;
+    overflow: hidden;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.button::after {
+    position: absolute;
+    content: "Hover me";
+    display: grid;
+    place-items: center;
+    background-color: #333;
+    width: 100%;
+    height: 100%;
+    transform: translate(0%,100%);
+    transition: all 0.6s;
+}
+
+.button:hover::after {
+    transform: translate(0%, 0%);
+}

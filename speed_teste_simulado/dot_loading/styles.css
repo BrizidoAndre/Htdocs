@@ -1,0 +1,64 @@
+:root {
+    --green: #19a68c;
+    --red: #f63d3a;
+    --yellow: #fda543;
+    --blue: #193b48;
+    --animation-time: .5s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.dot-group {
+    width: 250px;
+    aspect-ratio: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    margin: 200px auto;
+    animation: rotating steps(4) calc(var(--animation-time) * 4) infinite;
+}
+
+.dot {
+    width: 100px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    animation: passing var(--animation-time) ease-out infinite;
+}
+
+@keyframes passing {
+    from {
+        transform: none;
+    }
+    to {
+        transform: translateX(150px);
+    }
+}
+
+@keyframes rotating {
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.red {
+    background-color: var(--red);
+}
+.green {
+    background-color: var(--green);
+    rotate: 90deg;
+}
+.yellow {
+    background-color: var(--yellow);
+    rotate: -90deg;
+}
+.blue {
+    background-color: var(--blue);
+    rotate: 180deg;
+}

@@ -1,0 +1,26 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+img{
+    width: 100vw;
+    object-fit: contain;
+    z-index: -1;
+}
+
+.spot{
+    width: 10px;
+    aspect-ratio: 1;
+    background: rgba(255, 255, 255, 0.49);
+    position: absolute;
+    border-radius: 50%;
+    translate: -50% -50%;
+}
